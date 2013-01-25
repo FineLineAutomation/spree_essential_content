@@ -13,24 +13,20 @@ Gem::Specification.new do |s|
   s.summary     = %q{Spree Essentials provides a base for several other Spree Commerce extensions. See readme for details...}
   s.description = %q{Spree Essentials provides a base for several other Spree Commerce extensions. The idea is to provide other extensions with common functionality such as an asset-upload interface, a markdown editor, and a common admin-navigation tab.}
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  
-  s.require_paths = ["lib"]
+  #s.files       = `git ls-files`.split("\n")
+  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.require_path = 'lib'
+  s.requirements << 'none'
 
-  s.add_runtime_dependency('spree',  '~> 1.2.0')
+  s.add_dependency 'spree_core', '~> 1.3.1'
   s.add_runtime_dependency('rdiscount',   '~> 1.6.8')
 
-  s.add_development_dependency 'm'
-  s.add_development_dependency('mocha',        '~> 0.12.7')
-  s.add_development_dependency('shoulda',      '~> 3.0.0')
-  s.add_development_dependency('dummier',      '~> 0.3.0')
-  s.add_development_dependency('factory_girl', '~> 2.6.0')
-  s.add_development_dependency('capybara',     '~> 1.1.2')
-  s.add_development_dependency('sqlite3',      '~> 1.3.4')
-  s.add_development_dependency('simplecov',    '~> 0.6.1')
-  s.add_development_dependency('sass-rails',   '~> 3.2.5')
-  s.add_development_dependency('jquery-rails', '~> 2.1.3')
-  # s.add_development_dependency('turn',         '~> 0.9.3')
+  s.add_development_dependency 'capybara', '~> 1.1.2'
+  s.add_development_dependency 'coffee-rails'
+  s.add_development_dependency 'factory_girl', '~> 2.6.4'
+  s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'rspec-rails',  '~> 2.9'
+  s.add_development_dependency 'sass-rails'
+  s.add_development_dependency 'sqlite3'
   
 end

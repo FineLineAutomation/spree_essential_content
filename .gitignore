@@ -6,5 +6,4 @@
 coverage
 Gemfile.lock
 pkg/*
-test/dummy_hooks/after_migrate.rb
-test/dummy
+spec/dummy
