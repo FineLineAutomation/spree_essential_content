@@ -1,2 +1,0 @@
-rake "db:migrate db:seed", :env => "development"
-rake "spree_auth:admin:create"
