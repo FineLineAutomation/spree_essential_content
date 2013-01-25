@@ -15,6 +15,7 @@ require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/controller_requests'
 require 'spree/core/testing_support/authorization_helpers'
 require 'spree/core/url_helpers'
+require 'capybara/rspec'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -43,4 +44,72 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+end
+
+def spree
+  Spree::Core::Engine.routes.url_helpers
+end  
+  
+def request
+  @request
+end
+
+# not sure why setting the request_uri doesn't also update @fullpath
+def visit(path="/")
+  @request.request_uri = path
+  @request.instance_variable_set "@fullpath", path 
+  @request
+end
+
+# Stub authorization for all admin controllers
+def stub_authorization!
+  subclasses = Spree::Admin::BaseController.subclasses + Spree::Admin::ResourceController.subclasses
+  subclasses.each do |klass|
+    klass.any_instance.stub(:authorize!).and_return(true)
+  end
+end
+
+# An assertion for ensuring content has made it to the page.
+#    
+#    assert_seen "Site Title"
+#    assert_seen "Peanut Butter Jelly Time", :within => ".post-title h1"
+#      
+def assert_seen(text, opts={})
+  msg = "Should see `#{text}`"
+  if opts[:within]
+    within(opts[:within]) do
+      expect(has_content?(text)).to eq(msg + " within #{opts[:within]}")
+    end
+  else
+    expect(has_content?(text)).to eq(msg)
+  end
+end
+
+# Asserts the proper flash message
+#    
+#    assert_flash :notice, "Post was successfully saved!"
+#    assert_flash :error, "Oh No, bad things happened!"
+#
+def assert_flash(key, text)
+  within(".flash.#{key}") do
+    assert_seen(text)
+  end
+end
+  
+# Asserts the proper browser title
+#    
+#    assert_title "My Site - Is super cool"
+#
+def assert_title(title)
+  assert_seen title, :within => "head title"
+end
+  
+# Asserts meta tags have proper content
+#    
+#    assert_meta :description, "So let me tell you about this one time..."
+#    assert_meta :keywords, "seo, is, fun, jk."
+#
+def assert_meta(tag, text)
+  tag = find(:xpath, "//head/meta[@name='#{tag.to_s}']")
+  expect(text).to eq(tag.native.attribute("content"))
 end

@@ -2,7 +2,7 @@ source "http://rubygems.org"
 gemspec
 
 group :development, :test do
-  gem "spree_essential_example", :path => "test/spree_essential_example"
+  gem "spree_essential_example", :path => "spec/spree_essential_example"
   gem 'coffee-rails'
   gem "rspec-rails", "~> 2.0"
   gem "capybara"
