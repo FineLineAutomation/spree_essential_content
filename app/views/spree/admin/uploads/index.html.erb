@@ -1,6 +1,8 @@
 
 <h1><%= t('.listing_uploads') %></h1>
 
+<%= link_to_function "test js", '$(this).html("js works")' %>
+
 <table class="index">
 	<tr>
 	  <th><%= t("thumbnail") %></th>
@@ -9,7 +11,7 @@
 	  <th><%= sort_link @search, :attachment_file_size, t("upload.size") %></th>
 	  <th><%= t("action") %></th>
 	</tr>
- 
+
   <% @uploads.each do |upload| %>
     <tr id="<%= dom_id(upload) %>">
       <td class="thumbnail">
@@ -27,7 +29,7 @@
       </td>
     </tr>
   <% end %>
- 
+
 </table>
 
 <%= paginate @uploads %>
@@ -55,14 +57,14 @@
 
 <% content_for :head do %>
   <script type="text/javascript">
-    jQuery(document).ready(function(){  
-      
-      jQuery('#new_image_link').click(function(event) { 
+    jQuery(document).ready(function(){
+
+      jQuery('#new_image_link').click(function(event) {
         event.preventDefault();
         jQuery(this).hide();
         jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
       });
-      
+
     });
   </script>
 <% end %>

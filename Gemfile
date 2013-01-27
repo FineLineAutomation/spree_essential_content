@@ -6,6 +6,7 @@ group :development, :test do
   gem 'coffee-rails'
   gem "rspec-rails", "~> 2.0"
   gem "capybara"
+  gem "database_cleaner"
 end
 
 gem 'spree_auth_devise', :git => "git://github.com/spree/spree_auth_devise"

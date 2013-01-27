@@ -43,13 +43,30 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
+
+Capybara.default_selector = :css
+Capybara.javascript_driver = :selenium
+#Capybara.javascript_driver = :webkit
 
 def spree
   Spree::Core::Engine.routes.url_helpers
-end  
-  
+end
+
 def request
   @request
 end
@@ -57,7 +74,7 @@ end
 # not sure why setting the request_uri doesn't also update @fullpath
 def visit(path="/")
   @request.request_uri = path
-  @request.instance_variable_set "@fullpath", path 
+  @request.instance_variable_set "@fullpath", path
   @request
 end
 
@@ -70,23 +87,23 @@ def stub_authorization!
 end
 
 # An assertion for ensuring content has made it to the page.
-#    
+#
 #    assert_seen "Site Title"
 #    assert_seen "Peanut Butter Jelly Time", :within => ".post-title h1"
-#      
+#
 def assert_seen(text, opts={})
   msg = "Should see `#{text}`"
   if opts[:within]
     within(opts[:within]) do
-      expect(has_content?(text)).to eq(msg + " within #{opts[:within]}")
+      expect(has_content?(text)).to eq(true)
     end
   else
-    expect(has_content?(text)).to eq(msg)
+    expect(has_content?(text)).to eq(true)
   end
 end
 
 # Asserts the proper flash message
-#    
+#
 #    assert_flash :notice, "Post was successfully saved!"
 #    assert_flash :error, "Oh No, bad things happened!"
 #
@@ -95,17 +112,17 @@ def assert_flash(key, text)
     assert_seen(text)
   end
 end
-  
+
 # Asserts the proper browser title
-#    
+#
 #    assert_title "My Site - Is super cool"
 #
 def assert_title(title)
   assert_seen title, :within => "head title"
 end
-  
+
 # Asserts meta tags have proper content
-#    
+#
 #    assert_meta :description, "So let me tell you about this one time..."
 #    assert_meta :keywords, "seo, is, fun, jk."
 #
