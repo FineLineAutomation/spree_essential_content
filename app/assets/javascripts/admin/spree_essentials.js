@@ -1,1 +1,2 @@
-//= require_tree .
+//= require date
+//= require jquery.autodate

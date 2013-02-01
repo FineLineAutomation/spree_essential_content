@@ -25,7 +25,7 @@ Installation
 If you don't already have an existing Spree site, [click here](https://github.com/spree/spree) then come back later... You can also read the Spree docs [here](http://spreecommerce.com/documentation/getting_started.html)...
 
 Spree Essentials can be installed by itself by adding the following to your Gemfile:
-    
+
 ```ruby
 # Spree 1.3.x
 gem 'spree_essentials', :git => 'git@github.com:FineLineAutomation/spree_essentials.git', :branch => '1-3-stable'
@@ -50,13 +50,13 @@ Be sure to only include the gem line that cooresponds to your spree version.  Do
 
 This isn't necessary if you're using spree_essentials based extensions. If that's the case, just include the extensions normally:
 
-```ruby  
+```ruby
 gem 'spree_essential_cms', :git => 'git@github.com:FineLineAutomation/spree_essential_cms.git', :branch => '1-3-stable'
 gem 'spree_essential_blog', :git => 'git@github.com:FineLineAutomation/spree_essential_blog.git', :branch => '1-3-stable'
 ```
-    
+
 Then run:
-    
+
 ```bash
 bundle install
 ```
@@ -64,19 +64,19 @@ bundle install
 Once that's complete, run the migration generator and migrate your database:
 
 To see your available generators run
- 
+
 ```bash
 rails g
 ```
-    
-Now run the generators for extensions you wish to install    
 
-```bash 
+Now run the generators for extensions you wish to install
+
+```bash
 rails g spree_essentials:install
 rails g spree_essentials:cms
 rails g spree_essentials:blog
 ```
-    
+
 Then migrate your database:
 
 ```bash
@@ -159,7 +159,7 @@ If you're using the [CMS](https://github.com/FineLineAutomation/spree_essential_
 
 ```ruby
 # app/models/spree/asset_decorator.rb
-[ Spree::Content, Spree::PageImage, Spree::PostImage, Spree::Upload ].each do |cls| 
+[ Spree::Content, Spree::PageImage, Spree::PostImage, Spree::Upload ].each do |cls|
   cls.attachment_definitions[:attachment].merge!(
     :storage        => 's3',
     :s3_credentials => Rails.root.join('config', 's3.yml'),
@@ -178,12 +178,14 @@ Notes
 
 Spree Essentials is under constant development... Development is being done on OSX with Ruby 1.9.3 and usually the latest version of Spree. (currently 1.1.0)
 
-Please let me know if you find any bugs or have feature requests you'd like to see. 
+Please let me know if you find any bugs or have feature requests you'd like to see.
 
 
 ------------------------------------------------------------------------------
 Testing
 ------------------------------------------------------------------------------
+
+In order for you to test, you need to have FireFox installed on your computer.  If you don't you will get an error on all of the tests that require javascript support.
 
 The test suite can be run like so:
 
@@ -193,15 +195,15 @@ cd spree_essentials
 bundle install
 bundle exec rake test_app
 bundle exec rake
-```    
+```
 
 ------------------------------------------------------------------------------
 Demo
 ------------------------------------------------------------------------------
 
 You can easily use the test/dummy app as a demo of spree_essentials. Just `cd` to where you develop and run:
-  
-```bash  
+
+```bash
 git clone git://github.com/FineLineAutomation/spree_essentials.git
 cd spree_essentials
 bundle install
@@ -210,7 +212,7 @@ cd spec/dummy
 rails s
 ```
 
- 
+
 ------------------------------------------------------------------------------
 To Do
 ------------------------------------------------------------------------------

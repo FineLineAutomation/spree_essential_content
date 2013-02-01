@@ -10,24 +10,20 @@ require 'ffaker'
 # in spec/support/ and its subdirectories.
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
-# Requires factories defined in spree_core
+require 'database_cleaner'
+
 require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/controller_requests'
 require 'spree/core/testing_support/authorization_helpers'
+require 'spree/core/testing_support/preferences'
+require 'spree/core/testing_support/flash'
+
 require 'spree/core/url_helpers'
 require 'capybara/rspec'
+require 'capybara/rails'
+require 'paperclip/matchers'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
-
-  # == URL Helpers
-  #
-  # Allows access to Spree's routes in specs:
-  #
-  # visit spree.admin_path
-  # current_path.should eql(spree.products_path)
-  config.include Spree::Core::UrlHelpers
-
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -45,36 +41,42 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
-  config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
+  config.before(:each) do
+    if example.metadata[:js]
+      DatabaseCleaner.strategy = :truncation, { :except => ['spree_countries', 'spree_zones', 'spree_zone_members', 'spree_states', 'spree_roles'] }
     else
-      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.strategy = :transaction
     end
-    DatabaseCleaner.start
   end
 
-  config.after do
+  config.before(:each) do
+    DatabaseCleaner.start
+    reset_spree_preferences
+  end
+
+  config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include FactoryGirl::Syntax::Methods
+  config.include Spree::Core::UrlHelpers
+  config.include Spree::Core::TestingSupport::ControllerRequests
+  config.include Spree::Core::TestingSupport::Preferences
+  config.include Spree::Core::TestingSupport::Flash
+
+  config.include Paperclip::Shoulda::Matchers
 end
 
-Capybara.default_selector = :css
-Capybara.javascript_driver = :selenium
-#Capybara.javascript_driver = :webkit
+def fill_in_js(selector, value)
+  page.execute_script %Q{$('#{selector}').val('#{value}').keydown()}
+end
+
 
 def spree
   Spree::Core::Engine.routes.url_helpers
 end
 
 def request
-  @request
-end
-
-# not sure why setting the request_uri doesn't also update @fullpath
-def visit(path="/")
-  @request.request_uri = path
-  @request.instance_variable_set "@fullpath", path
   @request
 end
 
