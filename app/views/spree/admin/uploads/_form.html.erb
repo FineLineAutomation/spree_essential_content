@@ -1,8 +1,8 @@
-<p>
+<div class="field">
   <%= form.label :attachment %>:<br/>
   <%= form.file_field :attachment %>
-</p>
-<p>
+</div>
+<div class="field">
   <%= form.label :alt, t('description') %>:<br/>
-  <%= form.text_field :alt, :class => 'text' %>
-</p>
+  <%= form.text_area :alt, :rows => 4, :class => 'fullwidth' %>
+</div>

@@ -1,22 +1,25 @@
-<h3><%= t('.new_upload') %></h3>
-
 <% if @upload.try(:errors).present? %>
   <%= render 'shared/error_messages', :target => @upload %>
 <% end %>
 
 <%= form_for([:admin, @upload], :html => { :multipart => true }) do |form| %>
-  <table class="basic-table">
+  <fieldset data-hook="new_image">
+    <legend align="center"><%= t(:new_image) %></legend>
+
     <%= render "form", :form => form %>
-  </table>
-  <p class="form-buttons">
-    <%= button t("create") %>
-    or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
-  </p>
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', t(:cancel), admin_uploads_url(), :id => 'cancel_link', :class => 'button' %>
+    </div>
+  </fieldset>
 <% end %>
 
-<script type="text/javascript">    
-  jQuery('#cancel_link').click(function (event) { 
+<script type="text/javascript">
+  jQuery('#cancel_link').click(function (event) {
+    event.preventDefault()
     jQuery('#new_image_link').show();
+    jQuery('.no-objects-found').show();
     jQuery('#images').html('');
-  }); 
+  });
 </script>
