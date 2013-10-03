@@ -1,23 +1,31 @@
-<h1><%= t('.edit_upload') %></h1>
+<% content_for :page_title do %>
+  <%= t('.edit_upload') %>
+<% end %>
 
 <% if @upload.try(:errors).present? %>
   <%= render 'shared/error_messages', :target => @upload %>
 <% end %>
 
 <%= form_for([:admin, @upload], :html => { :multipart => true }) do |f| %>
-    <p>
+  <fieldset data-hook="edit_upload">
+    <legend align="center"><%= @upload.attachment_file_name%></legend>
+    <div class="field alpha three columns align-center">
       <% if @upload.image_content? %>
-        <b><%= t('.preview') %>:</b><br/>
+        <%= f.label t('.preview') %><br/>
         <%= link_to image_tag(@upload.attachment.url(:small)), @upload.attachment.url(:original) %>
       <% else %>
-        <b><%= t('.link') %>:</b><br/>
+        <%= f.label t('.link') %><br/>
         <%= link_to @upload.attachment_file_name, @upload.attachment.url %>
       <% end %>
-    </p>
-    <%= render "form", :form => f %>
-  </table>
-  <p class="form-buttons">
-    <%= button t("update") %>
-    or <%= link_to t("cancel"), admin_uploads_url, :id => "cancel_link" %>
-  </p>
+    </div>
+    <div class="nine columns omega">
+      <%= render "form", :form => f %>
+    </div>
+    <div class="clear"></div>
+    <div class="filter-actions actions">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
+    </div>
+  </fieldset>
 <% end %>
