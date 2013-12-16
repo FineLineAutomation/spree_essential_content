@@ -1,5 +1,4 @@
 require "spree_core"
-require "rdiscount"
 
 require "spree_essentials/version"
 require "spree_essentials/engine"
