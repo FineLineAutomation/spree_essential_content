@@ -30,4 +30,26 @@ FactoryGirl.define do
       attachment nil
     end
   end
+
+  factory :page, :class => Spree::Page do
+    sequence(:title) { |n| "Page ##{n}" }
+    sequence(:path) { |n| "pages/page-#{n}" }
+    nav_title { Faker::Lorem.words.join ' ' }
+    meta_title { Faker::Lorem.words.join ' '  }
+    meta_description  { Faker::Lorem.sentence }
+    meta_keywords  { Faker::Lorem.words.join ',' }
+    accessible true
+    visible true
+  end
+
+  factory :content, :class => Spree::Content do
+    association :page, :factory => :page
+    sequence(:title) { |n| "Page Content ##{n}" }
+    body { Faker::Lorem.paragraphs }
+    hide_title false
+    link ""
+    link_text ""
+    context ""
+    attachment nil
+  end
 end
