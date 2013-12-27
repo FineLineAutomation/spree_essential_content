@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Spencer Steffen", "Nathan Lowrie"]
   s.email       = ["spencer@citrusme.com", "nate@finelineautomation.com"]
   s.homepage    = "https://github.com/citrus/spree_essentials"
-  s.summary     = %q{Spree Essentials provides a CMS Spree Commerce sites. See readme for details...}
-  s.description = %q{Spree Essentials provides a CMS Spree Commerce sites. It provides static pages, content snippets, blogs, and an asset-upload interface.}
+  s.summary     = %q{Spree Essentials provides a CMS for Spree Commerce sites. See readme for details...}
+  s.description = %q{Spree Essentials provides a CMS for Spree Commerce sites. It provides static pages, content snippets, blogs, and an asset-upload interface.}
   s.required_ruby_version = '>= 1.9.3'
 
   #s.files       = `git ls-files`.split("\n")
