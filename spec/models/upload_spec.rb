@@ -1,55 +1,47 @@
 require 'spec_helper'
 
-describe Spree::Upload do
+module Spree
+  describe Spree::Upload do
+    describe 'has_alt' do
+      it "returns true when alt is not blank" do
+        expect(create(:upload, :alt => "omg").has_alt?).to eq(true)
+      end
 
-  before(:each) do
-    Spree::Upload.destroy_all
-	#puts File.expand_path("../../support/files/*.jpg", __FILE__)
-    @jpgs = Dir[File.expand_path("../../support/files/*.jpg", __FILE__)]
-    @pngs = Dir[File.expand_path("../../support/files/*.png", __FILE__)]
-    @gifs = Dir[File.expand_path("../../support/files/*.gif", __FILE__)]
-  end
-  
-  it "should have attached file" do
-	have_attached_file(:attachment)
-  end
-  
-  it "should validate attachment" do
-    upload = Spree::Upload.new
-	expect(!upload.valid?).to eq(true)
-    expect(!upload.save).to eq(true)
-  end
-  
-  it "should create an upload" do
-    upload = Spree::Upload.new(:attachment => File.open(File.expand_path(@jpgs.shuffle.first)))
-    expect(upload.valid?).to eq(true)
-	upload_count = Spree::Upload.count
-    expect(upload.save).to eq(true)
-	expect(Spree::Upload.count).to eq(upload_count+1)
-  end
-  
-  context "with an existing upload" do 
-    
-    before(:each) do
-      @jpg = Spree::Upload.create(:alt => "jpg", :attachment => File.open(File.expand_path(@jpgs.shuffle.first)))
-      @png = Spree::Upload.create(:alt => "png", :attachment => File.open(File.expand_path(@pngs.shuffle.first)))
-      @gif = Spree::Upload.create(:alt => "gif", :attachment => File.open(File.expand_path(@gifs.shuffle.first)))
-      @pdf = Spree::Upload.create(:alt => "pdf", :attachment => File.open(File.expand_path("../../support/files/test.pdf", __FILE__)))
-      @zip = Spree::Upload.create(:alt => "zip", :attachment => File.open(File.expand_path("../../support/files/test.zip", __FILE__)))
-    end
-    
-    it "should be image content" do
-      [@jpg, @png, @gif].each do |upload|
-        expect(upload.image_content?).not_to be_nil
+      it "returns false when alt is blank" do
+        expect(create(:upload).has_alt?).to eq(false)
       end
     end
-    
-    it "should not be image content" do
-      [@pdf, @zip].each do |upload|
-        expect(upload.image_content?).to be_nil
-      end
+
+    it "has an attached file" do
+      have_attached_file(:attachment)
     end
-    
+
+    it "is not valid without a component variant" do
+      expect(build(:upload, :attachment => nil)).to_not be_valid
+    end
+
+    it "is valid with a attachment" do
+      expect(build(:upload)).to be_valid
+    end
+
+    it "returns image content for gif files" do
+      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.gif", __FILE__))).image_content?).to_not be_nil
+    end
+
+    it "returns image content for jpg files" do
+      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.jpg", __FILE__))).image_content?).to_not be_nil
+    end
+
+    it "returns image content for png files" do
+      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.png", __FILE__))).image_content?).to_not be_nil
+    end
+
+    it "does not return image content for pdf files" do
+      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/test.pdf", __FILE__))).image_content?).to be_nil
+    end
+
+    it "does not return image content for zip files" do
+      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/test.zip", __FILE__))).image_content?).to be_nil
+    end
   end
-    
 end
