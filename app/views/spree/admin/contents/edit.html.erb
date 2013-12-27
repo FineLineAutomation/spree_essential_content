@@ -1,0 +1,19 @@
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
+
+<%= form_for([:admin, @page, @content], :html => { :multipart => true }) do |f| %>
+  <fieldset>
+    <legend><%= (t('.edit_content') + " - #{@content.title}").html_safe %></legend>
+
+    <% if @content.try(:errors).present? %>
+      <%= render 'spree/shared/error_messages', :target => @content %>
+    <% end %>
+
+    <%= render "form", :form => f %>
+
+    <div class="filter-actions actions">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove', :id => "cancel_link" %>
+    </div>
+  </fieldset>
+<% end %>

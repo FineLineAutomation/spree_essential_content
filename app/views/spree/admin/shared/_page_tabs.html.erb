@@ -1,0 +1,34 @@
+<% content_for :page_title do %>
+  <%= (t('.editing_page') + " &ldquo;#{@page.title}&rdquo;").html_safe %>
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <%= t('.page_information') %>
+<% end %>
+
+<% content_for :sidebar do %>
+
+  <header id="page_tab_summary" data-hook>
+    <dl class="additional-info">
+      <dt id="page_accessible" data-hook><%= t(:page_accessible) %>:</dt>
+      <dd><%= @page.accessible ? "<span class='state complete'>Accessible</span>".html_safe : "<span class='state pending'>Not Accessible</span>".html_safe %></dd>
+      <dt data-hook><%= t(:page_visible) %>:</dt>
+      <dd id='page_visible'><%= @page.visible ? "<span class='state complete'>Visible</span>".html_safe : "<span class='state pending'>Hidden</span>".html_safe %></dd>
+    </dl>
+  </header>
+
+  <nav class="menu">
+    <ul class="sidebar post-menu">
+      <li<%== ' class="active"' if current == t('.page_details') %>>
+        <%= link_to t('.page_details'), edit_admin_page_url(@page) %>
+      </li>
+      <li<%== ' class="active"' if current == "Contents" %>>
+        <%= link_to t('.contents'), admin_page_contents_url(@page) %>
+      </li>
+      <li<%== ' class="active"' if current == "Images" %>>
+        <%= link_to t('.images'), admin_page_images_url(@page) %>
+      </li>
+    </ul>
+  </nav>
+
+<% end %>

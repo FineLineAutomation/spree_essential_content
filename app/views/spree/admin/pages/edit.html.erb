@@ -1,0 +1,17 @@
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Page Details'} %>
+
+<%= form_for([:admin, @page]) do |f| %>
+  <% if @page.try(:errors).present? %>
+    <%= render 'spree/shared/error_messages', :target => @page %>
+  <% end %>
+
+  <fieldset class="no-border-top">
+    <%= render "form", :form => f %>
+
+    <div class="filter-actions actions">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove' %>
+    </div>
+  </fieldset>
+<% end %>

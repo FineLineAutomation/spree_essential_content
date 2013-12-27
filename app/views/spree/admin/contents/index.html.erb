@@ -1,0 +1,40 @@
+<% content_for :page_actions do %>
+  <li id="new_page_link">
+    <%= button_link_to t(:new_content), new_object_url,:icon => 'icon-plus', :id => 'admin_new_page_content' %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
+
+<%= paginate @collection %>
+
+<table class="index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
+  <colgroup>
+     <col style="width: 55%">
+     <col style="width: 30%">
+     <col style="width: 15%">
+  </colgroup>
+  <thead>
+    <tr>
+        <th><%= sort_link @search, :title, t("content.title") %></th>
+        <th><%= sort_link @search, :context, t("content.context") %></th>
+        <th data-hook="admin_page_contents_index_header_actions" class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @collection.each do |content|%>
+    <tr id="<%= spree_dom_id content %>">
+      <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to content.title, object_url(content) %></td>
+      <td><%= content.context %>
+      <td class="actions" data-hook="admin_page_contents_index_row_actions">
+        <%= link_to_edit content, :no_text => true, :class => 'edit' %>
+        &nbsp;
+        <%= link_to_delete content, :no_text => true %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @collection %>
+

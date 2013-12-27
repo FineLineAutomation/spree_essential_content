@@ -1,0 +1,19 @@
+<% content_for :page_title do %>
+  <%= t('.new_page') %>
+<% end %>
+
+<% if @page.try(:errors).present? %>
+  <%= render 'spree/shared/error_messages', :target => @page %>
+<% end %>
+
+<%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
+  <fieldset class="no-border-top">
+    <%= render "form", :form => f %>
+
+    <div class="filter-actions actions">
+      <%= button t(:create), 'icon-ok' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove' %>
+    </div>
+  </fieldset>
+<% end %>
