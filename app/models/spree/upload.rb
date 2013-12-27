@@ -33,4 +33,8 @@ class Spree::Upload < ::Spree::Asset
     end
   end
 
+  def has_alt?
+    alt.present?
+  end
+
 end
