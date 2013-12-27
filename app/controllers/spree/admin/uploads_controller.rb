@@ -1,11 +1,11 @@
 class Spree::Admin::UploadsController < Spree::Admin::ResourceController
-  
+
 	def index
 	  render :template => "spree/admin/uploads/#{request.xhr? ? 'picker' : 'index'}", :layout => !request.xhr?
   end
-  
+
   private
-  
+
     def collection
       params[:q] ||= {}
       params[:q][:sort] ||= "created_at.desc"

@@ -1,9 +1,11 @@
-en:
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
+en:
   successfully_created: "%{resource} has been successfully created!"
   successfully_removed: "%{resource} has been successfully removed!"
   successfully_updated: "%{resource} has been successfully updated!"
-  
+
   essentials:
     parsed_with: Parsed With
 
@@ -14,25 +16,25 @@ en:
     errors:
       messages:
         invalid_date_time: is an invalid date.
-           
+
   upload:
     model_name: Upload
     file_name: File Name
     size: Size
-    
-  # spree hack  
+
+  # spree hack
   first_name_start: "First Name starts with"
   last_name_start: "Last Name starts with"
-  
+
   spree:
     admin:
       shared:
         contents_tab:
           content: Content
-        
+
       subnav:
-        uploads: Uploads      
-                  
+        uploads: Uploads
+
       uploads:
         new:
           new_upload: New Upload

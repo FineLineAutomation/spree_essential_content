@@ -1,5 +1,4 @@
 ru:
-
   successfully_created: "%{resource} успешно создан!"
   successfully_removed: "%{resource} успешно удалён!"
   successfully_updated: "%{resource} успешно сохранён!"
