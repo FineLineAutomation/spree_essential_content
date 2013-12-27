@@ -1,8 +1,6 @@
-class Spree::Upload < ::Spree::Asset
+class Spree::Upload < Spree::Asset
 
   attr_accessible :attachment, :alt
-
-  default_scope where(:type => "Spree::Upload") if table_exists?
 
   validate :no_attachment_errors
 
