@@ -28,6 +28,13 @@ require 'spree/testing_support/factories'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/url_helpers'
+require 'spree/testing_support/capybara_ext'
+require 'spree/testing_support/url_helpers'
+require 'spree/testing_support/flash'
+
+require 'capybara/rspec'
+require 'capybara/rails'
+require 'paperclip/matchers'
 
 # Requires factories defined in lib/spree_essential_content/factories.rb
 require 'spree_essential_content/factories'
@@ -77,6 +84,14 @@ RSpec.configure do |config|
   config.after :each do
     DatabaseCleaner.clean
   end
+
+  config.include Spree::TestingSupport::ControllerRequests
+  config.include Spree::TestingSupport::Preferences
+  config.include Spree::TestingSupport::Flash
+
+  config.include Paperclip::Shoulda::Matchers
+
+  config.extend Spree::TestingSupport::AuthorizationHelpers::Request, :type => :controller
 
   config.fail_fast = ENV['FAIL_FAST'] || false
 end

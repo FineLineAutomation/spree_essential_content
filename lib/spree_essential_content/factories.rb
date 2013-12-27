@@ -25,5 +25,9 @@ FactoryGirl.define do
     trait :zip do
       attachment { File.new(File.expand_path("../../../spec/factories/test.zip", __FILE__)) }
     end
+
+    factory :invalid_upload do
+      attachment nil
+    end
   end
 end
