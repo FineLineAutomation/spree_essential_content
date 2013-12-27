@@ -4,7 +4,7 @@ class Spree::Upload < ::Spree::Asset
 
   default_scope where(:type => "Spree::Upload") if table_exists?
 
-  validate :no_attachement_errors
+  validate :no_attachment_errors
 
   has_attached_file :attachment,
     :styles        => Proc.new{ |clip| clip.instance.attachment_sizes },
@@ -24,10 +24,11 @@ class Spree::Upload < ::Spree::Asset
     end
   end
 
-  def no_attachement_errors
-    if attachment_file_name.blank? || !attachment.errors.empty?
+  # if there are errors from the plugin, then add a more meaningful message
+  def no_attachment_errors
+    unless attachment.errors.empty? and !attachment_file_name.blank?
       # uncomment this to get rid of the less-than-useful interrim messages
-      errors.clear
+      # errors.clear
       errors.add :attachment, "Paperclip returned errors for file '#{attachment_file_name}' - check ImageMagick installation or image source file."
       false
     end

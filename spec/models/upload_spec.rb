@@ -25,23 +25,23 @@ module Spree
     end
 
     it "returns image content for gif files" do
-      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.gif", __FILE__))).image_content?).to_not be_nil
+      expect(create(:upload, :gif).image_content?).to_not be_nil
     end
 
     it "returns image content for jpg files" do
-      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.jpg", __FILE__))).image_content?).to_not be_nil
+      expect(create(:upload, :jpg).image_content?).to_not be_nil
     end
 
     it "returns image content for png files" do
-      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/1.png", __FILE__))).image_content?).to_not be_nil
+      expect(create(:upload, :png).image_content?).to_not be_nil
     end
 
     it "does not return image content for pdf files" do
-      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/test.pdf", __FILE__))).image_content?).to be_nil
+      expect(create(:upload, :pdf).image_content?).to be_nil
     end
 
     it "does not return image content for zip files" do
-      expect(create(:upload, :attachment => File.open(File.expand_path("../../factories/test.zip", __FILE__))).image_content?).to be_nil
+      expect(create(:upload, :zip).image_content?).to be_nil
     end
   end
 end
