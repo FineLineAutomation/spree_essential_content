@@ -1,0 +1,44 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= t('.listing_blogs') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_blog_link">
+    <%= button_link_to t('.new_blog'), new_admin_blog_url, :icon => 'icon-plus', :id => 'admin_new_blog' %>
+  </li>
+<% end %>
+
+<%= paginate @collection %>
+
+<% if @collection.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 42%">
+      <col style="width: 43%">
+      <col style="width: 15%">
+    </colgroup>
+    <thead>
+    <tr>
+        <th><%= sort_link @search, :name, t("activerecord.attributes.blog.name") %></th>
+        <th><%= sort_link @search, :live, t("activerecord.attributes.blog.permalink") %></th>
+        <th data-hook="admin_blogs_index_header_actions" class="actions"></th>
+    </tr>
+    </thead>
+    <tbody>
+      <%- @collection.each do |blog|%>
+      <tr id="<%= dom_id blog %>">
+        <td><%= blog.name %></td>
+        <td><%= blog.permalink %></td>
+        <td class="actions" data-hook="admin_posts_index_row_actions">
+          <%= link_to_edit blog, :no_text => true, :class => 'edit' %> &nbsp;
+          <%= link_to_delete blog, :no_text => true %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= paginate @collection %>

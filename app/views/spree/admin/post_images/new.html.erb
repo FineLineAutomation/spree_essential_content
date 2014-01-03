@@ -1,0 +1,24 @@
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Images"} unless request.xhr? %>
+
+<%= render 'spree/shared/error_messages', :target => @post_image %>
+
+<%= form_for(@post_image, :url => admin_post_images_path(@post), :html => { :multipart => true }) do |form| %>
+  <fieldset data-hook="new_image">
+    <legend align="center"><%= t(:new_image) %></legend>
+
+    <%= render "form", :form => form %>
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', t(:cancel), admin_post_images_url(@post), :id => 'cancel_link', :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>
+
+<script type="text/javascript">
+  jQuery('#cancel_link').click(function (event) {
+    event.preventDefault();
+    jQuery('#new_image_link').show();
+    jQuery('#images').html('');
+  });
+</script>

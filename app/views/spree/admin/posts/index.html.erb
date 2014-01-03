@@ -1,0 +1,84 @@
+<% content_for :page_title do %>
+  <%= t('.listing_posts') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_post_link">
+    <%= button_link_to t('.new_post'), new_admin_post_url, :icon => 'icon-plus', :id => 'admin_new_post' %>
+  </li>
+  <li id="manage_blogs_link">
+    <%= button_link_to t('.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
+  </li>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= t(:search) %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_products_sidebar">
+
+    <%= search_form_for [:admin, @search] do |f| %>
+
+        <%- locals = {:f => f} %>
+
+        <div data-hook="admin_products_index_search">
+          <div class="alpha eight columns omega">
+            <div class="field">
+              <%= f.label :blog_id_eq, t("activerecord.attributes.blog.model_name") %>
+              <%= f.select :blog_id_eq, Spree::Blog.to_options, :selected => (params[:q][:blog_id_eq] if params[:q]), :include_blank => true %>
+            </div>
+          </div>
+          <div class="eight columns">
+            <div class="field">
+              <%= f.label :title_cont, t("activerecord.attributes.post.title") %>
+              <%= f.text_field :title_cont, :size => 25 %>
+            </div>
+          </div>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
+          <%= button t(:search), 'icon-search' %>
+        </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+<%= paginate @collection %>
+
+<% if @collection.any? %>
+  <table class="index">
+    <thead>
+      <tr data-hook="admin_blogs_index_headers">
+          <th><%= sort_link @search, :title, t("activerecord.attributes.post.title") %></th>
+          <th><%= sort_link @search, :blog,  t("activerecord.attributes.blog.model_name") %></th>
+          <th><%= sort_link @search, :posted_at, t("activerecord.attributes.post.posted_at") %></th>
+          <th><%= sort_link @search, :live, t("activerecord.attributes.post.live") %></th>
+          <th data-hook="admin_posts_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @collection.each do |post|%>
+      <tr id="<%= dom_id post %>">
+        <td><%= link_to post.title, object_url(post) %></td>
+        <td><%= post.blog.nil? ? "n/a" : link_to(post.blog.name, admin_posts_path(:search => { :blog_id_equals => post.blog_id })) %></td>
+        <td><%= l post.posted_at, :format => :date_time %></td>
+        <td class="align-center"><%= post.live ? 'Yes' : 'No' %></td>
+        <td class="actions" data-hook="admin_posts_index_row_actions">
+        	<%= link_to_edit post, :no_text => true, :class => 'edit' %> &nbsp;
+        	<%= link_to_delete post, :no_text => true %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= t(:no_results) %>
+  </div>
+<% end %>
+
+<%= paginate @collection %>

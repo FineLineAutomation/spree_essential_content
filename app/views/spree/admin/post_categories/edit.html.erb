@@ -1,0 +1,19 @@
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Categories"} %>
+
+<%= form_for([:admin, @post, @post_category], :url => admin_post_category_path(@post, @post_category.id)) do |form| %>
+  <fieldset>
+    <legend><%= t(".edit_category") %></legend>
+
+    <% if @post_category.try(:errors).present? %>
+      <%= render 'spree/shared/error_messages', :target => @post_category %>
+    <% end %>
+
+    <%= render "form", :form => form %>
+    <div class="filter-actions actions">
+      <%= hidden_field_tag :post_id, @post.path, :class => 'hidden' %>
+      <%= button t("update"), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), admin_post_categories_url(@post), :icon => 'icon-remove' %>
+    </div>
+  </fieldset>
+<% end %>

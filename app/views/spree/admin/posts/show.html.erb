@@ -1,0 +1,16 @@
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:edit), edit_admin_post_url(@post), :icon => 'icon-edit' %>
+  </li>
+  <li><%= button_link_to t('.back_to_posts_list'), admin_posts_path, :icon => 'icon-arrow-left' %></li>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Post Details"} %>
+
+
+<% for image in @post.images do %>
+  <%= image_tag image.attachment.url(:small), :alt => @post.title %>
+<% end %>
+
+<%= RDiscount.new(@post.body).to_html.html_safe %>
+

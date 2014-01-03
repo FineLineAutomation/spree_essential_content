@@ -1,0 +1,69 @@
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Categories"} %>
+
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon('icon-plus', t('.new_category'), new_admin_post_category_url(@post), :id => 'btn_new_category', :class => 'button') %></li>
+<% end %>
+
+<div id="new_category"></div>
+
+<% unless @post_categories.any? %>
+  <div class="no-objects-found">
+    <%= t(:no_categories_found) %>.
+  </div>
+<% else %>
+  <%= form_for([:admin, @post]) do |f| %>
+    <fieldset>
+      <legend><%= t('.manage_categories') %></legend>
+
+      <table class="index" data-hook="categories_table">
+        <colgroup>
+           <col style="width: 85%">
+           <col style="width: 15%">
+        </colgroup>
+        <thead>
+          <tr>
+            <th><%= t('.category') %></th>
+            <th data-hook="admin_post_categories_index_header_actions" class="actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post_categories.each_with_index do |category, index| -%>
+            <tr id="<%= dom_id(category) %>">
+              <td>
+                <%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category), :id => "post_category_id_#{index}" -%>
+                <%= label_tag "post_category_id_#{index}", category.name -%>
+              </td>
+              <td class="actions" data-hook="admin_post_categories_index_row_actions">
+                <%= link_to_with_icon 'icon-edit', t(:edit), edit_admin_post_category_url(@post, category.id), :no_text => true, :data => {:action => 'edit'} %>
+                &nbsp;
+                <%= link_to_delete category, :no_text => true, :url => admin_post_category_url(@post, category.id) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="filter-actions actions">
+        <%= hidden_field_tag "post[post_category_ids][]", 0 %>
+        <%= hidden_field_tag :redirect_to, request.fullpath %>
+        <%= button t(:update), 'icon-refresh' %>
+        <span class="or"><%= t(:or) %></span>
+        <%= button_link_to t(:cancel), admin_post_categories_url(@post), :icon => 'icon-remove' %>
+      </div>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+
+      jQuery('#btn_new_category').click(function (event) {
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#new_category').html(r);} });
+      });
+
+    });
+  </script>
+<% end %>

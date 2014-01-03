@@ -1,0 +1,27 @@
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Categories"} unless request.xhr? %>
+
+<%= form_for(@post_category, :url => admin_post_categories_path(@post)) do |form| %>
+  <fieldset>
+    <legend><%= t("new_category") %></legend>
+
+    <% if @post_category.try(:errors).present? %>
+      <%= render 'spree/shared/error_messages', :target => @post_category %>
+    <% end %>
+
+    <%= render "form", :form => form %>
+
+    <div class="filter-actions actions">
+      <%= button t(:create), 'icon-ok' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', t(:cancel), admin_post_categories_path(@post), :id => 'cancel_link', :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>
+
+<script type="text/javascript">
+  jQuery('#cancel_link').click(function (event) {
+    event.preventDefault()
+    jQuery('#btn_new_category').show();
+    jQuery('#new_category').html('');
+  });
+</script>

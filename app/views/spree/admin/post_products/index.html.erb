@@ -1,0 +1,18 @@
+<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Related Products"} %>
+
+<%= form_for [:admin, @post ] do |f| %>
+  <fieldset data-hook="related_products" class="no-border-top">
+    <div data-hook="products"  class="field twelve columns alpha">
+      <%= label_tag "post[product_ids_string]", "Choose products" %>
+      <%= hidden_field_tag "post[product_ids_string]", @post.product_ids.join(","), :class => "product_picker fullwidth" %>
+    </div>
+
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= hidden_field_tag :redirect_to, request.url, :class => "hidden" %>
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', t(:cancel), request.url, :id => 'cancel_link', :class => 'button' %>
+    </div>
+  </fieldset>
+
+<% end %>

@@ -1,0 +1,28 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= t('.edit_blog') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="manage_blogs_link">
+    <%= button_link_to t('.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
+  </li>
+<% end %>
+
+<% if @blog.try(:errors).present? %>
+  <%= render 'spree/shared/error_messages', :target => @blog %>
+<% end %>
+
+<%= form_for([:admin, @blog]) do |f| %>
+  <fieldset class="no-border-top">
+    <%= render "form", :form => f %>
+    <div class="filter-actions actions">
+      <%= button t(:update), 'icon-refresh' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= button_link_to t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
+    </div>
+  </fieldset>
+<% end %>
+
+<%= render "spree/admin/shared/select_configuration_tab" unless request.xhr? %>

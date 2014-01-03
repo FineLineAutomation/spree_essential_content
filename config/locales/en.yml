@@ -25,6 +25,25 @@ en:
   # spree hack
   first_name_start: "First Name starts with"
   last_name_start: "Last Name starts with"
+  image_settings_description: "Image Settings"
+
+  activerecord:
+    attributes:
+      blog:
+        model_name: Blog
+        name: Name
+        permalink: Permalink
+      post:
+        model_name: Post
+        title: Title
+        posted_at: Posted At
+        body: Body
+        live: Published
+        tags: Tags
+      post_category:
+        model_name: Category
+        name: Name
+        permalink: Permalink
 
   page:
     model_name: Page
@@ -60,6 +79,7 @@ en:
       subnav:
         pages: Pages
         uploads: Uploads
+        posts: Blog Posts
 
       shared:
         contents_tab:
@@ -69,6 +89,11 @@ en:
           page_details: Page Details
           contents: Contents
           images: Images
+        post_tabs:
+          post_details: Post Details
+          editing_post: Editing Post
+          related_products: Related Products
+          post_categories: Categories
 
       uploads:
         new:
@@ -98,3 +123,85 @@ en:
           new_content: New Content
         edit:
           edit_content: Edit Content
+
+      blogs:
+        new:
+          new_blog: New Blog
+        index:
+          new_blog: New Blog
+
+      posts:
+        new:
+          new_post: New Blog Post
+        sidebar:
+          posted_at: Publish On
+          posted_in: Blog
+          published: Published
+        index:
+          new_post: New Blog Post
+          listing_posts: Listing Blog Posts
+          manage_blogs: Manage Blogs
+
+      post_products:
+        index:
+          add_related_product: Add Related Products
+
+      post_categories:
+        index:
+          manage_categories: Manage Categories
+
+      new:
+        new_category: New Category
+
+      edit:
+        edit_category: Edit Category
+
+  comments: Comments
+    home:
+      title: Recent Posts
+    archive: Blog Archive
+    no_posts: No posts found!
+    posts:
+      index:
+        blog: Blog
+        rss: Subscribe via RSS
+      archive:
+        title: Archive
+        where_to_next: Where to next?
+        go_to_store: "Shop the Store"
+        back_to_posts: "Back to the blog"
+      show:
+        tagged: Tagged
+    settings:
+      blogs: Manage Blogs
+      explain_blogs: Add or Edit Blogs for posts.
+      disqus: Disqus Settings
+      explain_disqus: Disqus Comments Settings
+      disqus_shortname: Disqus Shortname
+    shared:
+      sidebar:
+        recent_posts: Recent Posts
+        categories: Categories
+        archives: Archive
+        view_archive: View Full Archive
+        tags: Tags
+      preview:
+        read_more: Read More
+      post_tabs:
+        editing_post: Editing Post
+        post_details: Post Details
+        related_products: Related Products
+        post_categories: Categories
+    subnav:
+      posts: Blog Posts
+
+  time:
+    formats:
+      date_time: "%x %X"
+      date_full: "%A %B %d, %Y"
+      detailed: "%A %B %d, %Y at %I:%M%p"
+      date_only: "%x"
+  date:
+    formats:
+      month_year: "%B %Y"
+

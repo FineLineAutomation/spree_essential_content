@@ -11,3 +11,9 @@ Deface::Override.new(:virtual_path  => "spree/layouts/admin",
                      :insert_after    => "#admin-menu[data-hook]",
                      :partial       => "spree/admin/shared/contents_sub_menu",
                      :disabled      => false)
+
+# Adds configuration links to the configurations sidebar
+Deface::Override.new(:virtual_path => "spree/admin/shared/_configuration_menu",
+                     :name => "add_active_shipping_settings_tab",
+                     :insert_bottom => "[data-hook='admin_configurations_sidebar_menu'], #admin_configurations_sidebar_menu[data-hook]",
+                     :partial       => "spree/admin/shared/configuration_sidebar")
