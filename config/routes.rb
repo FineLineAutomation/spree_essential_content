@@ -31,5 +31,4 @@ Spree::Core::Engine.routes.draw do
   constraints(Spree::PossiblePage) do
     get '*page_path', :to => 'pages#show', :as => :page
   end
-
 end
