@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 2.0.0'
+  s.add_runtime_dependency('acts-as-taggable-on', '~> 3.0.0')
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'coffee-rails'

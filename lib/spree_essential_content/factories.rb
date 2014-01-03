@@ -52,4 +52,31 @@ FactoryGirl.define do
     context ""
     attachment nil
   end
+
+  factory :blog, :class => Spree::Blog do
+    name { Faker::Lorem.words.join ' ' }
+  end
+
+  factory :post, :class => Spree::Post do
+    association :blog, :factory => :blog
+    title { Faker::Lorem.words.join ' ' }
+    posted_at { Time.now + rand(10000) }
+    body { Faker::Lorem.paragraphs }
+    tag_list { Faker::Lorem.words.join ',' }
+    live true
+
+    trait :past do
+      posted_at { Time.now - rand(10000) }
+    end
+  end
+
+  factory :post_category, :class => Spree::PostCategory do
+    name { Faker::Lorem.words.join ' ' }
+  end
+
+  factory :post_image, :class => Spree::PostImage do
+    association :viewable, :factory => :post
+    attachment { File.new(File.expand_path("../../../spec/factories/1.jpg", __FILE__)) }
+  end
 end
+

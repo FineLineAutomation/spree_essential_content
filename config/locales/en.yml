@@ -156,7 +156,7 @@ en:
       edit:
         edit_category: Edit Category
 
-  comments: Comments
+    comments: Comments
     home:
       title: Recent Posts
     archive: Blog Archive
