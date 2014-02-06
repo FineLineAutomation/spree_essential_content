@@ -1,7 +1,8 @@
 class Spree::PagesController < Spree::StoreController
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
-  include SpreeEssentialContent::PostsControllerHelper
+  helper 'spree/blogs/posts'
+  helper 'spree/products'
 
   def show
     @page = current_page

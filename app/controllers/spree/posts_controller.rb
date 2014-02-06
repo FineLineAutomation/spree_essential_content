@@ -2,8 +2,6 @@ module Spree
   class PostsController < StoreController
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
-    include SpreeEssentialContent::PostsControllerHelper
-
     helper "spree/products"
 
     before_filter :get_sidebar, :only => [:index, :search, :show]
@@ -68,5 +66,26 @@ module Spree
       redirect_to blog_posts_path
     end
 
+    private
+
+      def default_scope
+        @blog.posts.live
+      end
+
+      def get_sidebar
+        @archive_posts = default_scope.web
+        @post_categories = @blog.categories.order(:name).all
+        get_tags
+      end
+
+      def get_tags
+        @tags = default_scope.web.tag_counts.order('count DESC').limit(25)
+      end
+
+      def get_blog
+        @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+      end
+
+    end
   end
 end
