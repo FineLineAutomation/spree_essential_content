@@ -1,1 +1,3 @@
-<%= contents_tab %>
+<% if can? :admin, Spree::Post %>
+  <%= tab(:content, :pages, :posts, :uploads, :contents, :url => spree.admin_pages_path, :icon => 'icon-pencil') %>
+<% end %>

@@ -1,3 +1,5 @@
+<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+
 <% content_for :page_title do %>
   <%= t(:listing_pages) %>
 <% end %>
@@ -49,7 +51,7 @@
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
   <tr>
-      <th><%= sort_link @search, :title, t("page.title") %></th>
+      <th colspan="2"><%= sort_link @search, :title, t("page.title") %></th>
       <th><%= sort_link @search, :path, t("page.path") %></th>
       <th><%= sort_link @search, :accessible, t("page.accessible") %></th>
       <th><%= sort_link @search, :visible, t("page.visible") %></th>
@@ -59,7 +61,8 @@
   <tbody>
     <%- @collection.each do |page|%>
     <tr id="<%= spree_dom_id page %>">
-      <td><span class="handle">&nbsp;</span>&nbsp; <%=link_to page.title, object_url(page) %></td>
+      <td class="no-border"><span class="handle"></span></td>
+      <td><%=link_to page.title, object_url(page) %></td>
       <td><%= page.path %></td>
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
