@@ -42,6 +42,11 @@ FactoryGirl.define do
     visible true
   end
 
+  factory :page_image, :class => Spree::PageImage do
+    association :viewable, :factory => :page
+    attachment { File.new(File.expand_path("../../../spec/factories/1.jpg", __FILE__)) }
+  end
+
   factory :content, :class => Spree::Content do
     association :page, :factory => :page
     sequence(:title) { |n| "Page Content ##{n}" }
@@ -55,6 +60,7 @@ FactoryGirl.define do
 
   factory :blog, :class => Spree::Blog do
     name { Faker::Lorem.words.join ' ' }
+    permalink { Faker::Lorem.words.join '-' }
   end
 
   factory :post, :class => Spree::Post do
@@ -72,6 +78,7 @@ FactoryGirl.define do
 
   factory :post_category, :class => Spree::PostCategory do
     name { Faker::Lorem.words.join ' ' }
+    permalink { Faker::Lorem.words.join '-' }
   end
 
   factory :post_image, :class => Spree::PostImage do
