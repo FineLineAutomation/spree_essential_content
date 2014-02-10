@@ -1,5 +1,7 @@
+<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+
 <% content_for :page_title do %>
-  <%= t('.edit_upload') %>
+  <%= Spree.t('admin.uploads.edit.edit_upload') %>
 <% end %>
 
 <% if @upload.try(:errors).present? %>
@@ -11,10 +13,10 @@
     <legend align="center"><%= @upload.attachment_file_name%></legend>
     <div class="field alpha three columns align-center">
       <% if @upload.image_content? %>
-        <%= f.label t('.preview') %><br/>
+        <%= f.label Spree.t('admin.uploads.edit.preview') %><br/>
         <%= link_to image_tag(@upload.attachment.url(:small)), @upload.attachment.url(:original) %>
       <% else %>
-        <%= f.label t('.link') %><br/>
+        <%= f.label Spree.t('admin.uploads.edit.link') %><br/>
         <%= link_to @upload.attachment_file_name, @upload.attachment.url %>
       <% end %>
     </div>
@@ -23,9 +25,9 @@
     </div>
     <div class="clear"></div>
     <div class="filter-actions actions">
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), admin_uploads_path, :icon => 'icon-remove' %>
     </div>
   </fieldset>
 <% end %>

@@ -9,9 +9,9 @@
 
     <div class="form-buttons filter-actions actions" data-hook="buttons">
       <%= hidden_field_tag :redirect_to, request.url, :class => "hidden" %>
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= link_to_with_icon 'icon-remove', t(:cancel), request.url, :id => 'cancel_link', :class => 'button' %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', Spree.t(:cancel), request.url, :id => 'cancel_link', :class => 'button' %>
     </div>
   </fieldset>
 

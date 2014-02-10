@@ -12,8 +12,10 @@
     </p>
     <%= render "form", :form => f %>
   </table>
-  <p class="form-buttons">
-    <%= button t("update") %>
-    or <%= link_to t("cancel"), admin_post_images_url(@post), :id => "cancel_link" %>
-  </p>
+
+  <div class="form-buttons filter-actions actions" data-hook="buttons">
+    <%= button Spree.t(:update), 'icon-refresh' %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= link_to_with_icon 'icon-remove', Spree.t(:cancel), admin_post_images_url(@post), :id => 'cancel_link', :class => 'button' %>
+  </div>
 <% end %>

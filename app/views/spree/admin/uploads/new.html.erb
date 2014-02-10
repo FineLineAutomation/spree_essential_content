@@ -4,14 +4,14 @@
 
 <%= form_for([:admin, @upload], :html => { :multipart => true }) do |form| %>
   <fieldset data-hook="new_image">
-    <legend align="center"><%= t(:new_image) %></legend>
+    <legend align="center"><%= Spree.t(:new_image) %></legend>
 
     <%= render "form", :form => form %>
 
     <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= link_to_with_icon 'icon-remove', t(:cancel), admin_uploads_url(), :id => 'cancel_link', :class => 'button' %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', Spree.t(:cancel), admin_uploads_url(), :id => 'cancel_link', :class => 'button' %>
     </div>
   </fieldset>
 <% end %>

@@ -8,9 +8,9 @@
   <fieldset class="no-border-top">
     <%= render "form", :form => f %>
     <div class="filter-actions actions">
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), admin_posts_path, :icon => 'icon-remove' %>
     </div>
   </fieldset>
 <% end %>

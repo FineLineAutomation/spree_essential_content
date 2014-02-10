@@ -2,79 +2,80 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  successfully_created: "%{resource} has been successfully created!"
-  successfully_removed: "%{resource} has been successfully removed!"
-  successfully_updated: "%{resource} has been successfully updated!"
-
-  essentials:
-    parsed_with: Parsed With
-
-  activerecord:
-    attributes:
-      order:
-        completed_at: Completed At
-    errors:
-      messages:
-        invalid_date_time: is an invalid date.
-
-  upload:
-    model_name: Upload
-    file_name: File Name
-    size: Size
-
-  # spree hack
-  first_name_start: "First Name starts with"
-  last_name_start: "Last Name starts with"
-  image_settings_description: "Image Settings"
-
-  activerecord:
-    attributes:
-      blog:
-        model_name: Blog
-        name: Name
-        permalink: Permalink
-      post:
-        model_name: Post
-        title: Title
-        posted_at: Posted At
-        body: Body
-        live: Published
-        tags: Tags
-      post_category:
-        model_name: Category
-        name: Name
-        permalink: Permalink
-
-  page:
-    model_name: Page
-    contents: Contents
-    title: Title
-    nav_title: Navigation Title
-    path: Path
-    meta_title: Meta Title
-    meta_description: Meta Description
-    meta_keywords: Meta Keywords
-    accessible: Accessible
-    visible: Visible
-    explain_accessible: non-accessible pages must be coded into a custom controller.
-    explain_visible: visible pages will show up in the main menu.
-
-  content:
-    model_name: Content
-    page_title: Page Title
-    page: Page
-    title: Title
-    body: Body
-    attachment: Attachment
-    link: Link URL
-    link_text: Link Text
-    context: Context
-    hide_title: Hide Title
-    delete_attachment: Delete current attachment
-
-  pages: Pages
-
   spree:
+    essential_content:
+      upload:
+        model_name: Upload
+        file_name: File Name
+        size: Size
+
+    successfully_created: "%{resource} has been successfully created!"
+    successfully_removed: "%{resource} has been successfully removed!"
+    successfully_updated: "%{resource} has been successfully updated!"
+
+    essentials:
+      parsed_with: Parsed With
+
+    activerecord:
+      attributes:
+        order:
+          completed_at: Completed At
+      errors:
+        messages:
+          invalid_date_time: is an invalid date.
+
+    # spree hack
+    first_name_start: "First Name starts with"
+    last_name_start: "Last Name starts with"
+    image_settings_description: "Image Settings"
+
+    activerecord:
+      attributes:
+        blog:
+          model_name: Blog
+          name: Name
+          permalink: Permalink
+        post:
+          model_name: Post
+          title: Title
+          posted_at: Posted At
+          body: Body
+          live: Published
+          tags: Tags
+        post_category:
+          model_name: Category
+          name: Name
+          permalink: Permalink
+
+    page:
+      model_name: Page
+      contents: Contents
+      title: Title
+      nav_title: Navigation Title
+      path: Path
+      meta_title: Meta Title
+      meta_description: Meta Description
+      meta_keywords: Meta Keywords
+      accessible: Accessible
+      visible: Visible
+      explain_accessible: non-accessible pages must be coded into a custom controller.
+      explain_visible: visible pages will show up in the main menu.
+
+    content:
+      model_name: Content
+      page_title: Page Title
+      page: Page
+      title: Title
+      body: Body
+      attachment: Attachment
+      link: Link URL
+      link_text: Link Text
+      context: Context
+      hide_title: Hide Title
+      delete_attachment: Delete current attachment
+
+    pages: Pages
+
     admin:
       subnav:
         pages: Pages
@@ -90,6 +91,8 @@ en:
           contents: Contents
           images: Images
         post_tabs:
+          post: "Post"
+          post_information: "Post Information"
           post_details: Post Details
           editing_post: Editing Post
           related_products: Related Products
@@ -147,13 +150,9 @@ en:
           add_related_product: Add Related Products
 
       post_categories:
-        index:
-          manage_categories: Manage Categories
-
-      new:
+        category: Category
+        manage_categories: Manage Categories
         new_category: New Category
-
-      edit:
         edit_category: Edit Category
 
     comments: Comments

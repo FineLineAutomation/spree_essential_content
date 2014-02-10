@@ -1,36 +1,36 @@
 <% config = Spree::BlogConfiguration.new %>
 
 <%= form.field_container :blog_id do %>
-  <%= form.label :blog_id, t("activerecord.attributes.blog.model_name") %><br />
+  <%= form.label :blog_id, Spree.t("activerecord.attributes.blog.model_name") %><br />
   <%= form.select :blog_id, Spree::Blog.to_options, :class => 'title' %>
   <%= error_message_on :post, :blog_id %>
 <% end %>
 
 <%= form.field_container :title do %>
-  <%= form.label :title, t("activerecord.attributes.post.title") %><br />
+  <%= form.label :title, Spree.t("activerecord.attributes.post.title") %><br />
   <%= form.text_field :title, :class => 'title' %>
   <%= error_message_on :post, :title %>
 <% end %>
 
 <%= form.field_container :posted_at do %>
-  <%= form.label :posted_at, t("activerecord.attributes.post.posted_at") %><br />
+  <%= form.label :posted_at, Spree.t("activerecord.attributes.post.posted_at") %><br />
   <%= form.text_field :posted_at, :class => 'datepicker' %><br />
   <%= error_message_on :post, :posted_at %>
 <% end %>
 
 <%= form.field_container :body do %>
-  <%= form.label :body, t("activerecord.attributes.post.body") %>
+  <%= form.label :body, Spree.t("activerecord.attributes.post.body") %>
   <br />
   <%= form.text_area :body  %>
   <%= error_message_on :post, :body %>
 <% end %>
 
 <%= form.field_container :tag_list do %>
-  <%= form.label :tag_list, t("activerecord.attributes.post.tags") %><br />
+  <%= form.label :tag_list, Spree.t("activerecord.attributes.post.tags") %><br />
   <%= form.text_field :tag_list, :class => 'text' %><br />
   <%= error_message_on :post, :tag_list %>
 <% end %>
 
 <%= form.field_container :live do %>
-  <%= form.check_box :live  %> <%= form.label :live, t("activerecord.attributes.post.live") %><br />
+  <%= form.check_box :live  %> <%= form.label :live, Spree.t("activerecord.attributes.post.live") %><br />
 <% end %>

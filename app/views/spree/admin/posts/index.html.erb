@@ -1,20 +1,20 @@
 <%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_title do %>
-  <%= t('.listing_posts') %>
+  <%= Spree.t('admin.posts.index.listing_posts') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li id="new_post_link">
-    <%= button_link_to t('.new_post'), new_admin_post_url, :icon => 'icon-plus', :id => 'admin_new_post' %>
+    <%= button_link_to Spree.t('admin.posts.index.new_post'), new_admin_post_url, :icon => 'icon-plus', :id => 'admin_new_post' %>
   </li>
   <li id="manage_blogs_link">
-    <%= button_link_to t('.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
+    <%= button_link_to Spree.t('admin.posts.index.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
   </li>
 <% end %>
 
 <% content_for :table_filter_title do %>
-  <%= t(:search) %>
+  <%= Spree.t(:search) %>
 <% end %>
 
 <% content_for :table_filter do %>
@@ -27,13 +27,13 @@
         <div data-hook="admin_products_index_search">
           <div class="alpha eight columns omega">
             <div class="field">
-              <%= f.label :blog_id_eq, t("activerecord.attributes.blog.model_name") %>
+              <%= f.label :blog_id_eq, Spree.t("activerecord.attributes.blog.model_name") %>
               <%= f.select :blog_id_eq, Spree::Blog.to_options, :selected => (params[:q][:blog_id_eq] if params[:q]), :include_blank => true %>
             </div>
           </div>
           <div class="eight columns">
             <div class="field">
-              <%= f.label :title_cont, t("activerecord.attributes.post.title") %>
+              <%= f.label :title_cont, Spree.t("activerecord.attributes.post.title") %>
               <%= f.text_field :title_cont, :size => 25 %>
             </div>
           </div>
@@ -42,7 +42,7 @@
         <div class="clear"></div>
 
         <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
-          <%= button t(:search), 'icon-search' %>
+          <%= button Spree.t(:search), 'icon-search' %>
         </div>
     <% end %>
   </div>
@@ -55,10 +55,10 @@
   <table class="index">
     <thead>
       <tr data-hook="admin_blogs_index_headers">
-          <th><%= sort_link @search, :title, t("activerecord.attributes.post.title") %></th>
-          <th><%= sort_link @search, :blog,  t("activerecord.attributes.blog.model_name") %></th>
-          <th><%= sort_link @search, :posted_at, t("activerecord.attributes.post.posted_at") %></th>
-          <th><%= sort_link @search, :live, t("activerecord.attributes.post.live") %></th>
+          <th><%= sort_link @search, :title, Spree.t("activerecord.attributes.post.title") %></th>
+          <th><%= sort_link @search, :blog,  Spree.t("activerecord.attributes.blog.model_name") %></th>
+          <th><%= sort_link @search, :posted_at, Spree.t("activerecord.attributes.post.posted_at") %></th>
+          <th><%= sort_link @search, :live, Spree.t("activerecord.attributes.post.live") %></th>
           <th data-hook="admin_posts_index_header_actions" class="actions"></th>
       </tr>
     </thead>
@@ -79,7 +79,7 @@
   </table>
 <% else %>
   <div class="no-objects-found">
-    <%= t(:no_results) %>
+    <%= Spree.t(:no_results) %>
   </div>
 <% end %>
 

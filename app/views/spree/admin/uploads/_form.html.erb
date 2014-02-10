@@ -4,7 +4,7 @@
     <%= form.file_field :attachment %>
   </div>
   <div data-hook="alt_text" class="field omega five columns">
-    <%= form.label :alt, t('description') %><br/>
+    <%= form.label :alt, Spree.t(:description) %><br/>
     <%= form.text_area :alt, :rows => 4, :class => 'fullwidth' %>
   </div>
 </div>
