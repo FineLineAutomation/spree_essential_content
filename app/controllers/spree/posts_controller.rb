@@ -2,20 +2,26 @@ module Spree
   class PostsController < StoreController
     rescue_from ActiveRecord::RecordNotFound, :with => :render_404
 
+    helper 'spree/blogs/posts'
+
     helper "spree/products"
 
+    before_filter :get_blog
     before_filter :get_sidebar, :only => [:index, :search, :show]
 
     def index
       @posts_by_month = default_scope.web.limit(50).group_by { |post| post.posted_at.strftime("%B %Y") }
       scope = default_scope.web
       @breadcrumbs = [ [@blog.name, "/#{@blog.permalink}"] ]
+      @title = "#{@blog.name}"
       if params[:year].present?
+        @title = "#{@title} for"
         @breadcrumbs << [params[:year], "/#{@blog.permalink}/#{params[:year].to_i}"]
         year  = params[:year].to_i
         month = 1
         day   = 1
         if has_month = params[:month].present?
+          @title = "#{@title} #{Date::MONTHNAMES[params[:month].to_i]}, "
           @breadcrumbs << [Date::MONTHNAMES[params[:month].to_i], "/#{@blog.permalink}/#{params[:year].to_i}/#{params[:month].to_i}"]
           if has_day = params[:day].present?
             day  = params[:day].to_i
@@ -31,6 +37,7 @@ module Spree
           end
         end
         scope = scope.where("posted_at >= ? AND posted_at <= ?", start, stop)
+        @title = "#{@title} #{params[:year]}"
       end
       @posts = scope.page(params[:page]).per(Spree::Post.per_page)
     end
@@ -42,8 +49,9 @@ module Spree
         [@blog.name, "/#{@blog.permalink}"],
         ["Tags - #{query}", "#{request.protocol}#{request.host_with_port}#{request.fullpath}"]
       ]
+      @title = "#{@blog.name} tagged with '#{query}'"
       get_tags
-      render :template => 'spree/blogs/posts/index'
+      render :template => 'spree/posts/index'
     end
 
     def show
@@ -66,26 +74,25 @@ module Spree
       redirect_to blog_posts_path
     end
 
-    private
+  private
 
-      def default_scope
-        @blog.posts.live
-      end
-
-      def get_sidebar
-        @archive_posts = default_scope.web
-        @post_categories = @blog.categories.order(:name).all
-        get_tags
-      end
-
-      def get_tags
-        @tags = default_scope.web.tag_counts.order('count DESC').limit(25)
-      end
-
-      def get_blog
-        @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
-      end
-
+    def default_scope
+      @blog.posts.live
     end
+
+    def get_sidebar
+      @archive_posts = default_scope.web
+      @post_categories = @blog.categories.order(:name).all
+      get_tags
+    end
+
+    def get_tags
+      @tags = default_scope.web.tag_counts.order('count DESC').limit(25)
+    end
+
+    def get_blog
+      @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+    end
+
   end
 end
