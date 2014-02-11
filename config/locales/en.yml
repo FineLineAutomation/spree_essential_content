@@ -42,6 +42,8 @@ en:
           body: Body
           live: Published
           tags: Tags
+          teaser: Teaser
+          author: Author
         post_category:
           model_name: Category
           name: Name
