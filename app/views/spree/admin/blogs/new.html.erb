@@ -1,12 +1,12 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= t('.new_blog') %>
+  <%= Spree.t('admin.blogs.new_blog') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li id="manage_blogs_link">
-    <%= button_link_to t('.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
+    <%= button_link_to Spree.t('admin.blogs.manage_blogs'), admin_blogs_url, :icon => 'icon-file', :id => 'admin_manage_blogs' %>
   </li>
 <% end %>
 
@@ -18,9 +18,9 @@
   <fieldset class="no-border-top">
     <%= render "form", :form => f %>
     <div class="filter-actions actions">
-      <%= button t(:create), 'icon-ok' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
+      <%= button Spree.t(:create), 'icon-ok' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), admin_blogs_path, :icon => 'icon-remove' %>
     </div>
   </fieldset>
 <% end %>

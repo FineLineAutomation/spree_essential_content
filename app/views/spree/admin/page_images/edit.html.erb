@@ -6,10 +6,10 @@
 
 <%= form_for([:admin, @page.id, @page_image], :url => admin_page_image_url(@page, @page_image), :html => { :multipart => true }) do |f| %>
   <fieldset>
-    <legend><%= (t(:editing_image) + " - #{@page_image.attachment_file_name}").html_safe %></legend>
+    <legend><%= (Spree.t(:editing_image) + " - #{@page_image.attachment_file_name}").html_safe %></legend>
 
     <div class="field">
-      <%= label_tag (:preview) %>:<br/>
+      <%= label_tag (:preview) %>
       <div style="text-align:center;">
         <%= link_to(image_tag(@page_image.attachment.url(:medium)), @page_image.attachment.url(:large)) %>
       </div>
@@ -17,9 +17,9 @@
     <%= render "form", :form => f %>
 
     <div class="filter-actions actions">
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), admin_page_images_url(@page), :icon => 'icon-remove', :id => "cancel_link" %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), admin_page_images_url(@page), :icon => 'icon-remove', :id => "cancel_link" %>
     </div>
   </fieldset>
 <% end %>

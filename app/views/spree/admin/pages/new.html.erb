@@ -1,7 +1,7 @@
 <%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_title do %>
-  <%= t('.new_page') %>
+  <%= Spree.t('admin.pages.new_page') %>
 <% end %>
 
 <% if @page.try(:errors).present? %>
@@ -13,9 +13,9 @@
     <%= render "form", :form => f %>
 
     <div class="filter-actions actions">
-      <%= button t(:create), 'icon-ok' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove' %>
+      <%= button Spree.t(:create), 'icon-ok' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove' %>
     </div>
   </fieldset>
 <% end %>

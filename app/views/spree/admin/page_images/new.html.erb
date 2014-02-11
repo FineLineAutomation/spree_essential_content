@@ -4,14 +4,14 @@
 
 <%= form_for(@page_image, :url => admin_page_images_path(@page), :html => { :multipart => true }) do |form| %>
   <fieldset>
-    <legend><%= t("new_image") %></legend>
+    <legend><%= Spree.t('admin.pages.new_image') %></legend>
 
     <%= render "form", :form => form %>
 
     <div class="filter-actions actions">
-      <%= button t(:create), 'icon-ok' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove', :id => "cancel_link" %>
+      <%= button Spree.t(:create), 'icon-ok' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove', :id => "cancel_link" %>
     </div>
   </fieldset>
 <% end %>

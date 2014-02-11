@@ -8,24 +8,26 @@
 
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_page_images_url(@page) -%>">
   <colgroup>
-     <col style="width: 20%">
-     <col style="width: 65%">
-     <col style="width: 15%">
+    <col style="width: 5%">
+    <col style="width: 15%">
+    <col style="width: 65%">
+    <col style="width: 15%">
   </colgroup>
   <thead>
     <tr>
-      <th><%= t("thumbnail") %></th>
-      <th><%= t("alt_text") %></th>
+      <th colspan="2"><%= Spree.t(:thumbnail) %></th>
+      <th><%= Spree.t(:alt_text) %></th>
       <th data-hook="admin_page_images_index_header_actions" class="actions"></th>
     </tr>
   </thead>
   <tbody>
     <% @page.images.each do |image| %>
       <tr id="<%= spree_dom_id(image) %>">
-        <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
+        <td class="no-border"><span class="handle"></span></td>
+        <td><%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
         <td><%= image.alt %></td>
         <td class="actions" data-hook="admin_page_image_index_row_actions">
-          <%= link_to_with_icon 'icon-edit', t(:edit), edit_admin_page_image_path(@page, image), :no_text => true, :data => {:action => 'edit'} %>
+          <%= link_to_with_icon 'icon-edit', Spree.t(:edit), edit_admin_page_image_path(@page, image), :no_text => true, :data => {:action => 'edit'} %>
           &nbsp;
           <%= link_to_delete image, {:no_text => true, :url => admin_page_image_url(@page, image) }%>
         </td>
@@ -33,8 +35,6 @@
     <% end %>
   </tbody>
 </table>
-
-
 
 <% content_for :head do %>
   <script type="text/javascript">

@@ -11,9 +11,9 @@
     <%= render "form", :form => f %>
 
     <div class="filter-actions actions">
-      <%= button t(:update), 'icon-refresh' %>
-      <span class="or"><%= t(:or) %></span>
-      <%= button_link_to t(:cancel), collection_url, :icon => 'icon-remove' %>
+      <%= button Spree.t(:update), 'icon-refresh' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove' %>
     </div>
   </fieldset>
 <% end %>

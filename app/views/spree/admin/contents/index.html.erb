@@ -2,7 +2,7 @@
 
 <% content_for :page_actions do %>
   <li id="new_page_link">
-    <%= button_link_to t(:new_content), new_object_url,:icon => 'icon-plus', :id => 'admin_new_page_content' %>
+    <%= button_link_to Spree.t(:new_content), new_object_url,:icon => 'icon-plus', :id => 'admin_new_page_content' %>
   </li>
 <% end %>
 
@@ -19,8 +19,8 @@
   </colgroup>
   <thead>
     <tr>
-        <th colspan="2"><%= sort_link @search, :title, t("content.title") %></th>
-        <th><%= sort_link @search, :context, t("content.context") %></th>
+        <th colspan="2"><%= sort_link @search, :title, Spree.t("content.title") %></th>
+        <th><%= sort_link @search, :context, Spree.t("content.context") %></th>
         <th data-hook="admin_page_contents_index_header_actions" class="actions"></th>
     </tr>
   </thead>

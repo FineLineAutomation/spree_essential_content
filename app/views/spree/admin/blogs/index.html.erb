@@ -1,12 +1,12 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= t('.listing_blogs') %>
+  <%= Spree.t('admin.blogs.listing_blogs') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li id="new_blog_link">
-    <%= button_link_to t('.new_blog'), new_admin_blog_url, :icon => 'icon-plus', :id => 'admin_new_blog' %>
+    <%= button_link_to Spree.t('admin.blogs.new_blog'), new_admin_blog_url, :icon => 'icon-plus', :id => 'admin_new_blog' %>
   </li>
 <% end %>
 
@@ -21,8 +21,8 @@
     </colgroup>
     <thead>
     <tr>
-        <th><%= sort_link @search, :name, t("activerecord.attributes.blog.name") %></th>
-        <th><%= sort_link @search, :live, t("activerecord.attributes.blog.permalink") %></th>
+        <th><%= sort_link @search, :name, Spree.t("activerecord.attributes.blog.name") %></th>
+        <th><%= sort_link @search, :live, Spree.t("activerecord.attributes.blog.permalink") %></th>
         <th data-hook="admin_blogs_index_header_actions" class="actions"></th>
     </tr>
     </thead>

@@ -85,11 +85,6 @@ en:
       shared:
         contents_tab:
           content: Content
-        page_tabs:
-          editing_page: Editing Page
-          page_details: Page Details
-          contents: Contents
-          images: Images
         post_tabs:
           post: "Post"
           post_information: "Post Information"
@@ -110,28 +105,27 @@ en:
           new_upload: Upload a file
 
       pages:
-        index:
-          title: Title
-          listing_pages: Listing Pages
-          new_page: New Page
-          title_contains: Title
-        new:
-          new_page: New Page
+        listing_pages: Listing Pages
+        new_page: New Page
+        title_contains: Title
+        new_page: New Page
+        editing_page: Editing Page
+        page_details: Page Details
+        contents: Contents
+        images: Images
+        title: Title
 
       contents:
-        index:
-          new_content: New Content
-          listing_contents: Listing Contents
-        new:
-          new_content: New Content
-        edit:
-          edit_content: Edit Content
+        new_content: New Content
+        listing_contents: Listing Contents
+        new_content: New Content
+        edit_content: Edit Content
 
       blogs:
-        new:
-          new_blog: New Blog
-        index:
-          new_blog: New Blog
+        new_blog: New Blog
+        edit_blog: Edit Blog
+        listing_blogs: Listing Blogs
+        manage_blogs: Manage Blogs
 
       posts:
         new:

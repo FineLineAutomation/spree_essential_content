@@ -1,21 +1,21 @@
 <%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= t('spree.settings.disqus') %>
+  <%= Spree.t('settings.disqus') %>
 <% end %>
 
 <%= form_tag admin_disqus_settings_path, :method => :put  do |form| %>
   <% @preferences.each do |key|
     type = @config.preference_type(key) %>
     <div data-hook="<%= key %>" class="field">
-      <%= label_tag(key, t("spree.blogs.settings.#{key}") + ': ') + tag(:br) if type != :boolean %>
+      <%= label_tag(key, Spree.t("blogs.settings.#{key}") + ': ') + tag(:br) if type != :boolean %>
       <%= preference_field_tag(key, @config[key], :type => type) %>
       <%= label_tag(key, t(key)) + tag(:br) if type == :boolean %>
     </div>
   <% end %>
 
   <div class="form-buttons" data-hook="buttons">
-    <%= button t(:update), 'icon-refresh' %>
+    <%= button Spree.t(:update), 'icon-refresh' %>
   </div>
 <% end %>
 

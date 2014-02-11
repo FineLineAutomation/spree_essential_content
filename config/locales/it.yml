@@ -58,11 +58,6 @@ it:
       shared:
         contents_tab:
           content: Contentuto
-        page_tabs:
-          editing_page: Modifica pagina
-          page_details: Dettagli della pagina
-          contents: Contenuti
-          images: Immagini
 
       uploads:
         new:
@@ -76,22 +71,21 @@ it:
           new_upload: Carica un file
 
       pages:
-        index:
-          title: Titolo
-          listing_pages: Elenco pagine
-          new_page: Nuova pagina
-          title_contains: Titolo
-        new:
-          new_page: Nuova pagina
+        title: Titolo
+        listing_pages: Elenco pagine
+        new_page: Nuova pagina
+        title_contains: Titolo
+        new_page: Nuova pagina
+        editing_page: Modifica pagina
+        page_details: Dettagli della pagina
+        contents: Contenuti
+        images: Immagini
 
       contents:
-        index:
-          new_content: Nuovo contenuto
-          listing_contents: Elenca contenuti
-        new:
-          new_content: Nuovo contenuto
-        edit:
-          edit_content: Modifica contenuto
+        new_content: Nuovo contenuto
+        listing_contents: Elenca contenuti
+        new_content: Nuovo contenuto
+        edit_content: Modifica contenuto
 
       uploads:
         index:
