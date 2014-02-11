@@ -12,7 +12,7 @@ class Spree::PossiblePage
   end
 end
 
-Spree::Core::Engine.routes.draw do
+Spree::Core::Engine.routes.append do
   namespace :admin do
     resources :uploads
 
