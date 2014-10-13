@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Post do
+  describe Spree::Post, :type => :model do
     it "is valid with a title and body" do
       expect(build(:post)).to be_valid
     end

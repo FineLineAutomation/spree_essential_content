@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Page do
+  describe Spree::Page, :type => :model do
     it "is valid with a title and path" do
       expect(build(:page)).to be_valid
     end

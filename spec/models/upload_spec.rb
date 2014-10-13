@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Upload do
+  describe Spree::Upload, :type => :model do
     describe 'has_alt' do
       it "returns true when alt is not blank" do
         expect(create(:upload, :alt => "omg").has_alt?).to eq(true)

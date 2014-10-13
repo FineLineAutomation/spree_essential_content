@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::PostImage do
+  describe Spree::PostImage, :type => :model do
     it "is valid with a file" do
       expect(build(:post_image)).to be_valid
     end

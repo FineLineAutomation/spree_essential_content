@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Blog do
+  describe Spree::Blog, :type => :model do
     it "is valid with a name and permalink" do
       expect(build(:blog)).to be_valid
     end

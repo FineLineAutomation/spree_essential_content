@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::PageImage do
+  describe Spree::PageImage, :type => :model do
     it "is valid with a file" do
       expect(build(:page_image)).to be_valid
     end

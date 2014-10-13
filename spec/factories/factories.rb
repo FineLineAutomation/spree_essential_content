@@ -78,7 +78,7 @@ FactoryGirl.define do
 
   factory :post_category, :class => Spree::PostCategory do
     name { Faker::Lorem.words.join ' ' }
-    permalink { Faker::Lorem.words.join '-' }
+    permalink ""
   end
 
   factory :post_image, :class => Spree::PostImage do

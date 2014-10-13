@@ -2,10 +2,10 @@ class Spree::PostCategory < ActiveRecord::Base
 
   attr_accessible :name, :permalink
 
-  validates :name, :presence => true
-  validates :permalink,  :presence => true, :uniqueness => true, :if => proc{ |record| !record.name.blank? }
+  validates :name, presence: true
+  validates :permalink,  presence: true, uniqueness: true
 
-  has_and_belongs_to_many :posts, :join_table => 'spree_post_categories_posts', :uniq => true
+  has_and_belongs_to_many :posts, join_table: 'spree_post_categories_posts', uniq: true
 
   before_validation :create_permalink
 
@@ -16,7 +16,7 @@ class Spree::PostCategory < ActiveRecord::Base
   private
 
     def create_permalink
-      return unless permalink != ""
+      return unless permalink == ""
       count = 2
       new_permalink = name.to_s.parameterize
       exists = permalink_exists?(new_permalink)

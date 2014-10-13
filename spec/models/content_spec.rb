@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Content do
+  describe Spree::Content, :type => :model do
     it "is valid with a page and title" do
       expect(build(:content)).to be_valid
     end
