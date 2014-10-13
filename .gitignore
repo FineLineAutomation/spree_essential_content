@@ -12,7 +12,6 @@ nbproject
 pkg
 *.swp
 spec/dummy
-
 /zeus.json
-
 /custom_plan.rb
+.bundle
