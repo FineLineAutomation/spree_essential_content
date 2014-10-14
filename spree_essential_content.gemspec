@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'factory_girl'
   s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails', '~> 3.0'
+  s.add_development_dependency 'rspec-rails', '~> 3.1'
   s.add_development_dependency 'rspec-activemodel-mocks'
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'sqlite3'
