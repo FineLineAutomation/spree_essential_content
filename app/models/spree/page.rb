@@ -7,7 +7,6 @@ class Spree::Page < ActiveRecord::Base
     end
   end
 
-  attr_accessible :title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords, :accessible, :visible
   alias_attribute :name, :title
 
   validates_presence_of :title

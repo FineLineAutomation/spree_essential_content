@@ -1,7 +1,5 @@
 class Spree::PostCategory < ActiveRecord::Base
 
-  attr_accessible :name, :permalink
-
   validates :name, presence: true
   validates :permalink,  presence: true, uniqueness: true
 

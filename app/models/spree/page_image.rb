@@ -1,7 +1,5 @@
 class Spree::PageImage < Spree::Asset
 
-  attr_accessible :viewable, :attachment, :alt
-
   validates_attachment_presence :attachment
   
   has_attached_file :attachment,

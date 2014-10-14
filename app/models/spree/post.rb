@@ -1,7 +1,5 @@
 class Spree::Post < ActiveRecord::Base
 
-  attr_accessible :blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list, :post_category_ids, :product_ids_string
-
   acts_as_taggable
 
   # for flash messages

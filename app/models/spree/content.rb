@@ -1,7 +1,6 @@
 class Spree::Content < ActiveRecord::Base
 
   attr_accessor :delete_attachment
-  attr_accessible :page_id, :title, :body, :hide_title, :link, :link_text, :context, :attachment, :delete_attachment
 
   belongs_to :page
   validates_associated :page
