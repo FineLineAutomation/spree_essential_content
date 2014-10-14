@@ -70,7 +70,7 @@ describe Spree::Admin::UploadsController, :type => :controller do
 
       it "renders with no layout" do
         spree_post :create, upload: @upload_attributes
-        expect(@templates.keys).to eq([])
+        assert_template layout: false
       end
     end
 
@@ -142,7 +142,7 @@ describe Spree::Admin::UploadsController, :type => :controller do
 
     it "renders no layout" do
       spree_delete :destroy, id: @upload
-      expect(@templates.keys).to eq([])
+      assert_template layout: false
     end
   end
 end

@@ -9,7 +9,7 @@ Spree::BaseController.class_eval do
   
   def get_pages
     return if request.path =~ /^\/+admin/
-    @pages ||= Spree::Page.visible.order(:position).all
+    @pages ||= Spree::Page.visible.order(:position)
   end
 
 end

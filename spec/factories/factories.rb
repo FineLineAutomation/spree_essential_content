@@ -50,7 +50,7 @@ FactoryGirl.define do
   factory :content, :class => Spree::Content do
     association :page, :factory => :page
     sequence(:title) { |n| "Page Content ##{n}" }
-    body { Faker::Lorem.paragraphs }
+    body { Faker::Lorem.paragraphs.join '\n\n' }
     hide_title false
     link ""
     link_text ""
@@ -67,7 +67,7 @@ FactoryGirl.define do
     association :blog, :factory => :blog
     title { Faker::Lorem.words.join ' ' }
     posted_at { Time.now + rand(10000) }
-    body { Faker::Lorem.paragraphs }
+    body { Faker::Lorem.paragraphs.join '\n\n' }
     tag_list { Faker::Lorem.words.join ',' }
     live true
 
