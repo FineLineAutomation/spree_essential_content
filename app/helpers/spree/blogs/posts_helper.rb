@@ -11,7 +11,7 @@ module Spree::Blogs::PostsHelper
   def post_rss(post)
     output = []
     post.images.each do |image|
-      output << image_tag(image.attachment.url, :alt => image.alt)
+      output << image_tag(image.attachment.url, alt: image.alt)
     end
     output << post.rendered_body
     output.join("\n").html_safe

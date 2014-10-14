@@ -11,13 +11,13 @@ class Spree::Page < ActiveRecord::Base
   alias_attribute :name, :title
 
   validates_presence_of :title
-  validates :path, :presence => true, :uniqueness => { :case_sensitive => false }
+  validates :path, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :active,  where(:accessible => true)
-  scope :visible, active.where(:visible => true)
+  scope :active,  where(accessible: true)
+  scope :visible, active.where(visible: true)
 
-  has_many :contents, :order => :position, :dependent => :destroy
-  has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :order => :position, :dependent => :destroy
+  has_many :contents, order: :position, dependent: :destroy
+  has_many :images, as: :viewable, class_name: "Spree::PageImage", order: :position, dependent: :destroy
 
   before_validation :set_defaults
   after_create :create_default_content
@@ -33,11 +33,11 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def for_context(context)
-    contents.where(:context => context)
+    contents.where(context: context)
   end
 
   def has_context?(context)
-    contents.where(:context => context).count > 0
+    contents.where(context: context).count > 0
   end
 
   def matches?(_path)
@@ -65,7 +65,6 @@ class Spree::Page < ActiveRecord::Base
     end
 
     def create_default_content
-      self.contents.create(:title => title)
+      self.contents.create(title: title)
     end
-
 end

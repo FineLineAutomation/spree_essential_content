@@ -1,9 +1,9 @@
 class Spree::Admin::ContentsController < Spree::Admin::ResourceController
 
   before_filter :load_resource
-  before_filter :parent, :only => :index
+  before_filter :parent, only: :index
 
-  before_filter :get_pages, :only => [ :new, :edit, :create, :update ]
+  before_filter :get_pages, only: [ :new, :edit, :create, :update ]
 
   belongs_to 'spree/page'
 
@@ -14,7 +14,7 @@ class Spree::Admin::ContentsController < Spree::Admin::ResourceController
     end
     respond_to do |format|
       format.html { redirect_to admin_page_contents_url(@page) }
-      format.js  { render :text => 'Ok' }
+      format.js  { render text: 'Ok' }
     end
   end
 

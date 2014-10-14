@@ -4,7 +4,7 @@ module Spree
     helper 'spree/blogs/posts'
 
     before_filter :get_blog
-    before_filter :get_sidebar, :only => [:index, :search, :show]
+    before_filter :get_sidebar, only: [:index, :search, :show]
 
     def show
       @category = Spree::PostCategory.find_by_permalink(params[:id])

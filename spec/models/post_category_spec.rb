@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::PostCategory, :type => :model do
+  describe Spree::PostCategory, type: :model do
     it "is valid with a name and permalink" do
       expect(build(:post_category)).to be_valid
     end
@@ -12,7 +12,7 @@ module Spree
 
     it "is not valid when permalink is not unique" do
       post_category = create(:post_category)
-      expect(build(:post_category, :permalink => post_category.permalink)).to_not be_valid
+      expect(build(:post_category, permalink: post_category.permalink)).to_not be_valid
     end
 
     it "automatically creates a permalink based on the name" do

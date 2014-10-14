@@ -7,18 +7,18 @@ class Spree::Post < ActiveRecord::Base
   # for flash messages
   alias_attribute :name, :title
 
-  has_and_belongs_to_many :post_categories, :join_table => "spree_post_categories_posts", :class_name => "Spree::PostCategory"
+  has_and_belongs_to_many :post_categories, join_table: "spree_post_categories_posts", class_name: "Spree::PostCategory"
   alias_attribute :categories, :post_categories
 
-  belongs_to :blog, :class_name => "Spree::Blog"
-  has_many :post_products, :dependent => :destroy
-  has_many :products, :through => :post_products
-  has_many :images, :as => :viewable, :class_name => "Spree::PostImage", :order => :position, :dependent => :destroy
+  belongs_to :blog, class_name: "Spree::Blog"
+  has_many :post_products, dependent: :destroy
+  has_many :products, through: :post_products
+  has_many :images, as: :viewable, class_name: "Spree::PostImage", order: :position, dependent: :destroy
 
-  validates :blog_id, :title, :presence => true
-  validates :path,  :presence => true, :uniqueness => true, :if => proc{ |record| !record.title.blank? }
-  validates :body,  :presence => true
-  validates :posted_at, :datetime => true
+  validates :blog_id, :title, presence: true
+  validates :path,  presence: true, uniqueness: true, if: proc{ |record| !record.title.blank? }
+  validates :body,  presence: true
+  validates :posted_at, datetime: true
 
   cattr_reader :per_page
   @@per_page = 10
@@ -26,11 +26,10 @@ class Spree::Post < ActiveRecord::Base
   scope :ordered, order("posted_at DESC")
   scope :future,  where("posted_at > ?", Time.now).order("posted_at ASC")
   scope :past,    where("posted_at <= ?", Time.now).ordered
-  scope :live,    where(:live => true )
+  scope :live,    where(live: true )
   scope :web, live.past.ordered
 
- 	before_validation :create_path, :if => proc{ |record| record.title_changed? }
-
+  before_validation :create_path, if: proc{ |record| record.title_changed? }
 
   # Creates date-part accessors for the posted_at timestamp for grouping purposes.
   %w(day month year).each do |method|
@@ -50,9 +49,9 @@ class Spree::Post < ActiveRecord::Base
     rendered
   end
 
-	def preview_image
+  def preview_image
     images.first if has_images?
-	end
+  end
 
   def has_images?
     images && !images.empty?
@@ -64,8 +63,8 @@ class Spree::Post < ActiveRecord::Base
   end
 
   def to_param
-		path
-	end
+    path
+  end
 
   def product_ids_string
     product_ids.join(',')
@@ -75,7 +74,7 @@ class Spree::Post < ActiveRecord::Base
     self.product_ids = s.to_s.split(',').map(&:strip)
   end
 
-	private
+  private
 
     def render(val)
       val = val.is_a?(Symbol) ? send(val) : val
@@ -83,20 +82,19 @@ class Spree::Post < ActiveRecord::Base
     end
 
     def create_path
-  		count = 2
-  		new_path = title.to_s.parameterize
-  		exists = path_exists?(new_path)
-  		while exists do
-  			dupe_path = "#{new_path}-#{count}"
-  			exists = path_exists?(dupe_path)
-  			count += 1
-  		end
-  		self.path = dupe_path || new_path
-  	end
+      count = 2
+      new_path = title.to_s.parameterize
+      exists = path_exists?(new_path)
+      while exists do
+        dupe_path = "#{new_path}-#{count}"
+        exists = path_exists?(dupe_path)
+        count += 1
+      end
+      self.path = dupe_path || new_path
+    end
 
-  	def path_exists?(new_path)
-  		post = Spree::Post.find_by_path(new_path)
-  		post != nil && !(post == self)
-  	end
-
+    def path_exists?(new_path)
+      post = Spree::Post.find_by_path(new_path)
+      post != nil && !(post == self)
+    end
 end

@@ -11,7 +11,7 @@ class Spree::Admin::PageImagesController < Spree::Admin::ResourceController
       Spree::PageImage.update_all(['position=?', index], ['id=?', id])
     end
     respond_to do |format|
-      format.js  { render :text => 'Ok' }
+      format.js  { render text: 'Ok' }
     end
   end
   

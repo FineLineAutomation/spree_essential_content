@@ -14,7 +14,7 @@ module Spree
         end
 
         respond_to do |format|
-          format.js  { render :text => 'Ok' }
+          format.js  { render text: 'Ok' }
         end
       end
 

@@ -1,13 +1,13 @@
 module Spree
   class PostsController < StoreController
-    rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
     helper 'spree/blogs/posts'
 
     helper "spree/products"
 
     before_filter :get_blog
-    before_filter :get_sidebar, :only => [:index, :search, :show]
+    before_filter :get_sidebar, only: [:index, :search, :show]
 
     def index
       @posts_by_month = default_scope.web.limit(50).group_by { |post| post.posted_at.strftime("%B %Y") }
@@ -51,7 +51,7 @@ module Spree
       ]
       @title = "#{@blog.name} tagged with '#{query}'"
       get_tags
-      render :template => 'spree/posts/index'
+      render template: 'spree/posts/index'
     end
 
     def show

@@ -8,17 +8,17 @@ class Spree::Content < ActiveRecord::Base
   validates_presence_of :title, :page
 
   has_attached_file :attachment,
-    :styles        => Proc.new{ |clip| clip.instance.attachment_sizes },
-    :default_style => :preview,
-    :url           => "/spree/contents/:id/:style/:basename.:extension",
-    :path          => ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
+    styles:        Proc.new{ |clip| clip.instance.attachment_sizes },
+    default_style: :preview,
+    url:           "/spree/contents/:id/:style/:basename.:extension",
+    path:          ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
 
   cattr_reader :per_page
   @@per_page = 10
 
-  scope :for, Proc.new{|context| where(:context => context)}
+  scope :for, Proc.new{|context| where(context: context)}
 
-  before_update :delete_attachment!, :if => :delete_attachment
+  before_update :delete_attachment!, if: :delete_attachment
   before_update :reprocess_images_if_context_changed
 
   [ :link_text, :link, :body ].each do |property|
@@ -44,13 +44,13 @@ class Spree::Content < ActiveRecord::Base
   end
 
   def default_attachment_sizes
-    { :mini => '48x48>', :medium => '427x287>' }
+    { mini: '48x48>', medium: '427x287>' }
   end
 
   def attachment_sizes
     case self.context
       when 'slideshow'
-        sizes = default_attachment_sizes.merge(:slide => '955x476#')
+        sizes = default_attachment_sizes.merge(slide: '955x476#')
       else
         sizes = default_attachment_sizes
     end

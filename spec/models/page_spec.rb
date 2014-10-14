@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 module Spree
-  describe Spree::Page, :type => :model do
+  describe Spree::Page, type: :model do
     it "is valid with a title and path" do
       expect(build(:page)).to be_valid
     end
 
     it "is not valid when title is blank" do
-      expect(build(:page, :title => '')).to_not be_valid
+      expect(build(:page, title: '')).to_not be_valid
     end
 
     it "is not valid when path is already taken" do
       page = create(:page)
-      expect(build(:page, :path => page.path)).to_not be_valid
+      expect(build(:page, path: page.path)).to_not be_valid
     end
 
     it "aliases title as name" do
@@ -23,7 +23,7 @@ module Spree
 
     context 'setting defaults' do
       it 'sets nav title to title when nav title is blank' do
-        page = create(:page, :nav_title => "")
+        page = create(:page, nav_title: "")
         expect(page.nav_title).to eq(page.title)
       end
 
@@ -33,15 +33,15 @@ module Spree
       end
 
       it 'will add a leading / to the path if not there' do
-        expect(create(:page, :path => 'test').path).to eq("/test")
+        expect(create(:page, path: 'test').path).to eq("/test")
       end
 
       it 'will not double the leading / of the path' do
-        expect(create(:page, :path => '/testing').path).to eq("/testing")
+        expect(create(:page, path: '/testing').path).to eq("/testing")
       end
 
       it 'will set a blank path to a parameterized title' do
-        page = create(:page, :path => '')
+        page = create(:page, path: '')
         expect(page.path).to eq("/" + page.nav_title.parameterize)
       end
     end
@@ -58,7 +58,7 @@ module Spree
     end
 
     it "will return title if meta_title is blank" do
-      page = create(:page, :meta_title => '')
+      page = create(:page, meta_title: '')
       expect(page.meta_title).to eq(page.title)
     end
 
@@ -74,7 +74,7 @@ module Spree
       end
 
       it "does not contain posts that are not accessible" do
-        page = create(:page, :accessible => false)
+        page = create(:page, accessible: false)
         expect(Spree::Page.visible).to_not include(page)
       end
     end
@@ -86,19 +86,19 @@ module Spree
       end
 
       it "does not contain posts that are not accessible" do
-        page = create(:page, :accessible => false)
+        page = create(:page, accessible: false)
         expect(Spree::Page.visible).to_not include(page)
       end
 
       it "does not contain posts that are not visible" do
-        page = create(:page, :visible => false)
+        page = create(:page, visible: false)
         expect(Spree::Page.visible).to_not include(page)
       end
     end
 
     context "root?" do
       it "returns true if the page is a root page" do
-        expect(create(:page, :path => '/').root?).to eq(true)
+        expect(create(:page, path: '/').root?).to eq(true)
       end
 
       it "returns false if the page is not a root page" do
@@ -109,7 +109,7 @@ module Spree
     context "has_context?" do
       it "returns true if any content has the requested context" do
         page = create(:page)
-        content = create(:content, :page => page, :context => Faker::Lorem.word)
+        content = create(:content, page: page, context: Faker::Lorem.word)
         expect(page.has_context? content.context).to eq(true)
       end
 
@@ -122,13 +122,13 @@ module Spree
     context "for_context" do
       it "returns content that has the requested context" do
         page = create(:page)
-        content = create(:content, :page => page, :context => Faker::Lorem.word)
+        content = create(:content, page: page, context: Faker::Lorem.word)
         expect(page.for_context content.context).to include(content)
       end
 
       it "returns content that has the requested context" do
         page = create(:page)
-        content = create(:content, :page => page, :context => "test")
+        content = create(:content, page: page, context: "test")
         expect(page.for_context "different").to_not include(content)
       end
     end

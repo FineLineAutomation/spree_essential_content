@@ -7,8 +7,8 @@ module Spree
       def create
         position = @post.products.count
         @product = Spree::Variant.find(params[:variant_id]).product
-        Spree::PostProduct.create(:post_id => @post.id, :product_id => @product.id, :position => position)
-        render :partial => "spree/blogs/admin/post_products/related_products_table", :locals => { :post => @post }, :layout => false
+        Spree::PostProduct.create(post_id: @post.id, product_id: @product.id, position: position)
+        render partial: "spree/blogs/admin/post_products/related_products_table", locals: { post: @post }, layout: false
       end
 
       def destroy
