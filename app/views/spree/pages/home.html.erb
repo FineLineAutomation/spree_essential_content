@@ -17,13 +17,13 @@
 <div class="right">
   <% if defined?(Spree::SpreeEssentialBlog) && !@posts.blank? %>
     <div class="home-posts">
-      <h1><%= t('blog.home.title') %></h1>
+      <h1><%= Spree.t('blog.home.title') %></h1>
       <%= render :partial => 'spree/blog/shared/preview', :collection => @posts, :as => :post %>
     </div>
   <% end %>
   <% if defined?(Spree::SpreeEssentialNews) && !@articles.blank? %>
     <div class="home-articles">
-      <h1><%= t('news.home.title') %></h1>
+      <h1><%= Spree.t('news.home.title') %></h1>
       <%= render :partial => 'spree/news/articles/preview', :collection => @articles, :as => :article %>
     </div>
   <% end %>
