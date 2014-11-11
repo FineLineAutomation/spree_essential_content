@@ -4,6 +4,16 @@ module SpreeEssentialContent
     isolate_namespace Spree
     engine_name 'spree_essential_content'
 
+    #initializer "spree.essential_content.preferences", :before => :load_config_initializers do |app|
+    #  Spree::EssentialContent::Config = Spree::BlogConfiguration.new
+    #end
+
+    initializer "spree.essential_content.paperclip", :before => :load_config_initializers do |app|
+      Paperclip::Attachment.default_options.merge!(
+        :style => :medium
+      )    
+    end
+
     config.autoload_paths += %W(#{config.root}/lib)
 
     # use rspec for tests
