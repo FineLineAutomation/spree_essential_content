@@ -1,18 +1,15 @@
 it:
   spree:
     essential_content:
-      upload:
-        model_name: Allegato
-        file_name: Nome file
-        size: Dimensioni
+      upload_model_name: Allegato
+      file_name: Nome file
+      size: Dimensioni
+      parsed_with: Interpretato con
 
     successfully_created: "%{resource} è stato creato con successo!"
     successfully_removed: "%{resource} è stato rimosso con successo!"
     successfully_updated: "%{resource} è stato aggiornato con successo!"
-
-    essentials:
-      parsed_with: Interpretato con
-
+      
     activerecord:
       attributes:
         order:

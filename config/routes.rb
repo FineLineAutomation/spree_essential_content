@@ -5,13 +5,6 @@ class Spree::PossibleBlog
   end
 end
 
-class Spree::PossiblePage
-  def self.matches?(request)
-    return false if request.path =~ /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
-    !Spree::Page.active.find_by_path(request.path).nil?
-  end
-end
-
 Spree::Core::Engine.routes.append do
   namespace :admin do
     resources :uploads
@@ -50,9 +43,7 @@ Spree::Core::Engine.routes.append do
 
   end
 
-  constraints(Spree::PossiblePage) do
-    get '*page_path', :to => 'pages#show', :as => :page
-  end
+  resources :pages, :only => [:index, :show]
 
   constraints(Spree::PossibleBlog) do
     constraints(

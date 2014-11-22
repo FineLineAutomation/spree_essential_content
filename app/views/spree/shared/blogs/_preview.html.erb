@@ -1,18 +1,8 @@
-<div class="post-preview"  data-hook="post-preview">
-
-  <div class="post-title"  data-hook="post-title">
+<div data-hook="post-preview">
+  <div data-hook="post-title">
     <h2><%= link_to h(post.title), post_seo_path(@blog, post) %></h2>
-    <h5><%= l post.posted_at, :format => :date_full %></h5>
+    <span>Posted On <strong><%= l post.posted_at, :format => :date_full %></strong> By <strong><%= post.author %></strong></span> 
   </div>
 
-  <% if post.has_images? %>
-    <p class="post-images"><%= link_to image_tag(post.images.first.attachment.url, :alt => post.title), post_seo_path(@blog, post) %></p>
-  <% end %>
-
-  <%= post.rendered_preview %>
-
-  <br class="clear" />
-
-  <p><%= link_to Spree.t('.read_more'), post_seo_path(@blog, post) %></p>
-
+  <p><%= post.teaser %></p>
 </div>

@@ -1,18 +1,16 @@
 pl:
   spree:
     essential_content:
-      upload:
-        model_name: "Załączniki"
-        file_name: "Nazwa pliku"
-        size: "Rozmiar"
+      upload_model_name: "Załączniki"
+      file_name: "Nazwa pliku"
+      size: "Rozmiar"
+      parsed_with: "Parsowany przez"
+
 
     successfully_created: "%{resource} został pomyślnie utworzona!"
     successfully_removed: "%{resource} został pomyślnie usunięta!"
     successfully_updated: "%{resource} został pomyślnie zaktualizowana!"
-
-    essentials:
-      parsed_with: "Parsowany przez"
-
+      
     activerecord:
       attributes:
         order:
