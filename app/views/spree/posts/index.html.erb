@@ -7,8 +7,8 @@
   <br class="clear"/>
 
   <%= link_to blog_posts_path(@blog, :format => 'rss'), :id => "posts-rss" do %>
-    <%= image_tag 'blog/rss.png', :alt => Spree.t('spree.blogs.posts.index.rss') %>
-    <%= Spree.t('spree.blogs.posts.index.rss') %>
+    <%= image_tag 'blog/rss.png', :alt => Spree.t('essential_content.rss') %>
+    <%= Spree.t('essential_content.rss') %>
   <% end %>
   <%= paginate @posts %>
 

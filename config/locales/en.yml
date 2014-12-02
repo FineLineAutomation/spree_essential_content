@@ -5,6 +5,7 @@ en:
       file_name: File Name
       size: Size
       parsed_with: Parsed With
+      rss: Subscribe via RSS
 
     successfully_created: "%{resource} has been successfully created!"
     successfully_removed: "%{resource} has been successfully removed!"
@@ -153,7 +154,6 @@ en:
     posts:
       index:
         blog: Blog
-        rss: Subscribe via RSS
       archive:
         title: Archive
         where_to_next: Where to next?
