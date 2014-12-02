@@ -6,6 +6,9 @@ en:
       size: Size
       parsed_with: Parsed With
       rss: Subscribe via RSS
+      recent_posts: Recent Posts
+      categories: Categories
+      tags: Tags
 
     successfully_created: "%{resource} has been successfully created!"
     successfully_removed: "%{resource} has been successfully removed!"
@@ -168,12 +171,6 @@ en:
       explain_disqus: Disqus Comments Settings
       disqus_shortname: Disqus Shortname
     shared:
-      sidebar:
-        recent_posts: Recent Posts
-        categories: Categories
-        archives: Archive
-        view_archive: View Full Archive
-        tags: Tags
       preview:
         read_more: Read More
       post_tabs:
