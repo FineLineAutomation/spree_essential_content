@@ -1,10 +1,3 @@
-/* ========================================== 
-    Post Archive
-*/
-
-.posts {
-  position: relative;
-}
 
 #posts-rss {
   display: block;
@@ -71,18 +64,13 @@
 }
 
 
-/* ========================================== 
-    Post Preview
-*/
-
-.post-preview {
-  clear: both;
+div[data-hook=post-preview] {
   padding-bottom: 1em;
+  margin-bottom: 1em;
   border-bottom: 1px solid #ddd;
-}
-.post-preview h2 {
-  margin-bottom: 0;
-}
-.post-comments {
-  clear: both;
+  
+  p {
+    margin: 0px;
+    padding-bottom: 5px;
+  }
 }
