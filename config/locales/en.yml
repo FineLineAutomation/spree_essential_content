@@ -9,6 +9,7 @@ en:
       recent_posts: Recent Posts
       categories: Categories
       tags: Tags
+      comments: Comments
 
     successfully_created: "%{resource} has been successfully created!"
     successfully_removed: "%{resource} has been successfully removed!"
@@ -149,7 +150,6 @@ en:
         new_category: New Category
         edit_category: Edit Category
 
-    comments: Comments
     home:
       title: Recent Posts
     archive: Blog Archive
