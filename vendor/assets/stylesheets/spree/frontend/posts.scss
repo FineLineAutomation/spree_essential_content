@@ -5,15 +5,16 @@
   text-decoration: none;
 }
 
-div[data-hook=post-sidebar] h3 {
-  text-align: center;
-}
-
-.post-archive ul {
-  list-style: none;
-  li ul {
+div[data-hook=post-sidebar] {
+  h3 {
+    text-align: center;
+  }
+  ul {
     list-style: none;
-    padding-left: 1em;
+    li ul {
+      list-style: none;
+      padding-left: 1em;
+    }
   }
 }
 
