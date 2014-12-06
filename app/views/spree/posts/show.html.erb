@@ -2,15 +2,14 @@
   <%= render :partial => 'spree/shared/blogs/sidebar' %>
 <% end %>
 
-<div class="post" data-hook="post-show">
-
-  <div class="post-title" data-hook="post-show-title">
-    <h5><%= h l(@post.posted_at, :format => :date_full).gsub(/\s0/, ' ') %></h5>
+<div data-hook="post-show">
+  <div data-hook="post-title">
     <h1><%=h @post.title %></h1>
+    <span><%= Spree.t('essential_content.posted_on') %> <strong><%= l @post.posted_at, :format => :date_full %></strong> <%= Spree.t('essential_content.by') %> <strong><%= @post.author %></strong></span>
   </div>
 
   <% if @post.has_images? %>
-    <div class="post-images" data-hook="post-show-image">
+    <div data-hook="post-image">
       <% @post.images.each_with_index do |image, index| %>
    	    <p><%= link_to image_tag(image.attachment.url(:medium), :alt => image.alt.blank? ? "#{@post.title} - Photo #{index + 1}" : image.alt), image.attachment.url(:large), :id => "photo_#{index}" %></p>
  	    <% end %>
@@ -19,19 +18,16 @@
 
   <%= @post.rendered_body %>
 
-  <br class="clear"/>
-
-  <div class="post-tags" data-hook="post-show-tags">
-    <h5><%= Spree.t('posts.show.tagged') %>:</h5>
+  <div data-hook="post-show-tags">
+    <h3><%= Spree.t('essential_content.tagged') %>:</h3>
     <p><%= @post.tags.collect{|tag| link_to(tag.name, search_posts_path(@blog, tag.name)) }.join(", ").html_safe %></p>
   </div>
 
   <% unless @post.products.empty? %>
-    <div class="post-products" data-hook="post-show-related-products">
+    <div data-hook="post-related-products">
       <%= render 'spree/shared/products', :products => @post.products %>
     </div>
   <% end %>
 
   <%= render "spree/shared/blogs/disqus_comments" %>
-
 </div>

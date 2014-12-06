@@ -25,6 +25,9 @@ div[data-hook=post-sidebar] {
     }
   }
 }
+div[data-hook=post-title] span {
+  font-size: 1.25em;
+}
 
 div[data-hook=post-preview] {
   padding-bottom: 1em;
