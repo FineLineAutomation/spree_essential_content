@@ -3,11 +3,11 @@
   <ul>
   <% posts.group_by(&:year).each do |year, posts_by_year| %>
     <li>
-    <h4><%= link_to "#{year} (#{posts_by_year.count})", post_date_path(@blog, year) %></h4>
+    <%= link_to "#{year} (#{posts_by_year.count})", post_date_path(@blog, year) %>
       <ul>
         <% posts_by_year.group_by(&:month).each do |month, posts_by_month| %>
           <li>
-          <h6><%= link_to "#{Date::MONTHNAMES[month]} (#{posts_by_month.count})", post_date_path(@blog, year, month) %></h6>
+            <%= link_to "#{Date::MONTHNAMES[month]} (#{posts_by_month.count})", post_date_path(@blog, year, month) %>
           </li>
         <% end %>
       </ul>
