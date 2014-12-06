@@ -1,10 +1,9 @@
 <div class="posts" data-hook="posts-index">
   <% if @posts.blank? %>
-    <h1><%= Spree.t('spree.blogs.no_posts') %></h1>
+    <h1><%= Spree.t('essential_content.no_posts') %></h1>
   <% else %>
-    <%= render :partial => 'spree/shared/blogs/preview', :collection => @posts, :as => :post %>
+    <%= render :partial => 'spree/shared/essential_content/preview', :collection => @posts, :as => :post %>
   <% end %>
-  <br class="clear"/>
 
   <%= link_to blog_posts_path(@blog, :format => 'rss'), :id => "posts-rss" do %>
     <%= image_tag 'blog/rss.png', :alt => Spree.t('essential_content.rss') %>
@@ -12,8 +11,8 @@
   <% end %>
   <%= paginate @posts %>
 
-</div>  
+</div>
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'spree/shared/blogs/sidebar' %>
+  <%= render :partial => 'spree/shared/essential_content/sidebar' %>
 <% end %>

@@ -1,8 +1,8 @@
 <div data-hook="post-categories">
-  <%= render :partial => 'spree/shared/blogs/preview', :collection => @posts, :as => :post %>
+  <%= render :partial => 'spree/shared/essential_content/preview', :collection => @posts, :as => :post %>
   <%= paginate @posts %>
 </div>
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'spree/shared/blogs/sidebar' %>
+  <%= render :partial => 'spree/shared/essential_content/sidebar' %>
 <% end %>

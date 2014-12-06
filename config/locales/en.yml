@@ -12,6 +12,8 @@ en:
       posted_on: Posted On
       by: By
       tagged: Tagged
+      no_posts: No Blog Posts Found
+
   time:
     formats:
       date_time: "%x %X"

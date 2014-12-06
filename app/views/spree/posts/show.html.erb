@@ -1,5 +1,5 @@
 <% content_for :sidebar do %>
-  <%= render :partial => 'spree/shared/blogs/sidebar' %>
+  <%= render :partial => 'spree/shared/essential_content/sidebar' %>
 <% end %>
 
 <div data-hook="post-show">
@@ -29,5 +29,24 @@
     </div>
   <% end %>
 
-  <%= render "spree/shared/blogs/disqus_comments" %>
+  <% disqus_short_name = Spree::BlogConfiguration.new[:disqus_shortname] %>
+  <% if !disqus_short_name.blank? %>
+    <div>
+      <h3><%= Spree.t('essential_content.comments') %></h3>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          var disqus_shortname = <%== disqus_short_name.inspect %>;
+          var disqus_identifier = <%== @post.path.inspect %>;
+          var disqus_url = <%== request.url.inspect %>;
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  <% end %>
 </div>
