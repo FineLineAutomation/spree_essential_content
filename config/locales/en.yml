@@ -1,5 +1,10 @@
 en:
   spree:
+    admin:
+      subnav:
+        pages: Pages
+        posts: Blog Posts
+        uploads: Uploads
     essential_content:
       upload_model_name: Upload
       file_name: File Name
@@ -13,6 +18,13 @@ en:
       by: By
       tagged: Tagged
       no_posts: No Blog Posts Found
+      admin:
+        blog_settings: Blog Settings
+        disqus_settings: Disqus Settings
+        page_details: Page Details
+        page_contents: Page Contents
+        page_images: Page Images
+        contents: Contents
 
   time:
     formats:
