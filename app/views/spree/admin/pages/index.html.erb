@@ -1,12 +1,12 @@
 <%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t('admin.pages.listing_pages') %>
+  <%= Spree.t('essential_content.admin.page_listing') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li id="new_page_link">
-    <%= button_link_to Spree.t('admin.pages.new_page'), new_admin_page_url,:icon => 'icon-plus', :id => 'admin_new_page' %>
+    <%= button_link_to Spree.t('essential_content.admin.page_new'), new_admin_page_url,:icon => 'plus', :id => 'admin_new_page' %>
   </li>
 <% end %>
 
@@ -16,45 +16,40 @@
 
 <% content_for :table_filter do %>
   <div data-hook="admin_products_sidebar">
-
     <%= search_form_for [:admin, @search] do |f| %>
-
-        <%- locals = {:f => f} %>
-
         <div data-hook="admin_products_index_search">
           <div class="alpha eight columns omega">
             <div class="field">
-              <%= f.label :title_cont, Spree.t('page.title') %>
+              <%= f.label :title_cont, Spree.t('essential_content.page.title') %>
               <%= f.text_field :title_cont, :size => 25 %>
             </div>
           </div>
           <div class="eight columns">
             <div class="field">
-              <%= f.label :path_cont, Spree.t('page.path') %>
+              <%= f.label :path_cont, Spree.t('essential_content.page.path') %>
               <%= f.text_field :path_cont, :size => 25 %>
             </div>
           </div>
         </div>
 
-        <div class="clear"></div>
+       <div class="clear"></div>
 
         <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
-          <%= button Spree.t(:search), 'icon-search' %>
+          <%= button Spree.t(:search), 'search' %>
         </div>
     <% end %>
   </div>
 <% end %>
-
 
 <%= paginate @collection %>
 
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
   <tr>
-      <th colspan="2"><%= sort_link @search, :title, Spree.t("page.title") %></th>
-      <th><%= sort_link @search, :path, Spree.t("page.path") %></th>
-      <th><%= sort_link @search, :accessible, Spree.t("page.accessible") %></th>
-      <th><%= sort_link @search, :visible, Spree.t("page.visible") %></th>
+      <th colspan="2"><%= sort_link @search, :title, Spree.t("essential_content.page.title") %></th>
+      <th><%= sort_link @search, :path, Spree.t("essential_content.page.path") %></th>
+      <th><%= sort_link @search, :accessible, Spree.t("essential_content.page.accessible") %></th>
+      <th><%= sort_link @search, :visible, Spree.t("essential_content.page.visible") %></th>
       <th data-hook="admin_posts_index_header_actions" class="actions"></th>
   </tr>
   </thead>
@@ -67,10 +62,10 @@
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
       <td class="actions" data-hook="admin_pages_index_row_actions">
-        <%= link_to_with_icon :accept, Spree.t(:preview), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
-        <%= link_to_with_icon :pages, Spree.t('page.contents'), admin_page_contents_path(page) %> &nbsp;
-        <%= link_to_edit page, :no_text => true, :class => 'edit' %> &nbsp;
-        <%= link_to_delete page, :no_text => true %>
+        <%= link_to_with_icon 'search', Spree.t('essential_content.page.preview'), page.path, onclick: 'window.open(this.href);return false;', no_text: true %> &nbsp;
+        <%= link_to_with_icon 'newspaper-o', Spree.t('essential_content.page.contents'), admin_page_contents_path(page), no_text: true %> &nbsp;
+        <%= link_to_edit page, no_text: true, class: 'edit' %> &nbsp;
+        <%= link_to_delete page, no_text: true %>
       </td>
     </tr>
     <% end %>

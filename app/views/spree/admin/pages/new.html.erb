@@ -1,21 +1,21 @@
-<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t('admin.pages.new_page') %>
+  <%= Spree.t('essential_content.admin.page_new') %>
 <% end %>
 
 <% if @page.try(:errors).present? %>
-  <%= render 'spree/shared/error_messages', :target => @page %>
+  <%= render 'spree/shared/error_messages', target: @page %>
 <% end %>
 
-<%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
+<%= form_for([:admin, @page], html: { multipart: true }) do |f| %>
   <fieldset class="no-border-top">
-    <%= render "form", :form => f %>
+    <%= render "form", form: f %>
 
     <div class="filter-actions actions">
-      <%= button Spree.t(:create), 'icon-ok' %>
+      <%= button Spree.t(:create), 'ok' %>
       <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove' %>
+      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'remove' %>
     </div>
   </fieldset>
 <% end %>

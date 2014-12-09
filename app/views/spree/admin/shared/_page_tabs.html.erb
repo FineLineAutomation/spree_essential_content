@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= (Spree.t('essential_content.admin.editing_page') + " &ldquo;#{@page.title}&rdquo;").html_safe %>
+  <%= (Spree.t('essential_content.admin.page_edit') + " '#{@page.title}'").html_safe %>
 <% end %>
 
 <% content_for :sidebar_title do %>
@@ -9,10 +9,14 @@
 <% content_for :sidebar do %>
   <header id="page_tab_summary" data-hook>
     <dl class="additional-info">
-      <dt id="page_accessible" data-hook><%= Spree.t(:page_accessible) %>:</dt>
-      <dd><%= @page.accessible ? "<span class='state complete'>Accessible</span>".html_safe : "<span class='state pending'>Not Accessible</span>".html_safe %></dd>
-      <dt data-hook><%= Spree.t(:page_visible) %>:</dt>
-      <dd id='page_visible'><%= @page.visible ? "<span class='state complete'>Visible</span>".html_safe : "<span class='state pending'>Hidden</span>".html_safe %></dd>
+      <dt id="page_accessible" data-hook><%= Spree.t('essential_content.page.accessibility') %>:</dt>
+      <dd>
+        <%= @page.accessible ? "<span class='state complete'>Accessible</span>".html_safe : "<span class='state pending'>Not Accessible</span>".html_safe %>
+        </dd>
+      <dt data-hook><%= Spree.t('essential_content.page.visible') %>:</dt>
+      <dd id='page_visible'>
+        <%= @page.visible ? "<span class='state complete'>Visible</span>".html_safe : "<span class='state pending'>Hidden</span>".html_safe %>
+      </dd>
     </dl>
   </header>
 

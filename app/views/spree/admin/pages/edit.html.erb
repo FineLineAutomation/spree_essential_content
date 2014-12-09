@@ -1,19 +1,19 @@
-<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 
-<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Page Details'} %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: 'Page Details'} %>
 
 <%= form_for([:admin, @page]) do |f| %>
   <% if @page.try(:errors).present? %>
-    <%= render 'spree/shared/error_messages', :target => @page %>
+    <%= render 'spree/shared/error_messages', target: @page %>
   <% end %>
 
   <fieldset class="no-border-top">
-    <%= render "form", :form => f %>
+    <%= render "form", form: f %>
 
     <div class="filter-actions actions">
-      <%= button Spree.t(:update), 'icon-refresh' %>
+      <%= button Spree.t(:update), 'refresh' %>
       <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove' %>
+      <%= button_link_to Spree.t(:cancel), collection_url, icon: 'remove' %>
     </div>
   </fieldset>
 <% end %>
