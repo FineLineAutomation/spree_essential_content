@@ -62,7 +62,7 @@
     <%- @collection.each do |page|%>
     <tr id="<%= spree_dom_id page %>">
       <td class="no-border"><span class="handle"></span></td>
-      <td><%=link_to page.title, object_url(page) %></td>
+      <td><%=link_to page.title, edit_admin_page_path(page) %></td>
       <td><%= page.path %></td>
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
