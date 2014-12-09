@@ -5,6 +5,13 @@ class Spree::PossibleBlog
   end
 end
 
+class Spree::PossiblePage
+  def self.matches?(request)
+    return false if request.path =~ /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
+    !Spree::Page.active.get_page_by_path(request.path).nil?
+  end
+end
+
 Spree::Core::Engine.append_routes do
   namespace :admin do
     resources :uploads
@@ -42,7 +49,10 @@ Spree::Core::Engine.append_routes do
     resource :disqus_settings
   end
 
-  resources :pages, :only => [:index, :show]
+  constraints(Spree::PossiblePage) do
+    get '/(*path)', to: 'pages#show', as: 'page'
+  end
+  get '/', to: 'pages#show', path: '_home_'
 
   constraints(Spree::PossibleBlog) do
     constraints(

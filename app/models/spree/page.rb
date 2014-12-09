@@ -1,9 +1,8 @@
 class Spree::Page < ActiveRecord::Base
-
   class << self
-    def find_by_path(_path)
-      return super('/') if _path == "_home_" && self.exists?(:path => "/")
-      super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
+    def get_page_by_path(_path)
+      return where(path: '/').first if _path == "_home_" && self.exists?(path: "/")
+      where(path: "/" + _path.to_s.sub(/^\/|\/$/, "")).first
     end
   end
 
