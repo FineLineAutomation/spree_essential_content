@@ -1,12 +1,12 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+<%= render partial: 'spree/admin/shared/configuration_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t('admin.blogs.listing_blogs') %>
+  <%= Spree.t('essential_content.admin.blog_listing') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li id="new_blog_link">
-    <%= button_link_to Spree.t('admin.blogs.new_blog'), new_admin_blog_url, :icon => 'icon-plus', :id => 'admin_new_blog' %>
+    <%= button_link_to Spree.t('essential_content.admin.blog_new'), new_admin_blog_url, icon: 'plus', id: 'admin_new_blog' %>
   </li>
 <% end %>
 
@@ -21,8 +21,8 @@
     </colgroup>
     <thead>
     <tr>
-        <th><%= sort_link @search, :name, Spree.t("activerecord.attributes.blog.name") %></th>
-        <th><%= sort_link @search, :live, Spree.t("activerecord.attributes.blog.permalink") %></th>
+        <th><%= sort_link @search, :name, Spree.t("essential_content.blog.name") %></th>
+        <th><%= sort_link @search, :live, Spree.t("essential_content.blog.permalink") %></th>
         <th data-hook="admin_blogs_index_header_actions" class="actions"></th>
     </tr>
     </thead>
@@ -32,8 +32,8 @@
         <td><%= blog.name %></td>
         <td><%= blog.permalink %></td>
         <td class="actions" data-hook="admin_posts_index_row_actions">
-          <%= link_to_edit blog, :no_text => true, :class => 'edit' %> &nbsp;
-          <%= link_to_delete blog, :no_text => true %>
+          <%= link_to_edit blog, no_text: true, class: 'edit' %> &nbsp;
+          <%= link_to_delete blog, no_text: true %>
         </td>
       </tr>
       <% end %>

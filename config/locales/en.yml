@@ -6,6 +6,9 @@ en:
         posts: Blog Posts
         uploads: Uploads
     essential_content:
+      blog:
+        name: Blog Name
+        permalink: permalink
       content:
         model_name: Content
         page_title: Page Title
@@ -45,7 +48,13 @@ en:
       by: By
       tagged: Tagged
       no_posts: No Blog Posts Found
+      setting_disqus_shortname: Disqus Shortname
+      setting_sharethis_publisher_id: ShareThis Publisher
       admin:
+        blog_edit: Editing Blog
+        blog_manage: Manage Blog
+        blog_listing: Listing Blogs
+        blog_new: New Blog
         blog_settings: Blog Settings
         content_edit: Edit Content
         content_new: New Content
