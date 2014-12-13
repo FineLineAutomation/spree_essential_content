@@ -1,12 +1,12 @@
-<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_actions do %>
   <li id="new_page_link">
-    <%= button_link_to Spree.t(:new_content), new_object_url,:icon => 'icon-plus', :id => 'admin_new_page_content' %>
+    <%= button_link_to Spree.t('essential_content.admin.content_new'), new_object_url, icon: 'plus', id: 'admin_new_page_content' %>
   </li>
 <% end %>
 
-<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => 'Contents'} %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: 'Contents'} %>
 
 <%= paginate @collection %>
 
@@ -19,8 +19,8 @@
   </colgroup>
   <thead>
     <tr>
-        <th colspan="2"><%= sort_link @search, :title, Spree.t("content.title") %></th>
-        <th><%= sort_link @search, :context, Spree.t("content.context") %></th>
+        <th colspan="2"><%= sort_link @search, :title, Spree.t('essential_content.content.title') %></th>
+        <th><%= sort_link @search, :context, Spree.t('essential_content.content.context') %></th>
         <th data-hook="admin_page_contents_index_header_actions" class="actions"></th>
     </tr>
   </thead>
@@ -33,9 +33,9 @@
       <td><%= link_to content.title, object_url(content) %></td>
       <td><%= content.context %>
       <td class="actions" data-hook="admin_page_contents_index_row_actions">
-        <%= link_to_edit content, :no_text => true, :class => 'edit' %>
+        <%= link_to_edit content, no_text: true, class: 'edit' %>
         &nbsp;
-        <%= link_to_delete content, :no_text => true %>
+        <%= link_to_delete content, no_text: true %>
       </td>
     </tr>
     <% end %>
@@ -43,4 +43,3 @@
 </table>
 
 <%= paginate @collection %>
-

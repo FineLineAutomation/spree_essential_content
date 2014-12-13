@@ -6,6 +6,18 @@ en:
         posts: Blog Posts
         uploads: Uploads
     essential_content:
+      content:
+        model_name: Content
+        page_title: Page Title
+        page: Page
+        title: Title
+        body: Body
+        attachment: Attachment
+        link: Link URL
+        link_text: Link Text
+        context: Context
+        hide_title: Hide Title
+        delete_attachment: Delete current attachment
       page:
         accessibility: Page Accessibility
         accessible: Accessible
@@ -35,6 +47,8 @@ en:
       no_posts: No Blog Posts Found
       admin:
         blog_settings: Blog Settings
+        content_edit: Edit Content
+        content_new: New Content
         contents: Contents
         disqus_settings: Disqus Settings
         page_contents: Page Contents

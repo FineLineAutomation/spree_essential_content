@@ -52,7 +52,6 @@ Spree::Core::Engine.append_routes do
   constraints(Spree::PossiblePage) do
     get '/(*path)', to: 'pages#show', as: 'page'
   end
-  get '/', to: 'pages#show', path: '_home_'
 
   constraints(Spree::PossibleBlog) do
     constraints(
