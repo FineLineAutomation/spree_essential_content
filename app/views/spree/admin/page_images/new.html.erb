@@ -1,17 +1,17 @@
-<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} unless request.xhr? %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: "Images"} unless request.xhr? %>
 
-<%= render 'spree/shared/error_messages', :target => @page_image %>
+<%= render 'spree/shared/error_messages', target: @page_image %>
 
-<%= form_for(@page_image, :url => admin_page_images_path(@page), :html => { :multipart => true }) do |form| %>
+<%= form_for(@page_image, url: admin_page_images_path(@page), html: { multipart: true }) do |form| %>
   <fieldset>
-    <legend><%= Spree.t('admin.pages.new_image') %></legend>
+    <legend><%= Spree.t(:new_image) %></legend>
 
-    <%= render "form", :form => form %>
+    <%= render "form", form: form %>
 
     <div class="filter-actions actions">
-      <%= button Spree.t(:create), 'icon-ok' %>
+      <%= button Spree.t(:create), 'ok' %>
       <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), collection_url, :icon => 'icon-remove', :id => "cancel_link" %>
+      <%= button_link_to Spree.t(:cancel), collection_url, icon: 'remove', id: "cancel_link" %>
     </div>
   </fieldset>
 <% end %>

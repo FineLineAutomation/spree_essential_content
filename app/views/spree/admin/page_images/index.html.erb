@@ -1,8 +1,8 @@
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon('icon-plus', t(:new_image), new_admin_page_image_url(@page), :id => 'new_image_link', :class => 'button') %></li>
+  <li><%= link_to_with_icon('plus', Spree.t(:new_image), new_admin_page_image_url(@page), id: 'new_image_link', class: 'button') %></li>
 <% end %>
 
-<%= render :partial => 'spree/admin/shared/page_tabs', :locals => {:current => "Images"} %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: "Images"} %>
 
 <div id="images"></div>
 
@@ -27,9 +27,9 @@
         <td><%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
         <td><%= image.alt %></td>
         <td class="actions" data-hook="admin_page_image_index_row_actions">
-          <%= link_to_with_icon 'icon-edit', Spree.t(:edit), edit_admin_page_image_path(@page, image), :no_text => true, :data => {:action => 'edit'} %>
+          <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_page_image_path(@page, image), no_text: true, data: {action: 'edit'} %>
           &nbsp;
-          <%= link_to_delete image, {:no_text => true, :url => admin_page_image_url(@page, image) }%>
+          <%= link_to_delete image, {no_text: true, url: admin_page_image_url(@page, image) }%>
         </td>
       </tr>
     <% end %>
