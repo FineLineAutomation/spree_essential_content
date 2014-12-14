@@ -1,19 +1,19 @@
-<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Categories"} %>
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Categories"} %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon('icon-plus', Spree.t('admin.post_categories.new_category'), new_admin_post_category_url(@post), :id => 'btn_new_category', :class => 'button') %></li>
+  <li><%= link_to_with_icon('plus', Spree.t('essential_content.admin.post_category_new'), new_admin_post_category_url(@post), id: 'btn_new_category', class: 'button') %></li>
 <% end %>
 
 <div id="new_category"></div>
 
 <% unless @post_categories.any? %>
   <div class="no-objects-found">
-    <%= Spree.t(:no_categories_found) %>.
+    <%= Spree.t('essential_content.admin.post_category_none_found') %>.
   </div>
 <% else %>
   <%= form_for([:admin, @post]) do |f| %>
     <fieldset>
-      <legend><%= Spree.t('admin.post_categories.manage_categories') %></legend>
+      <legend><%= Spree.t('essential_content.admin.post_category_manage') %></legend>
 
       <table class="index" data-hook="categories_table">
         <colgroup>
@@ -22,7 +22,7 @@
         </colgroup>
         <thead>
           <tr>
-            <th><%= Spree.t('admin.post_categories.category') %></th>
+            <th><%= Spree.t('essential_content.post_category.category') %></th>
             <th data-hook="admin_post_categories_index_header_actions" class="actions"></th>
           </tr>
         </thead>
@@ -30,13 +30,13 @@
           <% @post_categories.each_with_index do |category, index| -%>
             <tr id="<%= dom_id(category) %>">
               <td>
-                <%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category), :id => "post_category_id_#{index}" -%>
+                <%= check_box_tag "post[post_category_ids][]", category.id, @post.post_categories.include?(category), id: "post_category_id_#{index}" -%>
                 <%= label_tag "post_category_id_#{index}", category.name -%>
               </td>
               <td class="actions" data-hook="admin_post_categories_index_row_actions">
-                <%= link_to_with_icon 'icon-edit', Spree.t(:edit), edit_admin_post_category_url(@post, category.id), :no_text => true, :data => {:action => 'edit'} %>
+                <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_post_category_url(@post, category.id), no_text: true, data: {action: 'edit'} %>
                 &nbsp;
-                <%= link_to_delete category, :no_text => true, :url => admin_post_category_url(@post, category.id) %>
+                <%= link_to_delete category, no_text: true, url: admin_post_category_url(@post, category.id) %>
               </td>
             </tr>
           <% end %>
@@ -46,9 +46,9 @@
       <div class="filter-actions actions">
         <%= hidden_field_tag "post[post_category_ids][]", 0 %>
         <%= hidden_field_tag :redirect_to, request.fullpath %>
-        <%= button Spree.t(:update), 'icon-refresh' %>
+        <%= button Spree.t(:update), 'refresh' %>
         <span class="or"><%= Spree.t(:or) %></span>
-        <%= button_link_to Spree.t(:cancel), admin_post_categories_url(@post), :icon => 'icon-remove' %>
+        <%= button_link_to Spree.t(:cancel), admin_post_categories_url(@post), icon: 'remove' %>
       </div>
     </fieldset>
   <% end %>

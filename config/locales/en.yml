@@ -36,6 +36,13 @@ en:
         preview: Preview
         title: Title
         visible: Visible
+      post:
+        post: Post
+        posted_at: Published On
+        posted_in: Blog
+        published: Is Published
+      post_category:
+        category: Post Category
       upload_model_name: Upload
       file_name: File Name
       size: Size
@@ -69,6 +76,10 @@ en:
         page_images: Page Images
         page_listing: Page Listing
         page_new: New Page
+        post_information: Post Information
+        post_category_new: New Post Category
+        post_category_none_found: No Post Categories Were Found
+        post_category_manage: Manage Post Categories
 
   time:
     formats:

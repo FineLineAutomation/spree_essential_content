@@ -1,20 +1,19 @@
 <% content_for :page_title do %>
-  <%= (Spree.t("admin.shared.post_tabs.post") + " &ldquo;#{@post.title}&rdquo;").html_safe %>
+  <%= (Spree.t("essential_content.post.post") + " '#{@post.title}'").html_safe %>
 <% end %>
 
 <% content_for :sidebar_title do %>
-  <%= Spree.t('admin.shared.post_tabs.post_information') %>
+  <%= Spree.t('essential_content.admin.post_information') %>
 <% end %>
 
 <% content_for :sidebar do %>
-
   <header id="post_tab_summary" data-hook>
     <dl class="additional-info">
-      <dt id="post_date" data-hook><%= Spree.t('admin.posts.sidebar.posted_at') %>:</dt>
+      <dt id="post_date" data-hook><%= Spree.t('essential_content.post.posted_at') %>:</dt>
       <dd><%= h(@post.posted_at.strftime("%A %B %d, %Y")) %></dd>
-      <dt data-hook><%= Spree.t('admin.posts.sidebar.posted_in') %>:</dt>
+      <dt data-hook><%= Spree.t('essential_content.post.posted_in') %>:</dt>
       <dd id='posted_in'><%= link_to @post.blog.name, edit_admin_blog_path(@post.blog) %></dd>
-      <dt data-hook><%= Spree.t('admin.posts.sidebar.published') %>:</dt>
+      <dt data-hook><%= Spree.t('essential_content.post.published') %>:</dt>
       <dd id='posted_in'><%= (@post.live && @post.posted_at <= Time.now) ? "<span class='state complete'>Published</span>".html_safe : "<span class='state pending'>Not Published</span>".html_safe %></dd>
     </dl>
   </header>
@@ -22,7 +21,7 @@
   <nav class="menu">
     <ul class="sidebar post-menu">
       <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
-        <%= link_to_with_icon 'icon-edit', Spree.t("admin.shared.post_tabs.post_details"), edit_admin_post_url(@post) %>
+        <%= link_to_with_icon 'edit', Spree.t("admin.shared.post_tabs.post_details"), edit_admin_post_url(@post) %>
       </li>
       <li<%= ' class="active"'.html_safe if current == "Images" %>>
         <%= link_to_with_icon 'icon-picture', Spree.t(:images), admin_post_images_url(@post) %>
