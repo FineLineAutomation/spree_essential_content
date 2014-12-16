@@ -1,8 +1,8 @@
-<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
-<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Images"} %>
+<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Images"} %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon('icon-plus', Spree.t(:new_image), new_admin_post_image_url(@post), :id => 'new_image_link', :class => 'button') %></li>
+  <li><%= link_to_with_icon('plus', Spree.t(:new_image), new_admin_post_image_url(@post), id: 'new_image_link', class: 'button') %></li>
 <% end %>
 
 <div id="images" data-hook></div>
@@ -33,11 +33,10 @@
           <td><%= link_to(image_tag(image.attachment.url(:small)), image.attachment.url(:large)) %></td>
           <td><%= image.alt %></td>
           <td class="actions" data-hook="admin_post_images_index_row_actions">
-            <%= link_to_with_icon 'icon-edit', Spree.t(:edit), edit_admin_post_image_path(@post, image), :no_text => true, :data => {:action => 'edit'} %>
+            <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_post_image_path(@post, image), no_text: true, data: {action: 'edit'} %>
             &nbsp;
-            <%= link_to_delete image, :no_text => true, :url => admin_post_image_url(@post, image) %>
+            <%= link_to_delete image, no_text: true, url: admin_post_image_url(@post, image) %>
           </td>
-
         </tr>
       <% end %>
     </tbody>
@@ -47,13 +46,11 @@
 <% content_for :head do %>
   <script type="text/javascript">
     jQuery(document).ready(function(){
-
       jQuery('#new_image_link').click(function (event) {
         event.preventDefault();
         jQuery(this).hide();
         jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
       });
-
     });
   </script>
 <% end %>
