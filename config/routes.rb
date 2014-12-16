@@ -36,17 +36,17 @@ Spree::Core::Engine.append_routes do
 
     resources :blogs, :constraints => { :id => /[a-z0-9\-\_\/]{3,}/ }
 
-    resources :posts do
-      resources :images,   :controller => "post_images" do
+    resources :posts, except: [:show] do
+      resources :images, except: [:show], controller: "post_images" do
         collection do
           post :update_positions
         end
       end
-      resources :products, :controller => "post_products"
-      resources :categories, :controller => "post_categories"
+      resources :products, only: [:index, :update, :delete], controller: "post_products"
+      resources :categories, except: [:show], :controller => "post_categories"
     end
 
-    resource :disqus_settings
+    resource :disqus_settings, only: [:edit]
   end
 
   constraints(Spree::PossiblePage) do

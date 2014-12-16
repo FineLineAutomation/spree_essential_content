@@ -37,10 +37,16 @@ en:
         title: Title
         visible: Visible
       post:
+        author: Author
+        body: Post Content
+        live: Show Post On Blog?
         post: Post
         posted_at: Published On
         posted_in: Blog
         published: Is Published
+        tags: Tags
+        teaser: Teaser Line
+        title: Post Title
       post_category:
         category: Post Category
       upload_model_name: Upload
@@ -76,10 +82,15 @@ en:
         page_images: Page Images
         page_listing: Page Listing
         page_new: New Page
+        post_categories: Post Categories
+        post_details: Post Details
         post_information: Post Information
+        post_listing: Listing Posts
+        post_new: New Post
         post_category_new: New Post Category
         post_category_none_found: No Post Categories Were Found
         post_category_manage: Manage Post Categories
+        products_related: Related Products
 
   time:
     formats:

@@ -1,48 +1,48 @@
 <% config = Spree::BlogConfiguration.new %>
 
 <%= form.field_container :blog_id do %>
-  <%= form.label :blog_id, Spree.t("activerecord.attributes.blog.model_name") %><br />
-  <%= form.select :blog_id, Spree::Blog.to_options, :class => 'fullwidth' %>
+  <%= form.label :blog_id, Spree.t("essential_content.blog.name") %><br />
+  <%= form.select :blog_id, Spree::Blog.to_options, class: 'fullwidth' %>
   <%= error_message_on :post, :blog_id %>
 <% end %>
 
 <%= form.field_container :title do %>
-  <%= form.label :title, Spree.t("activerecord.attributes.post.title") %><br />
-  <%= form.text_field :title, :class => 'fullwidth' %>
+  <%= form.label :title, Spree.t("essential_content.post.title") %><br />
+  <%= form.text_field :title, class: 'fullwidth' %>
   <%= error_message_on :post, :title %>
 <% end %>
 
 <%= form.field_container :posted_at do %>
-  <%= form.label :posted_at, Spree.t("activerecord.attributes.post.posted_at") %><br />
-  <%= form.text_field :posted_at, :class => 'datepicker' %><br />
+  <%= form.label :posted_at, Spree.t("essential_content.post.posted_at") %><br />
+  <%= form.text_field :posted_at, class: 'datepicker' %><br />
   <%= error_message_on :post, :posted_at %>
 <% end %>
 
 <%= form.field_container :teaser do %>
-  <%= form.label :teaser, Spree.t("activerecord.attributes.post.teaser") %><br />
-  <%= form.text_field :teaser, :class => 'fullwidth' %><br />
+  <%= form.label :teaser, Spree.t("essential_content.post.teaser") %><br />
+  <%= form.text_field :teaser, class: 'fullwidth' %><br />
   <%= error_message_on :post, :teaser %>
 <% end %>
 
 <%= form.field_container :author do %>
-  <%= form.label :author, Spree.t("activerecord.attributes.post.author") %><br />
-  <%= form.text_field :author, :class => 'fullwidth' %><br />
+  <%= form.label :author, Spree.t("essential_content.post.author") %><br />
+  <%= form.text_field :author, class: 'fullwidth' %><br />
   <%= error_message_on :post, :author %>
 <% end %>
 
 <%= form.field_container :body do %>
-  <%= form.label :body, Spree.t("activerecord.attributes.post.body") %>
+  <%= form.label :body, Spree.t("essential_content.post.body") %>
   <br />
   <%= form.text_area :body  %>
   <%= error_message_on :post, :body %>
 <% end %>
 
 <%= form.field_container :tag_list do %>
-  <%= form.label :tag_list, Spree.t("activerecord.attributes.post.tags") %><br />
-  <%= form.text_field :tag_list, :class => 'fullwidth' %><br />
+  <%= form.label :tag_list, Spree.t("essential_content.post.tags") %><br />
+  <%= form.text_field :tag_list, class: 'fullwidth' %><br />
   <%= error_message_on :post, :tag_list %>
 <% end %>
 
 <%= form.field_container :live do %>
-  <%= form.check_box :live  %> <%= form.label :live, Spree.t("activerecord.attributes.post.live") %><br />
+  <%= form.check_box :live  %> <%= form.label :live, Spree.t("essential_content.post.live") %><br />
 <% end %>
