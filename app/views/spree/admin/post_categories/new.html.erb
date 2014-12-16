@@ -1,19 +1,19 @@
-<%= render :partial => 'spree/admin/shared/post_tabs', :locals => {:current => "Categories"} unless request.xhr? %>
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Categories"} unless request.xhr? %>
 
-<%= form_for(@post_category, :url => admin_post_categories_path(@post)) do |form| %>
+<%= form_for(@post_category, url: admin_post_categories_path(@post)) do |form| %>
   <fieldset>
-    <legend><%= Spree.t('admin.post_categories.new_category') %></legend>
+    <legend><%= Spree.t('essential_content.admin.post_category_new') %></legend>
 
     <% if @post_category.try(:errors).present? %>
-      <%= render 'spree/shared/error_messages', :target => @post_category %>
+      <%= render 'spree/shared/error_messages', target: @post_category %>
     <% end %>
 
-    <%= render "form", :form => form %>
+    <%= render "form", form: form %>
 
     <div class="filter-actions actions">
-      <%= button Spree.t(:create), 'icon-ok' %>
+      <%= button Spree.t(:create), 'ok' %>
       <span class="or"><%= Spree.t(:or) %></span>
-      <%= link_to_with_icon 'icon-remove', Spree.t(:cancel), admin_post_categories_path(@post), :id => 'cancel_link', :class => 'button' %>
+      <%= link_to_with_icon 'remove', Spree.t(:cancel), admin_post_categories_path(@post), id: 'cancel_link', class: 'button' %>
     </div>
   </fieldset>
 <% end %>

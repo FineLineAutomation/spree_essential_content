@@ -49,6 +49,8 @@ en:
         title: Post Title
       post_category:
         category: Post Category
+        name: Category Name
+        permalink: Category Permalink
       upload_model_name: Upload
       file_name: File Name
       size: Size
@@ -87,6 +89,7 @@ en:
         post_information: Post Information
         post_listing: Listing Posts
         post_new: New Post
+        post_category_edit: Edit Post Category
         post_category_new: New Post Category
         post_category_none_found: No Post Categories Were Found
         post_category_manage: Manage Post Categories
