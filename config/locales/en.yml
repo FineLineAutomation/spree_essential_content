@@ -51,7 +51,12 @@ en:
         category: Post Category
         name: Category Name
         permalink: Category Permalink
-      upload_model_name: Upload
+      upload:
+        upload: Upload
+        preview: Preview
+        link: Link To Content
+        file_name: Upload Filename
+        size: Upload Size
       file_name: File Name
       size: Size
       rss: Subscribe via RSS
@@ -94,6 +99,9 @@ en:
         post_category_none_found: No Post Categories Were Found
         post_category_manage: Manage Post Categories
         products_related: Related Products
+        upload_edit: Edit Upload
+        upload_listing: Listing Uploads
+        upload_new: New Upload
 
   time:
     formats:

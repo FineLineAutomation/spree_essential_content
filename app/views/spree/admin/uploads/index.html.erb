@@ -1,11 +1,11 @@
-<%= render :partial => 'spree/admin/shared/contents_sub_menu' %>
+<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 
 <% content_for :page_title do %>
-  <%= Spree.t('admin.uploads.index.listing_uploads') %>
+  <%= Spree.t('essential_content.admin.upload_listing') %>
 <% end %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon('icon-plus', Spree.t(:new_upload), new_admin_upload_url(@product), :id => 'new_image_link', :class => 'button') %></li>
+  <li><%= link_to_with_icon('plus', Spree.t('essential_content.admin.upload_new'), new_admin_upload_url(@product), id: 'new_image_link', class: 'button') %></li>
 <% end %>
 
 <div id="images" data-hook></div>
@@ -39,12 +39,11 @@
         <td><%= upload.alt %></td>
         <td><%= upload.attachment_file_size.to_i / 1024 %> kb</td>
         <td class="actions">
-           <%= link_to_edit upload, :no_text => true, :class => 'edit' %> &nbsp;
-            <%= link_to_delete upload, :no_text => true %>
+           <%= link_to_edit upload, no_text: true, class: 'edit' %> &nbsp;
+            <%= link_to_delete upload, no_text: true %>
         </td>
       </tr>
     <% end %>
-
   </table>
 
   <%= paginate @uploads %>
@@ -60,14 +59,14 @@
       <div class="field-block alpha sixteen columns">
         <div class="field">
           <%= f.label :alt_cont, Spree.t(:description) %>
-          <%= f.text_field :alt_cont, :size => 50 %>
+          <%= f.text_field :alt_cont, size: 50 %>
         </div>
       </div>
       <div class="clearfix"></div>
 
       <div class="actions filter-actions">
         <div data-hook="admin_uploads_index_search_buttons">
-          <%= button Spree.t(:filter_results), 'icon-search' %>
+          <%= button Spree.t(:filter_results), 'search' %>
         </div>
       </div>
     <% end %>
@@ -77,13 +76,11 @@
 <% content_for :head do %>
   <script type="text/javascript">
     jQuery(document).ready(function(){
-
       jQuery('#new_image_link').click(function(event) {
         event.preventDefault();
         jQuery(this).hide();
         jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
       });
-
     });
   </script>
 <% end %>
