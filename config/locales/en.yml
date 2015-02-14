@@ -70,6 +70,7 @@ en:
       no_posts: No Blog Posts Found
       setting_disqus_shortname: Disqus Shortname
       setting_sharethis_publisher_id: ShareThis Publisher
+      latest_products: Latest Products
       admin:
         blog_edit: Editing Blog
         blog_manage: Manage Blog

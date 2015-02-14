@@ -1,0 +1,2 @@
+$ ->
+  $('.bxslider').bxSlider auto: true

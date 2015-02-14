@@ -2,29 +2,23 @@
   <% unless @page.images.empty? %>
     <%= render 'spree/shared/slideshow', :images => @page.images, :size => :slide %>
   <% end %>
-  
+
   <% if @page.has_context?('intro') %>
     <div class="intro">
       <%= render 'spree/shared/content', :content => @page.for_context('intro').first %>
     </div>
   <% end %>
-  
+
   <div class="left">
     <%= render :partial => 'spree/shared/content', :collection => @page.for_context('main') %>
   </div>
 <% end %>
 
 <div class="right">
-  <% if defined?(Spree::SpreeEssentialBlog) && !@posts.blank? %>
+  <% if !@posts.blank? %>
     <div class="home-posts">
-      <h1><%= Spree.t('blog.home.title') %></h1>
-      <%= render :partial => 'spree/blog/shared/preview', :collection => @posts, :as => :post %>
-    </div>
-  <% end %>
-  <% if defined?(Spree::SpreeEssentialNews) && !@articles.blank? %>
-    <div class="home-articles">
-      <h1><%= Spree.t('news.home.title') %></h1>
-      <%= render :partial => 'spree/news/articles/preview', :collection => @articles, :as => :article %>
+      <h1><%= Spree.t('essential_content.recent_posts') %></h1>
+      <%= render partial: 'spree/shared/essential_content/preview', collection: @posts, as: :post %>
     </div>
   <% end %>
 </div>
@@ -36,5 +30,6 @@
 <% end %>
 
 <div data-hook="homepage_products">
+  <h1><%= Spree.t('essential_content.latest_products') %></h1>
   <%= render :partial => 'spree/shared/products', :locals => { :products => @products } if @products %>
 </div>
