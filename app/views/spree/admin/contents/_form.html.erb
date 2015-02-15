@@ -4,6 +4,13 @@
   <%= error_message_on :content, :title %>
 <% end %>
 
+<%= form.field_container :hide_title do %>
+  <%= form.check_box :hide_title, class: "checkbox" %>
+  <%= form.label :hide_title, Spree.t('essential_content.content.hide_title') %><br />
+  <%= error_message_on :content, :hide_title %>
+<% end %>
+
+
 <%= form.field_container :page do %>
   <%= form.label :page_id, Spree.t('essential_content.content.page') %><br />
   <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
@@ -16,62 +23,38 @@
   <%= error_message_on :content, :body %>
 <% end %>
 
-<p><%= link_to "Optional Fields <span>&#9650;</span>".html_safe, "#options", id: "btn_optional" %></p>
-
-<div class="optional" style="display: none;">
-  <%= form.field_container :context do %>
-    <%= form.label :context, Spree.t('essential_content.content.context') %><br />
-    <%= form.text_field :context, class: "text fullwidth"  %>
-    <%= error_message_on :content, :context %>
-  <% end %>
-
-  <%= form.field_container :attachment do %>
-    <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
-    <%= form.file_field :attachment %>
-    <%= error_message_on :content, :attachment %>
-  <% end %>
-
-  <% if @content.attachment.exists?(:mini) %>
-    <%= form.field_container :delete_attachment do %>
-      <%= form.check_box :delete_attachment %>
-      <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
-    <% end %>
-  <% end %>
-
-  <% if @content.attachment.exists?(:mini) %>
-    <p><%= image_tag @content.attachment.url(:mini) %></p>
-  <% end %>
-
-  <%= form.field_container :link do %>
-    <%= form.label :link, Spree.t('essential_content.content.link') %><br />
-    <%= form.text_field :link, class: "text fullwidth" %>
-    <%= error_message_on :content, :link %>
-  <% end %>
-
-  <%= form.field_container :link_text do %>
-    <%= form.label :link_text, Spree.t('essential_content.content.link_text') %><br />
-    <%= form.text_field :link_text, class: "text fullwidth"  %>
-    <%= error_message_on :content, :link_text %>
-  <% end %>
-
-  <%= form.field_container :hide_title do %>
-    <%= form.check_box :hide_title, class: "checkbox" %>
-    <%= form.label :hide_title, Spree.t('essential_content.content.hide_title') %><br />
-    <%= error_message_on :content, :hide_title %>
-  <% end %>
-
-</div>
-
-<% content_for :head do %>
-  <script type="text/javascript">
-  //<![CDATA[
-    $(document).ready(function() {
-      $('#btn_optional').click(function(evt) {
-        evt.preventDefault();
-        var vis = $('.optional').toggle().css('display') == 'block';
-        $(this).find('span').html(vis ? '&#9660;' : '&#9650;');
-      });
-    });
-  //]]>
-  </script>
+<%= form.field_container :context do %>
+  <%= form.label :context, Spree.t('essential_content.content.context') %><br />
+  <%= form.text_field :context, class: "text fullwidth"  %>
+  <%= error_message_on :content, :context %>
 <% end %>
+
+<%= form.field_container :attachment do %>
+  <%= form.label :attachment, Spree.t('essential_content.content.attachment') %><br />
+  <%= form.file_field :attachment %>
+  <%= error_message_on :content, :attachment %>
+<% end %>
+
+<% if @content.attachment.exists?(:mini) %>
+  <%= form.field_container :delete_attachment do %>
+    <%= form.check_box :delete_attachment %>
+    <%= form.label :delete_attachment, Spree.t('essential_content.content.delete_attachment') %><br />
+  <% end %>
+<% end %>
+
+<% if @content.attachment.exists?(:mini) %>
+  <p><%= image_tag @content.attachment.url(:mini) %></p>
+<% end %>
+
+<%= form.field_container :link do %>
+  <%= form.label :link, Spree.t('essential_content.content.link') %><br />
+  <%= form.text_field :link, class: "text fullwidth" %>
+  <%= error_message_on :content, :link %>
+<% end %>
+
+<%= form.field_container :link_text do %>
+  <%= form.label :link_text, Spree.t('essential_content.content.link_text') %><br />
+  <%= form.text_field :link_text, class: "text fullwidth"  %>
+  <%= error_message_on :content, :link_text %>
+<% end %>
+
