@@ -15,6 +15,7 @@ Spree::HomeController.class_eval do
     def get_homepage
       @page = Spree::Page.find_by_path("/")
       @posts = Spree::Post.web.limit(5)
+      @config = Spree::ContentConfiguration.new
     end
 
     def accurate_title

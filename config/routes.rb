@@ -46,7 +46,7 @@ Spree::Core::Engine.append_routes do
       resources :categories, except: [:show], :controller => "post_categories"
     end
 
-    resource :disqus_settings, only: [:edit]
+    resource :content_settings, only: [:edit, :update]
   end
 
   constraints(Spree::PossiblePage) do

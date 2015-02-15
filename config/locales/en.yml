@@ -70,6 +70,10 @@ en:
       no_posts: No Blog Posts Found
       setting_disqus_shortname: Disqus Shortname
       setting_sharethis_publisher_id: ShareThis Publisher
+      setting_show_products_on_homepage: Show Products On Home Page
+      setting_show_taxons_on_homepage: Show Taxons On Home Page
+      setting_show_posts_on_homepage: Show Posts On Home Page
+      page_content_order: Order of Page Contents
       latest_products: Latest Products
       admin:
         blog_edit: Editing Blog
@@ -80,7 +84,7 @@ en:
         content_edit: Edit Content
         content_new: New Content
         contents: Contents
-        disqus_settings: Disqus Settings
+        content_settings: Content Settings
         page_contents: Page Contents
         page_details: Page Details
         page_edit: Edit Page

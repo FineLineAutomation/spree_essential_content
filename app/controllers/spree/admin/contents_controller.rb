@@ -13,6 +13,7 @@ module Spree
         params[:positions].each do |id, index|
           @page.contents.update_all(['position=?', index], ['id=?', id])
         end
+
         respond_to do |format|
           format.html { redirect_to admin_page_contents_url(@page) }
           format.js  { render text: 'Ok' }
