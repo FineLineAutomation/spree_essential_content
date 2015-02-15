@@ -1,5 +1,4 @@
 class Spree::Content < ActiveRecord::Base
-
   attr_accessor :delete_attachment
 
   belongs_to :page
@@ -79,5 +78,4 @@ private
     v = self.send selector
     v && !v.to_s.blank?
   end
-
 end

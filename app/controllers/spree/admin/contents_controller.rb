@@ -11,7 +11,7 @@ module Spree
       def update_positions
         @page = parent
         params[:positions].each do |id, index|
-          @page.contents.update_all(['position=?', index], ['id=?', id])
+          Spree::Content.where('id = ?', id).update_all(position: index)
         end
 
         respond_to do |format|
@@ -27,7 +27,7 @@ module Spree
         end
 
         def parent
-    	   @page = Page.get_page_by_path(params[:page_id])
+    	    @page = Page.get_page_by_path(params[:page_id])
         end
 
         def collection
