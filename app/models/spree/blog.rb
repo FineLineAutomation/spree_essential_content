@@ -12,7 +12,7 @@ class Spree::Blog < ActiveRecord::Base
   before_validation :normalize_permalink
 
   def self.find_by_permalink!(path)
-    super path.to_s.gsub(/(^\/+)|(\/+$)/, "")
+    super path.to_s.gsub(/(^\/+)|(\/+$)/, "").downcase
   end
 
   def self.find_by_permalink(path)

@@ -1,7 +1,8 @@
 class Spree::PossibleBlog
   def self.matches?(request)
+    binding.remote_pry
     return false if request.path =~ /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
-    !Spree::Blog.find_by_permalink(request.path).nil?
+    Spree::Blog.where(permalink: request.path.to_s.downcase.gsub(/(^\/+)|(\/+$)/, "")).any?
   end
 end
 
@@ -49,10 +50,6 @@ Spree::Core::Engine.append_routes do
     resource :content_settings, only: [:edit, :update]
   end
 
-  constraints(Spree::PossiblePage) do
-    get '/(*path)', to: 'pages#show', as: 'page'
-  end
-
   constraints(Spree::PossibleBlog) do
     constraints(
       :year  => /\d{4}/,
@@ -67,5 +64,9 @@ Spree::Core::Engine.append_routes do
     get ":blog_id/search/:query"  => "posts#search",         :as => :search_posts, :query => /.*/
     get ":blog_id/archive"        => "posts#archive",        :as => :archive_posts
     get ":blog_id"                => "posts#index",          :as => :blog_posts
+  end
+
+  constraints(Spree::PossiblePage) do
+    get '/(*path)', to: 'pages#show', as: 'page'
   end
 end

@@ -2,19 +2,21 @@
   <%= render :partial => 'spree/shared/essential_content/sidebar' %>
 <% end %>
 
+<% if @post.has_images? %>
+  <div data-hook="post-images">
+    <ul class="bxslider">
+      <% @post.images.each_with_index do |image, index| %>
+        <li><%= link_to image_tag(image.attachment.url(:medium), :alt => image.alt.blank? ? "#{@post.title} - Photo #{index + 1}" : image.alt), image.attachment.url(:large), :id => "photo_#{index}" %></p>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div data-hook="post-show">
   <div data-hook="post-title">
     <h1><%=h @post.title %></h1>
     <span><%= Spree.t('essential_content.posted_on') %> <strong><%= l @post.posted_at, :format => :date_full %></strong> <%= Spree.t('essential_content.by') %> <strong><%= @post.author %></strong></span>
   </div>
-
-  <% if @post.has_images? %>
-    <div data-hook="post-image">
-      <% @post.images.each_with_index do |image, index| %>
-   	    <p><%= link_to image_tag(image.attachment.url(:medium), :alt => image.alt.blank? ? "#{@post.title} - Photo #{index + 1}" : image.alt), image.attachment.url(:large), :id => "photo_#{index}" %></p>
- 	    <% end %>
-    </div>
-  <% end %>
 
   <%= @post.rendered_body %>
 
