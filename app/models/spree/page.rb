@@ -1,10 +1,5 @@
 class Spree::Page < ActiveRecord::Base
-  class << self
-    def get_page_by_path(_path)
-      return where(path: '/').first if _path == "_home_" && self.exists?(path: "/")
-      where(path: "/" + _path.to_s.sub(/^\/|\/$/, "")).first
-    end
-  end
+  RESERVED_PATHS = /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
 
   alias_attribute :name, :title
 
@@ -20,8 +15,7 @@ class Spree::Page < ActiveRecord::Base
   after_create :create_default_content
 
   def to_param
-    return "_home_" if path == "/"
-    path.sub(/^\/*/, "")
+    path
   end
 
   def meta_title
@@ -38,27 +32,29 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def matches?(_path)
-    (root? && _path == "/") || (!root? && _path.match(path))
+    (root? && _path == "") || (!root? && _path.match(path))
   end
 
   def root?
-    self.path == "/"
+    puts self.path
+    self.path == "__home__"
   end
 
-  def path=(value)
-    value = value.to_s.strip
-    value.gsub!(/[\/\-\_]+$/, "") unless value == "/"
-    write_attribute :path, value
+  def self.normalize_path(original_path)
+    if original_path == "/"
+      "__home__"
+    else
+      original_path.downcase.gsub(/(^[\/\-\_]+)|([\/\-\_]+$)/, "")
+    end
   end
 
   private
 
     def set_defaults
       return if title.blank?
-      #return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
-      self.path = "/" + path.sub(/^\//, "")
+      self.path = self.class.normalize_path(path)
     end
 
     def create_default_content

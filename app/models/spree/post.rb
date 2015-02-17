@@ -1,5 +1,4 @@
 class Spree::Post < ActiveRecord::Base
-
   acts_as_taggable
 
   # for flash messages

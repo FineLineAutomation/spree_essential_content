@@ -90,7 +90,7 @@ RSpec.configure do |config|
   config.after :each do
     DatabaseCleaner.clean
   end
-  
+
   config.include Spree::TestingSupport::UrlHelpers
   config.include Spree::TestingSupport::ControllerRequests
   config.include Spree::TestingSupport::Preferences

@@ -1,18 +1,3 @@
-class Spree::PossibleBlog
-  def self.matches?(request)
-    binding.remote_pry
-    return false if request.path =~ /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
-    Spree::Blog.where(permalink: request.path.to_s.downcase.gsub(/(^\/+)|(\/+$)/, "")).any?
-  end
-end
-
-class Spree::PossiblePage
-  def self.matches?(request)
-    return false if request.path =~ /(^\/+(admin|account|cart|checkout|content|login|logout|pg\/|orders|products|s\/|session|signup|shipments|states|t\/|tax_categories|user|paypal)+)/
-    !Spree::Page.active.get_page_by_path(request.path).nil?
-  end
-end
-
 Spree::Core::Engine.append_routes do
   namespace :admin do
     resources :uploads

@@ -32,17 +32,21 @@ module Spree
         expect(page.nav_title).to_not eq(page.title)
       end
 
-      it 'will add a leading / to the path if not there' do
-        expect(create(:page, path: 'test').path).to eq("/test")
+      it 'will remove a leading / from the path' do
+        expect(create(:page, path: '/test').path).to eq('test')
       end
 
-      it 'will not double the leading / of the path' do
-        expect(create(:page, path: '/testing').path).to eq("/testing")
+      it 'will remove a trailing / from the path' do
+        expect(create(:page, path: 'testing/').path).to eq('testing')
+      end
+
+      it 'will lowercase the entire path' do
+        expect(create(:page, path: 'DowNcase-TeStInG').path).to eq('downcase-testing')
       end
 
       it 'will set a blank path to a parameterized title' do
         page = create(:page, path: '')
-        expect(page.path).to eq("/" + page.nav_title.parameterize)
+        expect(page.path).to eq(page.nav_title.parameterize)
       end
     end
 
