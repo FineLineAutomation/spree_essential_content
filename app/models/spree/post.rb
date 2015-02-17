@@ -53,7 +53,6 @@ class Spree::Post < ActiveRecord::Base
     images && !images.empty?
   end
 
-
   def live?
     live && live == true
   end

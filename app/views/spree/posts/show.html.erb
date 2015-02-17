@@ -31,7 +31,7 @@
     </div>
   <% end %>
 
-  <% disqus_short_name = Spree::BlogConfiguration.new[:disqus_shortname] %>
+  <% disqus_short_name = Spree::ContentConfiguration.new[:disqus_shortname] %>
   <% if !disqus_short_name.blank? %>
     <div>
       <h3><%= Spree.t('essential_content.comments') %></h3>

@@ -8,6 +8,14 @@ class Spree::Blog < ActiveRecord::Base
   validates :permalink, uniqueness: true, format: { with: /\A[a-z0-9\-\_\/]+\z/i }, length: { within: 3..40 }
   validate  :permalink_availablity
 
+  def self.find_by_permalink!(path)
+    super normalize_permalink(path)
+  end
+
+  def self.find_by_permalink(path)
+    find_by_permalink!(path) rescue ActiveRecord::RecordNotFound
+  end
+
   before_validation :set_defaults
   def self.to_options
     self.order(:name).map{|i| [ i.name, i.id ] }

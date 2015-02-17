@@ -33,7 +33,7 @@ module Spree
     end
 
     def get_blog
-      @blog = Spree::Blog.find_by_permalink!(params[:blog_id])
+      @blog = Spree::Blog.find_by_permalink!(Spree::Blog.normalize_permalink(params[:blog_id]))
     end
 
   end

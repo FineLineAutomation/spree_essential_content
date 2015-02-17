@@ -8,22 +8,27 @@ describe Spree::PossibleBlog, type: :model do
 
     it 'ignores case' do
       request = double('request', path: new_blog.permalink.upcase)
-      expect(described_class.matches?(request)).to be true
+      expect(described_class.matches?(request)).to eq(true)
     end
 
     it 'ignores leading slashes' do
       request = double('request', path: "/#{new_blog.permalink}")
-      expect(described_class.matches?(request)).to be true
+      expect(described_class.matches?(request)).to eq(true)
     end
 
     it 'ignores trailing slashes' do
       request = double('request', path: "#{new_blog.permalink}/")
-      expect(described_class.matches?(request)).to be true
+      expect(described_class.matches?(request)).to eq(true)
     end
 
-    it 'is false when using reserved slug name' do
+    it 'is false when using reserved permalink name' do
       request = double('request', path: "login")
-      expect(described_class.matches?(request)).to be false
+      expect(described_class.matches?(request)).to eq(false)
+    end
+
+    it 'is true when going to a valid subpage' do
+      request = double('request', path: "#{new_blog.permalink}/archive")
+      expect(described_class.matches?(request)).to eq(true)
     end
   end
 end

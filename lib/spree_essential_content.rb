@@ -14,7 +14,9 @@ module Spree
   class PossibleBlog
     def self.matches?(request)
       return false if request.path =~ Spree::Blog::RESERVED_PATHS
-      Spree::Blog.where(permalink: Spree::Blog.normalize_permalink(request.path)).any?
+      path = request.path
+      path = path.sub(%r{^/},"").split(%r{/\s*})[0] unless path == "/"
+      Spree::Blog.where(permalink: Spree::Blog.normalize_permalink(path)).any?
     end
   end
 end

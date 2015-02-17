@@ -1,7 +1,6 @@
 module Spree
   module Admin
     class PostCategoriesController < ResourceController
-
       before_filter :load_data
 
       private
@@ -14,7 +13,6 @@ module Spree
           @post = Spree::Post.find_by_path(params[:post_id])
           @post_categories = Spree::PostCategory.all
         end
-
     end
   end
 end
