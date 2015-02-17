@@ -14,6 +14,11 @@ class Spree::Page < ActiveRecord::Base
   before_validation :set_defaults
   after_create :create_default_content
 
+  def self.find_by_path(_path)
+    return where(path: '__home__').first if (_path == "__home__" or _path == "/") && self.exists?(path: "/")
+    where(path: normalize_path(_path)).first
+  end
+
   def to_param
     path
   end
