@@ -3,7 +3,6 @@ module Spree
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
     helper 'spree/blogs/posts'
-
     helper "spree/products"
 
     before_filter :get_blog

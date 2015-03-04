@@ -10,7 +10,6 @@
   <%= error_message_on :content, :hide_title %>
 <% end %>
 
-
 <%= form.field_container :page do %>
   <%= form.label :page_id, Spree.t('essential_content.content.page') %><br />
   <%= form.select :page_id, @pages.collect{|i| [i.title, i.id]}  %>
@@ -57,4 +56,3 @@
   <%= form.text_field :link_text, class: "text fullwidth"  %>
   <%= error_message_on :content, :link_text %>
 <% end %>
-

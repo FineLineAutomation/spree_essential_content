@@ -27,7 +27,7 @@ module Spree
         end
 
         def parent
-    	    @page = Page.get_page_by_path(params[:page_id])
+    	    @page = Spree::Page.find_by_path(params[:page_id])
         end
 
         def collection
