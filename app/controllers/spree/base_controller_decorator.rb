@@ -9,6 +9,5 @@ Spree::BaseController.class_eval do
   def get_pages
     return if request.path =~ /^\/+admin/
     @pages ||= Spree::Page.visible.order(:position)
-    @content_snippets ||= Spree::Page.where(title: "Content Snippets").first
   end
 end
