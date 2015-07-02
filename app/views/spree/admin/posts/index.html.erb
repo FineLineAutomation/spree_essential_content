@@ -60,7 +60,7 @@
     <tbody>
       <%- @collection.each do |post|%>
       <tr id="<%= dom_id post %>">
-        <td><%= link_to post.title, object_url(post) %></td>
+        <td><%= post.title %></td>
         <td><%= post.blog.nil? ? "n/a" : link_to(post.blog.name, admin_posts_path(search: { blog_id_equals: post.blog_id })) %></td>
         <td><%= l post.posted_at, format: :date_time %></td>
         <td class="align-center"><%= post.live ? 'Yes' : 'No' %></td>
