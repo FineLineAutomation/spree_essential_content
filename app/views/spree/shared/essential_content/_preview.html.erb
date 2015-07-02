@@ -1,6 +1,6 @@
 <div data-hook="post-preview">
   <div data-hook="post-title">
-    <h2><%= link_to h(post.title), post_seo_path(post.blog.name, post) %></h2>
+    <h2><%= link_to h(post.title), post_seo_path(post.blog.permalink, post) %></h2>
     <span>Posted On <strong><%= l post.posted_at, :format => :date_full %></strong> By <strong><%= post.author %></strong></span>
   </div>
 
