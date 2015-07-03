@@ -1,17 +1,48 @@
 <%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Related Products"} %>
 
-<%= form_for [:admin, @post ] do |f| %>
-  <fieldset data-hook="related_products" class="no-border-top">
-    <div data-hook="products"  class="field twelve columns alpha">
-      <%= label_tag "post[product_ids_string]", "Choose products" %>
-      <%= hidden_field_tag "post[product_ids_string]", @post.product_ids.join(","), class: "product_picker fullwidth" %>
-    </div>
+<% content_for :page_actions do %>
+  <li>
+    <%= link_to_with_icon('plus', Spree.t('essential_content.admin.post_product.new'), new_admin_post_product_url(@post), id: 'new_related_product_link', class: 'button') %>
+  </li>
+<% end %>
 
-    <div class="form-buttons filter-actions actions" data-hook="buttons">
-      <%= hidden_field_tag :redirect_to, request.url, class: "hidden" %>
-      <%= button Spree.t(:update), 'refresh' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= link_to_with_icon 'remove', Spree.t(:cancel), request.url, id: 'cancel_link', class: 'button' %>
-    </div>
-  </fieldset>
+<% content_for :head do %>
+  <%= render partial: "spree/admin/variants/autocomplete", formats: :js %>
+  <%= javascript_include_tag 'spree/backend/post_product/index.js' %>
+<% end %>
+
+<div id="related_products" data-hook></div>
+
+<% unless @post.post_products.any? %>
+  <div class="no-objects-found">
+    <%= Spree.t('essential_content.admin.post_product.not_found') %>.
+  </div>
+<% else %>
+  <table class="index sortable" data-hook="post_products_table" data-sortable-link="<%= update_positions_admin_post_products_url(@post) -%>">
+    <colgroup>
+       <col style="width: 5%">
+       <col style="width: 25%">
+       <col style="width: 55%">
+       <col style="width: 15%">
+    </colgroup>
+    <thead data-hook="option_header">
+      <tr data-hook="post_product_header">
+        <th colspan="2"><%= Spree.t(:sku) %></th>
+        <th><%= Spree.t(:description) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody data-hook>
+      <% @post.post_products.each do |post_product| %>
+        <tr id="spree_<%= dom_id(post_product) %>" data-hook="post_product_row">
+          <td class="no-border"><span class="handle"></span></td>
+          <td><%= post_product.product.sku %></td>
+          <td><%= post_product.product.name %></td>
+          <td class="actions">
+            <%= link_to_delete post_product, { url: admin_post_product_url(@post, post_product), no_text: true }%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

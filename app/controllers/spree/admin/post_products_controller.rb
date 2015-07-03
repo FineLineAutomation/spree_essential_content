@@ -1,29 +1,24 @@
 module Spree
   module Admin
-    class PostProductsController < BaseController
+    class PostProductsController < ResourceController
 
       before_filter :load_data
+      create.before :set_post_and_product
 
-      def create
-        position = @post.products.count
-        @product = Spree::Variant.find(params[:variant_id]).product
-        Spree::PostProduct.create(post_id: @post.id, product_id: @product.id, position: position)
-        render partial: "spree/blogs/admin/post_products/related_products_table", locals: { post: @post }, layout: false
-      end
-
-      def destroy
-        @related = Spree::PostProduct.find(params[:id])
-        if @related.destroy
-          render_js_for_destroy
-        end
+      def set_post_and_product
+        params[:post_product][:product_id] = Spree::Variant.find(params[:post_product][:product_id]).product.id
+        @post_product.post = @post
       end
 
       private
 
-        def load_data
-          @post = Spree::Post.find_by_path(params[:post_id])
-        end
+      def location_after_save
+        admin_post_products_url(@post)
+      end
 
+      def load_data
+        @post = Spree::Post.find_by_path(params[:post_id])
+      end
     end
   end
 end

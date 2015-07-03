@@ -1,0 +1,24 @@
+<%= form_for [:admin, @post_product], html: { multipart: true } do |f| %>
+  <fieldset data-hook="new_post_product">
+    <legend align="center"><%= Spree.t('essential_content.admin.post_product.new') %></legend>
+
+      <div data-hook="admin_post_product_form_fields">
+        <div class="six columns alpha">
+          <div data-hook="post_product_variant" class="field">
+            <%= f.label Spree.t('essential_content.admin.post_product.product') %>
+            <%= f.hidden_field :product_id, class: "variant_autocomplete fullwidth" %>
+        </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button Spree.t(:update), 'refresh' %>
+        <span class="or"><%= Spree.t(:or) %></span>
+        <%= link_to_with_icon 'remove', Spree.t(:cancel), admin_post_products_url(@post), id: 'cancel_link', class: 'button' %>
+      </div>
+  </fieldset>
+<% end %>
+
+<%= javascript_include_tag 'spree/backend/post_product/new.js' %>

@@ -4,15 +4,15 @@ Spree::PermittedAttributes.class_eval do
 
   @@blog_attributes= [:name, :permalink]
 
-  @@content_attributes = [:page_id, :title, :body, :hide_title, :link, :link_text, :context, 
+  @@content_attributes = [:page_id, :title, :body, :hide_title, :link, :link_text, :context,
                           :attachment, :delete_attachment]
 
-  @@page_attibutes = [:title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords, 
+  @@page_attibutes = [:title, :path, :nav_title, :meta_title, :meta_description, :meta_keywords,
                       :accessible, :visible]
 
   @@page_image_attributes = [:viewable, :attachment, :alt]
 
-  @@post_attributes = [:blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list, 
+  @@post_attributes = [:blog_id, :title, :teaser, :body, :posted_at, :author, :live, :tag_list,
                        :post_category_ids, :product_ids_string]
 
   @@post_category_attributes = [:name, :permalink]

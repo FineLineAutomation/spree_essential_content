@@ -76,6 +76,10 @@ en:
       page_content_order: Order of Page Contents
       latest_products: Latest Products
       admin:
+        post_product:
+          new: New Related Product
+          not_found: No Related Products Found
+          product: Product Related To Post
         blog_edit: Editing Blog
         blog_manage: Manage Blog
         blog_listing: Listing Blogs

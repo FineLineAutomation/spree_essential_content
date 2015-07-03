@@ -28,7 +28,11 @@ Spree::Core::Engine.append_routes do
           post :update_positions
         end
       end
-      resources :products, only: [:index, :update, :delete], controller: "post_products"
+      resources :products, execpt: [:show, :edit], controller: "post_products" do
+        collection do
+          post :update_positions
+        end
+      end
       resources :categories, except: [:show], :controller => "post_categories"
     end
 
