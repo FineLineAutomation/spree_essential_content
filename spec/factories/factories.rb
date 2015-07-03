@@ -85,5 +85,10 @@ FactoryGirl.define do
     association :viewable, :factory => :post
     attachment { File.new(File.expand_path("../../../spec/factories/1.jpg", __FILE__)) }
   end
+
+  factory :post_product, :class => Spree::PostProduct do
+    association :post, :factory => :post
+    association :product, :factory =>:product
+  end
 end
 
