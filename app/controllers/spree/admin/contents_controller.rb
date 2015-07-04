@@ -4,7 +4,7 @@ module Spree
       before_filter :load_resource
       before_filter :parent, only: :index
 
-      before_filter :get_pages, only: [ :new, :edit, :create, :update ]
+      before_filter :load_data, only: [ :new, :edit, :create, :update ]
 
       belongs_to 'spree/page'
 
@@ -22,12 +22,12 @@ module Spree
 
       private
 
-        def get_pages
+        def load_data
           @pages = Spree::Page.order(:position).all
         end
 
         def parent
-    	    @page = Spree::Page.find_by_path(params[:page_id])
+    	    @page ||= Spree::Page.where(path: params[:page_id]).first
         end
 
         def collection

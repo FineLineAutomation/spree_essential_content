@@ -1,4 +1,4 @@
-<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: "Images"} unless request.xhr? %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {page: @page, current: "Images"} unless request.xhr? %>
 
 <%= render 'spree/shared/error_messages', target: @page_image %>
 

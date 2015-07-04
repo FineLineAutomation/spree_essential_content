@@ -22,7 +22,7 @@ module Spree
 
       private
         def find_resource
-          Spree::Page.find_by_path(params[:id])
+          @object ||= Spree::Page.where(path: params[:id]).first
         end
 
         def collection

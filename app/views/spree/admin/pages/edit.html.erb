@@ -1,6 +1,6 @@
 <%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 
-<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: 'Page Details'} %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {page: @object, current: 'Page Details'} %>
 
 <%= form_for([:admin, @page]) do |f| %>
   <% if @page.try(:errors).present? %>

@@ -2,7 +2,7 @@
   <li><%= link_to_with_icon('plus', Spree.t(:new_image), new_admin_page_image_url(@page), id: 'new_image_link', class: 'button') %></li>
 <% end %>
 
-<%= render partial: 'spree/admin/shared/page_tabs', locals: {current: "Images"} %>
+<%= render partial: 'spree/admin/shared/page_tabs', locals: {page: @page, current: "Images"} %>
 
 <div id="images"></div>
 
