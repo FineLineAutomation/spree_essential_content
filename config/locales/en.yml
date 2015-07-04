@@ -47,6 +47,7 @@ en:
         tags: Tags
         teaser: Teaser Line
         title: Post Title
+        related_to_product: Blog Posts Related To Product
       post_category:
         category: Post Category
         name: Category Name

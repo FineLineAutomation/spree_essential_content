@@ -1,0 +1,6 @@
+<% unless @product.posts.empty? %>
+  <div class="posts" data-hook="product-posts">
+    <h1><%= Spree.t('essential_content.post.related_to_product') %></h1>
+    <%= render partial: 'spree/shared/essential_content/preview', collection: @product.posts, as: :post %>
+  </div>
+<% end %>
