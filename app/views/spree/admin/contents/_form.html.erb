@@ -16,9 +16,20 @@
   <%= error_message_on :content, :page_id %>
 <% end %>
 
+<div>
+  <a id="DisableTinyMCE" href="#" onclick="tinymce.remove(); $('#DisableTinyMCE').hide();" class="button right">Disable Rich Editor</a>
+  <script>
+    $( document ).ready(function() {
+      if (typeof(tinyMCE) === "undefined") {
+        $('#DisableTinyMCE').hide()
+      }
+    });
+  </script>
+</div>
+
 <%= form.field_container :body do %>
   <%= form.label :title, Spree.t('essential_content.content.body') %><br />
-  <%= form.text_area :body  %>
+  <%= form.text_area :body, rows: 10, class: "fullwidth" %>
   <%= error_message_on :content, :body %>
 <% end %>
 
