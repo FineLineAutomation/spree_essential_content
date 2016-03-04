@@ -10,12 +10,12 @@
 
 <div id="images" data-hook></div>
 
-<% unless @uploads.any? %>
+<% unless @collection.any? %>
   <div class="no-objects-found">
     <%= Spree.t(:no_uploads_found) %>.
   </div>
 <% else %>
-  <%= paginate @uploads %>
+  <%= paginate @collection %>
 
   <table class="index sortable">
     <thead>
@@ -28,7 +28,7 @@
       </tr>
     </thead>
 
-    <% @uploads.each do |upload| %>
+    <% @collection.each do |upload| %>
       <tr id="<%= dom_id(upload) %>">
         <td class="thumbnail">
           <% if upload.image_content? %>
@@ -46,7 +46,7 @@
     <% end %>
   </table>
 
-  <%= paginate @uploads %>
+  <%= paginate @collection %>
 <% end %>
 
 <% content_for :table_filter_title do %>
@@ -58,8 +58,8 @@
     <%= search_form_for [ :admin, @search ] do |f| %>
       <div class="field-block alpha sixteen columns">
         <div class="field">
-          <%= f.label :alt_cont, Spree.t(:description) %>
-          <%= f.text_field :alt_cont, size: 50 %>
+          <%= f.label :alt_or_attachment_file_name_cont, "#{Spree.t(:description)} #{Spree.t(:or)} #{Spree.t(:filename)}" %>
+          <%= f.text_field :alt_or_attachment_file_name_cont, size: 50 %>
         </div>
       </div>
       <div class="clearfix"></div>
