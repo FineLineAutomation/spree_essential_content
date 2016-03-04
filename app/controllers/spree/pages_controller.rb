@@ -14,9 +14,7 @@ class Spree::PagesController < Spree::StoreController
   end
 
   private
-
     def accurate_title
       @page.meta_title
     end
-
 end

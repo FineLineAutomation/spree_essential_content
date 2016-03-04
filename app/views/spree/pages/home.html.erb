@@ -1,10 +1,10 @@
 <% unless @page.nil? %>
   <% unless @page.images.empty? %>
-    <%= render 'spree/shared/slideshow', :images => @page.images, :size => :slide %>
+    <%= render 'spree/shared/slideshow', images: @page.images, size: :slide %>
   <% end %>
 
   <div data-hook="main-content">
-    <%= render :partial => 'spree/shared/content', :collection => @page.for_context('main') %>
+    <%= render partial: 'spree/shared/content', collection: @page.for_context('main') %>
   </div>
 <% end %>
 
@@ -18,7 +18,7 @@
 <% if @config[:show_taxons_on_homepage] %>
   <% content_for :sidebar do %>
     <div data-hook="homepage_sidebar_navigation">
-      <%= render :partial => 'spree/shared/taxonomies' %>
+      <%= render partial: 'spree/shared/taxonomies' %>
     </div>
   <% end %>
 <% end %>
@@ -26,6 +26,6 @@
 <% if @config[:show_products_on_homepage] %>
   <div data-hook="homepage_products">
     <h1><%= Spree.t('essential_content.latest_products') %></h1>
-    <%= render :partial => 'spree/shared/products', :locals => { :products => @products } if @products %>
+    <%= render partial: 'spree/shared/products', locals: { products: @products } if @products %>
   </div>
 <% end %>

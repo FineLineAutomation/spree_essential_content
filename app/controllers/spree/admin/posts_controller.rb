@@ -29,7 +29,6 @@ module Spree
       def collection
         params[:q] ||= {}
         params[:q][:s] ||= "posted_at desc"
-        puts params
         @search = Spree::Post.search(params[:q])
         @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
       end

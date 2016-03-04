@@ -41,7 +41,6 @@ class Spree::Page < ActiveRecord::Base
   end
 
   def root?
-    puts self.path
     self.path == "__home__"
   end
 
