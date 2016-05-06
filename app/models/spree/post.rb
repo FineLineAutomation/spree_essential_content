@@ -41,7 +41,12 @@ class Spree::Post < ActiveRecord::Base
   end
 
   def rendered_body
-    rendered = render(body)
+    new_body = body
+
+    images.each_with_index do |image, index|
+      new_body.gsub! "[Image_#{index+1}]", ActionController::Base.helpers.image_tag(image.attachment.url(:large), alt: image.alt.blank? ? "#{title} - Photo #{index + 1}" : image.alt)
+    end
+    rendered = render(new_body)
     rendered
   end
 
