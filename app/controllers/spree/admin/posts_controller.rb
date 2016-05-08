@@ -18,8 +18,7 @@ module Spree
       end
 
       def location_after_save
-        path = params[:redirect_to].to_s.strip.sub(/^\/+/, "/")
-        path.blank? ? object_url : path
+        admin_posts_url
       end
 
       def find_resource
