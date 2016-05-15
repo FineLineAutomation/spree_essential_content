@@ -16,11 +16,10 @@ If you don't already have an existing Spree site, [click here](https://github.co
 Spree Essential Content can be installed by itself by adding the following to your Gemfile:
 
 ```ruby
-# Spree 2.0.x
-gem 'spree_essential_content', :git => 'git@github.com:FineLineAutomation/spree_essential_content.git', :branch => '2-0-stable'
+gem 'spree_essential_content', github: 'FineLineAutomation/spree_essential_content'
 ```
 
-Be sure to only include the gem line that cooresponds to your spree version.  Do not put all of the above lines in your gem file.  Please also note I am not maintaining anything below Spree 2.0 now.
+If you are using a version of spree lower than 2.4, please see one of the stable branches for the right version of this gem. Please also note I am not maintaining anything below Spree 2.3 now.
 
 Then run:
 
@@ -54,7 +53,7 @@ Now login to the admin and click on the 'Content' tab!
 Notes
 ------------------------------------------------------------------------------
 
-Spree Essential Content is under constant development... Development is being done on OSX with Ruby 1.9.3 and usually the latest version of Spree. (currently 2.1.0)
+Spree Essential Content is under constant development... Development is being done on OSX with Ruby 2.3.1 and usually the latest version of Spree. (currently 3.1)
 
 Please let me know if you find any bugs or have feature requests you'd like to see.
 
