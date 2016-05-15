@@ -1,5 +1,3 @@
-<% config = Spree::ContentConfiguration.new %>
-
 <%= form.field_container :blog_id do %>
   <%= form.label :blog_id, Spree.t("essential_content.blog.name") %><br />
   <%= form.select :blog_id, Spree::Blog.to_options, class: 'fullwidth' %>
