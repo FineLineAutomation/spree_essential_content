@@ -18,7 +18,6 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/rails'
-require 'capybara/poltergeist'
 require 'paperclip/matchers'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -61,6 +60,20 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  Capybara.javascript_driver = :poltergeist
   config.fail_fast = ENV['FAIL_FAST'] || false
+end
+
+module Spree
+  module TestingSupport
+    module CapybaraHelpers
+      def sign_in_as!(user)
+        visit spree.login_path
+        within '#new_spree_user' do
+          fill_in 'Email', with: user.email
+          fill_in 'Password', with: user.password
+        end
+        click_button 'Login'
+      end
+    end
+  end
 end
