@@ -20,6 +20,10 @@ module Spree
         end
       end
 
+      def location_after_save
+        admin_pages_url
+      end
+
       private
         def find_resource
           @object ||= Spree::Page.where(path: params[:id]).first

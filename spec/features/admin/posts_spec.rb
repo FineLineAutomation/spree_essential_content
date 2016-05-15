@@ -96,6 +96,7 @@ feature "Blog Posts", js: true do
   def then_i_should_see_it_in_the_list
     expect(page).to have_current_path(spree.admin_posts_path)
     expect(page).to have_content("Post \"Test Post\" has been successfully created!")
+    expect(page).to have_content("Test Post")
     expect(page).to have_selector('td', text: /Test Post/i)
   end
 

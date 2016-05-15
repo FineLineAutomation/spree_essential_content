@@ -5,25 +5,25 @@
 
       <%= form.field_container :title do %>
         <%= form.label :title, Spree.t('essential_content.page.title') %> <span class="required">*</span><br />
-        <%= form.text_field :title, :class => "title", :class => 'fullwidth' %>
+        <%= form.text_field :title, class: "title fullwidth" %>
         <%= error_message_on :page, :title %>
       <% end %>
 
       <%= form.field_container :meta_title do %>
         <%= form.label :meta_title, Spree.t('essential_content.page.meta_title') %><br />
-        <%= form.text_field :meta_title, :class => "text", :class => 'fullwidth' %>
+        <%= form.text_field :meta_title, class: "text fullwidth" %>
         <%= error_message_on :page, :meta_title %>
       <% end %>
 
       <%= form.field_container :meta_description do %>
         <%= form.label :meta_description, Spree.t('essential_content.page.meta_description') %><br />
-        <%= form.text_field :meta_description, :class => "text", :class => 'fullwidth' %>
+        <%= form.text_field :meta_description, class: "text fullwidth" %>
         <%= error_message_on :page, :meta_description %>
       <% end %>
 
       <%= form.field_container :meta_keywords do %>
         <%= form.label :meta_keywords, Spree.t('essential_content.page.meta_keywords') %><br />
-        <%= form.text_field :meta_keywords, :class => "text", :class => 'fullwidth' %>
+        <%= form.text_field :meta_keywords, class: "text fullwidth" %>
         <%= error_message_on :page, :meta_keywords %>
       <% end %>
     </fieldset>
@@ -34,7 +34,7 @@
       <legend align="center"><%= Spree.t('essential_content.page.accessibility') %></legend>
 
       <%= form.field_container :accessible do %>
-        <%= form.check_box :accessible, :class => "text"  %> &nbsp;
+        <%= form.check_box :accessible, class: "text"  %> &nbsp;
         <%= form.label :accessible, Spree.t('essential_content.page.accessible') %>
         <br /> <em><%= Spree.t('essential_content.page.explain_accessible') %></em>
         <%= error_message_on :page, :accessible %>
@@ -44,12 +44,12 @@
 
         <%= form.field_container :path do %>
           <%= form.label :path, Spree.t('essential_content.page.path') %><br />
-          <%= form.text_field :path, :class => "text", :class => 'fullwidth' %>
+          <%= form.text_field :path, class: "text fullwidth" %>
           <%= error_message_on :page, :path %>
         <% end %>
 
         <%= form.field_container :visible do %>
-          <%= form.check_box :visible, :class => "text" %> &nbsp;
+          <%= form.check_box :visible, class: "text" %> &nbsp;
           <%= form.label :visible, Spree.t('essential_content.page.visible') %>
           <br /> <em><%= Spree.t('essential_content.page.explain_visible') %></em>
           <%= error_message_on :page, :visible %>
@@ -58,7 +58,7 @@
         <div id="field_nav_title">
           <%= form.field_container :nav_title do %>
             <%= form.label :nav_title, Spree.t('essential_content.page.nav_title') %><br />
-            <%= form.text_field :nav_title, :class => "text", :class => 'fullwidth' %>
+            <%= form.text_field :nav_title, class: "text fullwidth" %>
             <%= error_message_on :page, :nav_title %>
           <% end %>
         </div>
