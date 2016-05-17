@@ -24,7 +24,7 @@
         <%= link_to_with_icon 'edit', Spree.t("essential_content.admin.post_details"), edit_admin_post_url(@post) %>
       </li>
       <li<%= ' class="active"'.html_safe if current == "Images" %>>
-        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_post_images_url(@post) %>
+        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_post_images_url(@post), class: "post-images" %>
       </li>
       <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
         <%= link_to_with_icon 'sitemap', Spree.t("essential_content.admin.products_related"), admin_post_products_url(@post) %>

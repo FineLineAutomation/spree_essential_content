@@ -33,8 +33,7 @@
           <td><%= link_to(image_tag(image.attachment.url(:small)), image.attachment.url(:large)) %></td>
           <td><%= image.alt %></td>
           <td class="actions" data-hook="admin_post_images_index_row_actions">
-            <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_post_image_path(@post, image), no_text: true, data: {action: 'edit'} %>
-            &nbsp;
+            <%= link_to_edit image, no_text: true, class: 'edit', url: edit_admin_post_image_path(@post, image) %> &nbsp;
             <%= link_to_delete image, no_text: true, url: admin_post_image_url(@post, image) %>
           </td>
         </tr>
