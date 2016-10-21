@@ -37,7 +37,7 @@ RSpec.configure do |config|
   config.color = true
   config.use_transactional_fixtures = false
 
-  config.include Spree::TestingSupport::ControllerRequests
+  config.include Spree::TestingSupport::ControllerRequests, type: :controller
   config.include Spree::TestingSupport::UrlHelpers
   config.include FactoryGirl::Syntax::Methods
   config.include Spree::TestingSupport::Preferences
