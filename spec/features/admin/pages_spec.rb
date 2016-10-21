@@ -51,7 +51,8 @@ feature "Pages", js: true do
   end
 
   def when_i_visit_admin_pages
-    find('.contents-nav').find('a').click
+    find('.sidebar-content-menu a').click
+    click_link 'Content Pages'
     expect(page).to have_current_path(spree.admin_pages_path)
   end
 

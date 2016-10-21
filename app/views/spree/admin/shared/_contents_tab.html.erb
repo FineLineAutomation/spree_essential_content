@@ -1,3 +1,5 @@
 <% if can? :admin, Spree::Post %>
-  <%= tab :content, :pages, :posts, :uploads, :contents, url: spree.admin_pages_path, icon: 'pencil', css_class: 'contents-nav' %>
+  <ul class="nav nav-sidebar sidebar-content-menu">
+    <%= main_menu_tree Spree.t('admin.subnav.content'), icon: "th-large", sub_menu: "content", url: "#sidebar-content" %>
+  </ul>
 <% end %>

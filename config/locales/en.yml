@@ -2,9 +2,10 @@ en:
   spree:
     admin:
       subnav:
-        pages: Pages
+        pages: Content Pages
         posts: Blog Posts
         uploads: Uploads
+        content: Content
     essential_content:
       blog:
         name: Blog Name

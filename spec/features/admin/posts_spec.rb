@@ -86,8 +86,7 @@ feature "Blog Posts", js: true do
   end
 
   def when_i_visit_admin_posts
-    find('.contents-nav').find('a').click
-    expect(page).to have_current_path(spree.admin_pages_path)
+    find('.sidebar-content-menu a').click
     click_link 'Blog Posts'
     expect(page).to have_current_path(spree.admin_posts_path)
   end
