@@ -3,7 +3,7 @@ require 'rack/test'
 
 require 'pry'
 
-describe Spree::Admin::UploadsController, :type => :controller do
+describe Spree::Admin::UploadsController, type: :controller do
   stub_authorization!
 
   describe 'GET #index' do

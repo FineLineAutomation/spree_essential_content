@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.include Spree::TestingSupport::Preferences
   config.include Spree::TestingSupport::Flash
   config.include Paperclip::Shoulda::Matchers
+  config.include Devise::TestHelpers, type: :controller
 
   config.extend Spree::TestingSupport::AuthorizationHelpers::Request, type: :feature
 
