@@ -1,18 +1,12 @@
 <% content_for :page_title do %>
-  <%= Spree.t("essential_content.admin.post_new") %>
+  <%= link_to Spree.t('admin.subnav.posts'), admin_posts_path %> / <%= Spree.t("essential_content.admin.post_new") %>
 <% end %>
 
-<% if @post.try(:errors).present? %>
-  <%= render 'spree/shared/error_messages', target: @post %>
-<% end %>
+<%= render 'spree/admin/shared/error_messages', target: @post %>
 
 <%= form_for([:admin, @post]) do |f| %>
-  <fieldset class="no-border-top">
-    <%= render "form", form: f %>
-    <div class="filter-actions actions">
-      <%= button Spree.t(:create), 'ok' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), admin_posts_path, icon: 'remove' %>
-    </div>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/new_resource_links' %>
   </fieldset>
 <% end %>

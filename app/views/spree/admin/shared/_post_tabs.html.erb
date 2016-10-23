@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= (Spree.t("essential_content.post.post") + " '#{@post.title}'").html_safe %>
+  <%= link_to Spree.t('admin.subnav.posts'), admin_posts_path %> / <%= (Spree.t("essential_content.post.post") + " '#{@post.title}'").html_safe %>
 <% end %>
 
 <% content_for :sidebar_title do %>
@@ -18,20 +18,18 @@
     </dl>
   </header>
 
-  <nav class="menu">
-    <ul class="sidebar post-menu">
-      <li<%= ' class="active"'.html_safe if current == "Post Details" %>>
-        <%= link_to_with_icon 'edit', Spree.t("essential_content.admin.post_details"), edit_admin_post_url(@post) %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Images" %>>
-        <%= link_to_with_icon 'picture-o', Spree.t(:images), admin_post_images_url(@post), class: "post-images" %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Related Products" %>>
-        <%= link_to_with_icon 'sitemap', Spree.t("essential_content.admin.products_related"), admin_post_products_url(@post) %>
-      </li>
-      <li<%= ' class="active"'.html_safe if current == "Categories" %>>
-        <%= link_to_with_icon 'tags', Spree.t("essential_content.admin.post_categories"), admin_post_categories_url(@post) %>
-      </li>
-    </ul>
-  </nav>
+  <ul class="nav nav-pills nav-stacked post-menu" data-hook="admin_posts_tabs">
+    <%= content_tag :li, class: ('active' if current == "Post Details") do %>
+      <%= link_to_with_icon 'edit', Spree.t("essential_content.admin.post_details"), edit_admin_post_url(@post) %>
+    <% end %>
+    <%= content_tag :li, class: ('active' if current == "Images") do %>
+      <%= link_to_with_icon 'picture', Spree.t(:images), admin_post_images_url(@post), class: "post-images" %>
+    <% end %>
+    <%= content_tag :li, class: ('active' if current == "Related Products") do %>
+      <%= link_to_with_icon 'resize-small', Spree.t("essential_content.admin.products_related"), admin_post_products_url(@post) %>
+    <% end %>
+    <%= content_tag :li, class: ('active' if current == "Categories") do %>
+      <%= link_to_with_icon 'tags', Spree.t("essential_content.admin.post_categories"), admin_post_categories_url(@post) %>
+    <% end %>
+  </ul>
 <% end %>

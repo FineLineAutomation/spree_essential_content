@@ -3,12 +3,8 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <li id="new_post_link">
-    <%= button_link_to Spree.t('essential_content.admin.post_new'), new_admin_post_url, icon: 'plus', id: 'admin_new_post' %>
-  </li>
-  <li id="manage_blogs_link">
-    <%= button_link_to Spree.t('essential_content.admin.blog_manage'), admin_blogs_url, icon: 'file', id: 'admin_manage_blogs' %>
-  </li>
+  <%= button_link_to Spree.t('essential_content.admin.post_new'), new_admin_post_url, { class: "btn-success", icon: 'plus', id: 'admin_new_post'} %>
+  <%= button_link_to Spree.t('essential_content.admin.blog_manage'), admin_blogs_url, { class: "btn-success", icon: 'file', id: 'admin_manage_blogs'} %>
 <% end %>
 
 <% content_for :table_filter_title do %>

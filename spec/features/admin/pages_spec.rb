@@ -52,7 +52,7 @@ feature "Pages", js: true do
 
   def when_i_visit_admin_pages
     find('.sidebar-content-menu a').click
-    click_link 'Content Pages'
+    find('.pages-link a').click
     expect(page).to have_current_path(spree.admin_pages_path)
   end
 

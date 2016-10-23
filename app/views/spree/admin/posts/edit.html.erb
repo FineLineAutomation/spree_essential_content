@@ -1,16 +1,14 @@
-<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Post Details"} %>
-
-<% if @post.try(:errors).present? %>
-  <%= render 'spree/shared/error_messages', target: @post %>
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t('essential_content.admin.post_new'), new_admin_post_url, { class: "btn-success", icon: 'plus', id: 'admin_new_post'} %>
+  <%= button_link_to Spree.t('essential_content.admin.blog_manage'), admin_blogs_url, { class: "btn-success", icon: 'file', id: 'admin_manage_blogs'} %>
 <% end %>
 
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Post Details"} %>
+<%= render 'spree/admin/shared/error_messages', target: @post %>
+
 <%= form_for([:admin, @post]) do |f| %>
-  <fieldset class="no-border-top">
-    <%= render "form", form: f %>
-    <div class="filter-actions actions">
-      <%= button Spree.t(:update), 'refresh' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), admin_posts_path, icon: 'remove' %>
-    </div>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
   </fieldset>
 <% end %>

@@ -87,14 +87,14 @@ feature "Blog Posts", js: true do
 
   def when_i_visit_admin_posts
     find('.sidebar-content-menu a').click
-    click_link 'Blog Posts'
+    find('.blog-posts-link a').click
     expect(page).to have_current_path(spree.admin_posts_path)
   end
 
   def when_i_view_post_images
     when_i_visit_admin_posts
     within "#post_#{@post_a.id}" do
-      find("a.edit").click
+      find("a.action-edit").click
     end
     find('.post-images').click
     expect(page).to have_current_path(spree.admin_post_images_path(@post_a))
@@ -113,7 +113,7 @@ feature "Blog Posts", js: true do
 
   def and_i_edit_a_post
     within "#post_#{@post_a.id}" do
-      find("a.edit").click
+      find("a.action-edit").click
     end
 
     @old_title = @post_a.title
