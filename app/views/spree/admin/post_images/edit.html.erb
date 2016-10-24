@@ -1,21 +1,24 @@
-<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
 <%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Images"} %>
 
-<% if @post_image.try(:errors).present? %>
-  <%= render 'spree/shared/error_messages', target: @post_image %>
+<%= render 'spree/admin/shared/error_messages', target: @post_image %>
+
+<% content_for :page_title do %>
+  / Edit Image
 <% end %>
 
-<%= form_for([:admin, @post.id, @post_image], url: admin_post_image_url(@post, @post_image), html: { multipart: true }) do |f| %>
-    <p>
-      <%= label_tag ("thumbnail") %>:<br/>
-      <%= link_to(image_tag(@post_image.attachment.url(:mini)), @post_image.attachment.url(:product)) %>
-    </p>
-    <%= render "form", form: f %>
-  </table>
+<%= form_for([:admin, @post.id, @post_image], url: admin_post_image_url(@post, @post_image), html: { multipart: true }) do |form| %>
 
-  <div class="form-buttons filter-actions actions" data-hook="buttons">
-    <%= button Spree.t(:update), 'refresh' %>
-    <span class="or"><%= Spree.t(:or) %></span>
-    <%= link_to_with_icon 'remove', Spree.t(:cancel), admin_post_images_url(@post), id: 'cancel_link', class: 'button' %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group"">
+        <%= label_tag ("thumbnail") %><br />
+        <%= link_to(image_tag(@post_image.attachment.url(:small)), @post_image.attachment.url(:large)) %>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <%= render "form", form: form %>
+    </div>
   </div>
+
+  <%= render partial: 'spree/admin/shared/edit_resource_links' %>
 <% end %>

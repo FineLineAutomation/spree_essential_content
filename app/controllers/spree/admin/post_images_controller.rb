@@ -8,16 +8,6 @@ module Spree
       update.before :set_viewable
       destroy.before :destroy_before
 
-      def update_positions
-        params[:positions].each do |id, index|
-          Spree::PostImage.update_all(['position=?', index], ['id=?', id])
-        end
-
-        respond_to do |format|
-          format.js  { render text: 'Ok' }
-        end
-      end
-
       private
 
       def location_after_save
