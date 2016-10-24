@@ -136,13 +136,13 @@ feature "Blog Posts", js: true do
     click_link "New Image"
     attach_file("Attachment", File.expand_path('../../factories/1.jpg', File.dirname(__FILE__)))
     fill_in "post_image_alt", with: "Test Image"
-    click_button "Update"
+    click_button "Create"
   end
 
   def when_i_edit_an_image
     when_i_view_post_images
-    within "#post_image_#{@post_a_image_1.id}" do
-      find("a.edit").click
+    within "#spree_post_image_#{@post_a_image_1.id}" do
+      find("a.action-edit").click
     end
 
     @old_title = @post_a_image_1.alt
@@ -154,7 +154,7 @@ feature "Blog Posts", js: true do
   def when_i_delete_an_image
     when_i_view_post_images
     @old_title = @post_a_image_1.alt
-    within "#post_image_#{@post_a_image_1.id}" do
+    within "#spree_post_image_#{@post_a_image_1.id}" do
       find("a.delete-resource").click
     end
     wait = Selenium::WebDriver::Wait.new ignore: Selenium::WebDriver::Error::NoAlertPresentError
