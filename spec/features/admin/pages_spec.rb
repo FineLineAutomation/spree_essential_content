@@ -65,7 +65,7 @@ feature "Pages", js: true do
 
   def and_i_edit_a_page
     within "#page_#{@page_a.id}" do
-      find("a.edit").click
+      find("a.action-edit").click
     end
 
     @old_title = @page_a.title

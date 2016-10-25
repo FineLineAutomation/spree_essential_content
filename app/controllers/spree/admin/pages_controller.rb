@@ -10,16 +10,6 @@ module Spree
         end
       end
 
-      def update_positions
-        params[:positions].each do |id, index|
-          Spree::Page.update_all(['position=?', index], ['id=?', id])
-        end
-        respond_to do |format|
-          format.html { redirect_to admin_pages_path }
-          format.js  { render text: 'Ok' }
-        end
-      end
-
       def location_after_save
         admin_pages_url
       end
