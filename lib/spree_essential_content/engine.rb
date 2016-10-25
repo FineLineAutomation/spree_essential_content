@@ -32,13 +32,5 @@ module SpreeEssentialContent
     end
 
     config.to_prepare &method(:activate).to_proc
-
-    # sets the manifests / assets to be precompiled, even when initialize_on_precompile is false
-    initializer "spree.assets.precompile", :group => :all do |app|
-      app.config.assets.precompile += %w[
-        spree/backend/post_product/new.js
-        spree/backend/post_product/index.js
-      ]
-    end
   end
 end

@@ -1,24 +1,11 @@
 <%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Related Products"} %>
 
 <% content_for :page_actions do %>
-  <li>
-    <%= link_to_with_icon('plus', Spree.t('essential_content.admin.post_product.new'), new_admin_post_product_url(@post), id: 'new_related_product_link', class: 'button') %>
-  </li>
+  <%= button_link_to Spree.t('essential_content.admin.post_product.new'), new_admin_post_product_url(@post), { class: "btn-success", icon: 'plus', id: 'new_related_product_link'} %>
 <% end %>
 
-<% content_for :head do %>
-  <%= render partial: "spree/admin/variants/autocomplete", formats: :js %>
-  <%= javascript_include_tag 'spree/backend/post_product/index.js' %>
-<% end %>
-
-<div id="related_products" data-hook></div>
-
-<% unless @post.post_products.any? %>
-  <div class="no-objects-found">
-    <%= Spree.t('essential_content.admin.post_product.not_found') %>.
-  </div>
-<% else %>
-  <table class="index sortable" data-hook="post_products_table" data-sortable-link="<%= update_positions_admin_post_products_url(@post) -%>">
+<% if @post.post_products.any? %>
+  <table class="table sortable" data-hook="post_products_table" data-sortable-link="<%= update_positions_admin_post_products_url(@post) -%>">
     <colgroup>
        <col style="width: 5%">
        <col style="width: 25%">
@@ -34,15 +21,21 @@
     </thead>
     <tbody data-hook>
       <% @post.post_products.each do |post_product| %>
-        <tr id="spree_<%= dom_id(post_product) %>" data-hook="post_product_row">
-          <td class="no-border"><span class="handle"></span></td>
+        <tr id="<%= spree_dom_id(post_product) %>" data-hook="post_product_row">
+          <td class="move-handle text-center">
+            <span class="icon icon-move handle"></span>
+          </td>
           <td><%= post_product.product.sku %></td>
           <td><%= post_product.product.name %></td>
-          <td class="actions">
+          <td class="actions actions-1 text-right">
             <%= link_to_delete post_product, { url: admin_post_product_url(@post, post_product), no_text: true }%>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: "Related Products") %>
+  </div>
 <% end %>

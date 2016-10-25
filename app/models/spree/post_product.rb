@@ -1,4 +1,5 @@
 class Spree::PostProduct < ActiveRecord::Base
+  acts_as_list
 
   belongs_to :post
   belongs_to :product

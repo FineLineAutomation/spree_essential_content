@@ -1,24 +1,26 @@
-<%= form_for [:admin, @post_product], html: { multipart: true } do |f| %>
-  <fieldset data-hook="new_post_product">
-    <legend align="center"><%= Spree.t('essential_content.admin.post_product.new') %></legend>
-
-      <div data-hook="admin_post_product_form_fields">
-        <div class="six columns alpha">
-          <div data-hook="post_product_variant" class="field">
-            <%= f.label Spree.t('essential_content.admin.post_product.product') %>
-            <%= f.hidden_field :product_id, class: "variant_autocomplete fullwidth" %>
-        </div>
-        </div>
-      </div>
-
-      <div class="clear"></div>
-
-      <div class="form-buttons filter-actions actions" data-hook="buttons">
-        <%= button Spree.t(:update), 'refresh' %>
-        <span class="or"><%= Spree.t(:or) %></span>
-        <%= link_to_with_icon 'remove', Spree.t(:cancel), admin_post_products_url(@post), id: 'cancel_link', class: 'button' %>
-      </div>
-  </fieldset>
+<% content_for :head do %>
+  <%= render partial: "spree/admin/variants/autocomplete", formats: :js %>
 <% end %>
 
-<%= javascript_include_tag 'spree/backend/post_product/new.js' %>
+<%= render partial: 'spree/admin/shared/post_tabs', locals: {current: "Related Products"} %>
+
+<% content_for :page_title do %>
+  / <%= Spree.t('essential_content.admin.post_product.new') %>
+<% end %>
+
+<%= render 'spree/admin/shared/error_messages', target: @post_product %>
+
+<%= form_for [:admin, @post_product], html: { multipart: true } do |f| %>
+  <fieldset data-hook="new_post_product">
+    <div data-hook="admin_post_product_form_fields" class="row">
+      <div class="col-md-12" data-hook="admin_post_form_left">
+        <%= f.field_container :product_id, class: ['form-group'] do %>
+          <%= f.label Spree.t('essential_content.admin.post_product.product') %>
+          <%= f.hidden_field :product_id, class: "variant_autocomplete" %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render partial: 'spree/admin/shared/new_resource_links' %>
+  </fieldset>
+<% end %>
