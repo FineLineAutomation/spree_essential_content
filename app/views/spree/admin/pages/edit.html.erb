@@ -1,19 +1,10 @@
-<%= render partial: 'spree/admin/shared/contents_sub_menu' %>
-
 <%= render partial: 'spree/admin/shared/page_tabs', locals: {page: @object, current: 'Page Details'} %>
 
-<%= form_for([:admin, @page]) do |f| %>
-  <% if @page.try(:errors).present? %>
-    <%= render 'spree/shared/error_messages', target: @page %>
-  <% end %>
+<%= form_for([:admin, @page]) do |form| %>
+  <%= render 'spree/admin/shared/error_messages', target: @page %>
 
-  <fieldset class="no-border-top">
-    <%= render "form", form: f %>
-
-    <div class="filter-actions actions">
-      <%= button Spree.t(:update), 'refresh' %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t(:cancel), collection_url, icon: 'remove' %>
-    </div>
+  <fieldset data-hook="edit_page">
+    <%= render "form", form: form %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
   </fieldset>
 <% end %>

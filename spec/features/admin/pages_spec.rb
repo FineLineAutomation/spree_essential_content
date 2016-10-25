@@ -64,7 +64,7 @@ feature "Pages", js: true do
   end
 
   def and_i_edit_a_page
-    within "#page_#{@page_a.id}" do
+    within "#spree_page_#{@page_a.id}" do
       find("a.action-edit").click
     end
 
@@ -75,7 +75,7 @@ feature "Pages", js: true do
 
   def and_i_delete_a_page
     @old_title = @page_a.title
-    within "#page_#{@page_a.id}" do
+    within "#spree_page_#{@page_a.id}" do
       find("a.delete-resource").click
     end
     wait = Selenium::WebDriver::Wait.new ignore: Selenium::WebDriver::Error::NoAlertPresentError

@@ -1,9 +1,5 @@
 <% content_for :page_title do %>
-  <%= (Spree.t('essential_content.admin.page_edit') + " '#{page.title}'").html_safe %>
-<% end %>
-
-<% content_for :sidebar_title do %>
-  <%= Spree.t('essential_content.admin.page_information') %>
+  <%= link_to Spree.t('admin.subnav.posts'), admin_pages_path %> / <%= (Spree.t('essential_content.admin.page_edit') + " '#{page.title}'").html_safe %>
 <% end %>
 
 <% content_for :sidebar do %>
@@ -20,17 +16,15 @@
     </dl>
   </header>
 
-  <nav class="menu">
-    <ul class="sidebar post-menu">
-      <li<%== ' class="active"' if current == Spree.t('essential_content.admin.page_details') %>>
-        <%= link_to Spree.t('essential_content.admin.page_details'), edit_admin_page_url(page) %>
-      </li>
-      <li<%== ' class="active"' if current == "Contents" %>>
-        <%= link_to Spree.t('essential_content.admin.page_contents'), admin_page_contents_url(page) %>
-      </li>
-      <li<%== ' class="active"' if current == "Images" %>>
-        <%= link_to Spree.t('essential_content.admin.page_images'), admin_page_images_url(page) %>
-      </li>
-    </ul>
-  </nav>
+  <ul class="nav nav-pills nav-stacked post-menu" data-hook="admin_pages_tabs">
+    <%= content_tag :li, class: ('active' if current == "Page Details") do %>
+      <%= link_to_with_icon 'edit', Spree.t('essential_content.admin.page_details'), edit_admin_page_url(page) %>
+    <% end %>
+    <%= content_tag :li, class: ('active' if current == "Contents") do %>
+      <%= link_to_with_icon 'list', Spree.t('essential_content.admin.page_contents'), admin_page_contents_url(page) %>
+    <% end %>
+    <%= content_tag :li, class: ('active' if current == "Images") do %>
+      <%= link_to_with_icon 'picture', Spree.t('essential_content.admin.page_images'), admin_page_images_url(page) %>
+    <% end %>
+  </ul>
 <% end %>
