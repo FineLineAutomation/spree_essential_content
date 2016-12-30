@@ -62,7 +62,7 @@ RSpec.configure do |config|
         'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
       })
       driver = Selenium::WebDriver.for(:remote, {
-        url: "#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@localhost:4445",
+        url: "http://localhost:4445",
         desired_capabilities: caps
       })
     end
