@@ -29,24 +29,9 @@ require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/capybara_ext'
 require 'spree/testing_support/preferences'
 require 'spree/testing_support/flash'
+require 'selenium-webdriver'
 
 FactoryGirl.find_definitions
-
-if ENV['SAUCY']
-  require 'sauce'
-  require 'sauce/capybara'
-
-  # change to "Capybara.default_driver = :sauce" to use sauce
-  # for ALL feature specs, not just ones marked with "js: true"
-  Capybara.javascript_driver = :sauce
-
-  Sauce.config do |config|
-    config[:browsers] = [
-      ['Linux', 'Chrome', nil],
-      # and other OS/browser combos you want to support...
-    ]
-  end
-end
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -71,6 +56,19 @@ RSpec.configure do |config|
   config.before :each do |example|
     DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
+
+    if ENV['SAUCY']
+      caps = Selenium::WebDriver::Remote::Capabilities.send(ENV['browser'])
+      caps.version = ENV['browser_version']
+      caps.platform = ENV['operating_system']
+      caps[:name] = example.metadata[:full_description]
+      caps["tunnel-identifier"] = ENV["TRAVIS_JOB_NUMBER"]
+
+      @driver = Selenium::WebDriver.for(
+        :remote,
+        url: "#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@localhost:4445",
+        desired_capabilities: caps)
+    end
   end
 
   config.after :each do
@@ -78,6 +76,12 @@ RSpec.configure do |config|
   end
 
   config.fail_fast = ENV['FAIL_FAST'] || false
+
+  config.after(:each) do
+    if ENV['SAUCY']
+      @driver.quit
+    end
+  end
 end
 
 module Spree
