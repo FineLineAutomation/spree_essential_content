@@ -75,7 +75,7 @@ RSpec.configure do |config|
   config.fail_fast = ENV['FAIL_FAST'] || false
 
   config.after(:each) do
-    if ENV['SAUCY'] and @driver.nil? = false
+    if !@driver.nil? and NV['SAUCY']
       @driver.quit
     end
   end
