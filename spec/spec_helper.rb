@@ -32,6 +32,22 @@ require 'spree/testing_support/flash'
 
 FactoryGirl.find_definitions
 
+if ENV['SAUCY']
+  require 'sauce'
+  require 'sauce/capybara'
+
+  # change to "Capybara.default_driver = :sauce" to use sauce
+  # for ALL feature specs, not just ones marked with "js: true"
+  Capybara.javascript_driver = :sauce
+
+  Sauce.config do |config|
+    config[:browsers] = [
+      ['Linux', 'Chrome', nil],
+      # and other OS/browser combos you want to support...
+    ]
+  end
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.color = true
