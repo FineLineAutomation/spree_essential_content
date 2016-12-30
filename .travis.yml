@@ -15,3 +15,8 @@ rvm:
   - 2.1.9
   - 2.2.5
   - 2.3.1
+addons:
+  sauce_connect:
+    username: "FineLineAutomation"
+    jwt:
+      secure: "nWsXEtnNNWyH+NGeWnQFNFOlMuCV2L7d8djavxSOwdfo6HrLLNde7Q5OUN5pf3yGQpbc/n9z6NhZaDvlmxHGGfcZMiuGfE/W6ZFeJfxKKdyZcvUPEGQfu+LyEyFlgj94d5b4/7wYQhj9X4BrnX7WnJZZiwGEwhC4Tp7mArE01uQ="
