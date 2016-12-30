@@ -1,10 +1,7 @@
 before_install: gem install bundler
 before_script:
   - "bundle exec rake test_app"
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
-script: "DISPLAY=:99.0 bundle exec rspec spec"
+script: "bundle exec rspec spec"
 notifications:
   email:
     - nate@finelineautomation.com
@@ -18,5 +15,5 @@ rvm:
 addons:
   sauce_connect:
     username: "FineLineAutomation"
-    jwt:
-      secure: "nWsXEtnNNWyH+NGeWnQFNFOlMuCV2L7d8djavxSOwdfo6HrLLNde7Q5OUN5pf3yGQpbc/n9z6NhZaDvlmxHGGfcZMiuGfE/W6ZFeJfxKKdyZcvUPEGQfu+LyEyFlgj94d5b4/7wYQhj9X4BrnX7WnJZZiwGEwhC4Tp7mArE01uQ="
+  jwt:
+    secure: "P4TIInknSjQr1SjZ0NsNlhhF3AX8c+jciFXnOxW6HE0g3BbgR2XSYgajfSZKGgsXQAqoCweD0tgypd7arrYoW+3BFvGiStLUW7hGweClCslbOyE8/AI0InfXLw5jHgIziybEpyZTMK02kJuGKtCsKa/KsqlJIojyOjQ6m3kG6DA="
