@@ -58,16 +58,13 @@ RSpec.configure do |config|
     DatabaseCleaner.start
 
     if ENV['SAUCY']
-      caps = Selenium::WebDriver::Remote::Capabilities.send(ENV['browser'])
-      caps.version = ENV['browser_version']
-      caps.platform = ENV['operating_system']
-      caps[:name] = example.metadata[:full_description]
-      caps["tunnel-identifier"] = ENV["TRAVIS_JOB_NUMBER"]
-
-      @driver = Selenium::WebDriver.for(
-        :remote,
+      caps = Selenium::WebDriver::Remote::Capabilities.firefox({
+        'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
+      })
+      driver = Selenium::WebDriver.for(:remote, {
         url: "#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@localhost:4445",
-        desired_capabilities: caps)
+        desired_capabilities: caps
+      })
     end
   end
 
@@ -78,7 +75,7 @@ RSpec.configure do |config|
   config.fail_fast = ENV['FAIL_FAST'] || false
 
   config.after(:each) do
-    if ENV['SAUCY']
+    if ENV['SAUCY'] and @driver.nil? = false
       @driver.quit
     end
   end
