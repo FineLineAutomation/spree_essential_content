@@ -9,6 +9,7 @@ if ENV['SAUCY']
   gem 'sauce'
   gem 'sauce-connect'
   gem 'parallel_tests'
+  gem 'selenium-webdriver'
 end
 
 gemspec
