@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 3.0.0'
+  s.add_dependency 'spree_core', '~> 3.1.3'
   s.add_dependency 'warden', '~> 1.2.5'
   s.add_runtime_dependency('acts-as-taggable-on')
 
