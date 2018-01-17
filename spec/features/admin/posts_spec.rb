@@ -87,6 +87,7 @@ feature "Blog Posts", js: true do
 
   def when_i_visit_admin_posts
     find('.sidebar-content-menu a').click
+    sleep(1)
     find('.blog-posts-link a').click
     expect(page).to have_current_path(spree.admin_posts_path)
   end

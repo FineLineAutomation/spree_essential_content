@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :blog, class: Spree::Blog do
-    name { Faker::Lorem.words.join ' ' }
-    permalink { Faker::Lorem.words.join '-' }
+    name { FFaker::Lorem.words.join ' ' }
+    permalink { FFaker::Lorem.words.join '-' }
   end
 end

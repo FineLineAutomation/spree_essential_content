@@ -17,7 +17,7 @@ module Spree
 
     it "aliases title as name" do
       page = create(:page)
-      page.name = Faker::Lorem.sentence
+      page.name = FFaker::Lorem.sentence
       expect(page.name).to eq(page.title)
     end
 
@@ -113,20 +113,20 @@ module Spree
     context "has_context?" do
       it "returns true if any content has the requested context" do
         page = create(:page)
-        content = create(:content, page: page, context: Faker::Lorem.word)
+        content = create(:content, page: page, context: FFaker::Lorem.word)
         expect(page.has_context? content.context).to eq(true)
       end
 
       it "returns false if no content has the requested context" do
         page = create(:page)
-        expect(page.has_context? Faker::Lorem.word).to_not eq(true)
+        expect(page.has_context? FFaker::Lorem.word).to_not eq(true)
       end
     end
 
     context "for_context" do
       it "returns content that has the requested context" do
         page = create(:page)
-        content = create(:content, page: page, context: Faker::Lorem.word)
+        content = create(:content, page: page, context: FFaker::Lorem.word)
         expect(page.for_context content.context).to include(content)
       end
 

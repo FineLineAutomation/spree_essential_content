@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :post, class: Spree::Post do
     association :blog, factory: :blog
-    title { Faker::Lorem.words.join ' ' }
+    title { FFaker::Lorem.words.join ' ' }
     posted_at { Time.now + rand(10000) }
-    body { Faker::Lorem.paragraphs.join '\n\n' }
-    tag_list { Faker::Lorem.words.join ',' }
+    body { FFaker::Lorem.paragraphs.join '\n\n' }
+    tag_list { FFaker::Lorem.words.join ',' }
     live true
 
     trait :past do
