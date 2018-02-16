@@ -8,6 +8,7 @@ module Spree
 
     def show
       @category = Spree::PostCategory.find_by_permalink(params[:id])
+      return if @category.nil?
       @posts = @category.posts.live
       @posts = @posts.page(params[:page]).per(Spree::Post.per_page)
       @breadcrumbs = [

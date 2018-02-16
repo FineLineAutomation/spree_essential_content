@@ -70,6 +70,7 @@ en:
       by: By
       tagged: Tagged
       no_posts: No Blog Posts Found
+      bad_category: The category is invalid
       setting_disqus_shortname: Disqus Shortname
       setting_sharethis_publisher_id: ShareThis Publisher
       setting_show_products_on_homepage: Show Products On Home Page

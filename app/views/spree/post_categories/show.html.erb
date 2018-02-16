@@ -1,8 +1,11 @@
-<div data-hook="post-categories">
-  <%= render :partial => 'spree/shared/essential_content/preview', :collection => @posts, :as => :post %>
-  <%= paginate @posts %>
-</div>
-
-<% content_for :sidebar do %>
-  <%= render :partial => 'spree/shared/essential_content/sidebar' %>
+<% if @category.nil? %>
+  <h1><%= Spree.t('essential_content.bad_category') %></h1>
+<% else %>
+  <div data-hook="post-categories">
+    <%= render :partial => 'spree/shared/essential_content/preview', :collection => @posts, :as => :post %>
+    <%= paginate @posts %>
+  </div>
+  <% content_for :sidebar do %>
+    <%= render :partial => 'spree/shared/essential_content/sidebar' %>
+  <% end %>
 <% end %>
