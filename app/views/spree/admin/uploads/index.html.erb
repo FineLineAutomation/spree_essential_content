@@ -19,9 +19,9 @@
     <thead>
       <tr>
         <th><%= Spree.t(:thumbnail) %></th>
-        <th><%= sort_link @search, :attachment_file_name, Spree.t("essential_content.upload.file_name") %></th>
-        <th><%= sort_link @search, :description, Spree.t(:description) %></th>
-        <th><%= sort_link @search, :attachment_file_size, Spree.t("essential_content.upload.size") %></th>
+        <th><%= sort_link @q, :attachment_file_name, Spree.t("essential_content.upload.file_name") %></th>
+        <th><%= sort_link @q, :alt, Spree.t(:description) %></th>
+        <th><%= sort_link @q, :attachment_file_size, Spree.t("essential_content.upload.size") %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -53,11 +53,11 @@
 
 <% content_for :table_filter do %>
   <div data-hook="admin_uploads_index_search">
-    <%= search_form_for [ :admin, @search ] do |f| %>
+    <%= search_form_for [ :admin, @q ] do |f| %>
       <div class="field-block alpha sixteen columns">
         <div class="field">
-          <%= f.label :alt_or_attachment_file_name_cont, "#{Spree.t(:description)} #{Spree.t(:or)} #{Spree.t(:filename)}" %>
-          <%= f.text_field :alt_or_attachment_file_name_cont, size: 50 %>
+          <%= f.label :attachment_file_name_cont, "#{Spree.t(:description)} #{Spree.t(:or)} #{Spree.t(:filename)}" %>
+          <%= f.search_field :attachment_file_name_cont %>
         </div>
       </div>
       <div class="clearfix"></div>
