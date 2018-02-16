@@ -15,20 +15,20 @@
 <% else %>
   <%= paginate @collection %>
 
-  <table class="index sortable">
+  <table class="table">
     <thead>
       <tr>
         <th><%= Spree.t(:thumbnail) %></th>
         <th><%= sort_link @q, :attachment_file_name, Spree.t("essential_content.upload.file_name") %></th>
         <th><%= sort_link @q, :alt, Spree.t(:description) %></th>
-        <th><%= sort_link @q, :attachment_file_size, Spree.t("essential_content.upload.size") %></th>
+        <th><%= Spree.t("essential_content.upload.size") %></th>
         <th class="actions"></th>
       </tr>
     </thead>
 
     <% @collection.each do |upload| %>
       <tr id="<%= dom_id(upload) %>">
-        <td class="thumbnail">
+        <td>
           <% if upload.image_content? %>
             <%= link_to image_tag(upload.attachment.url(:mini)), upload.attachment.url(:large) %>
           <% end %>
