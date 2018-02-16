@@ -21,12 +21,12 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :title_cont, Spree.t("essential_content.post.title") %>
-            <%= f.text_field :title_cont, size: 25, class: 'form-control title' %>
+            <%= f.text_field :title_cont, size: 25, class: 'form-control js-quick-search-target' %>
           </div>
         </div>
       </div>
 
-      <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
+      <div class="form-actions" data-hook="admin_blog_posts_index_search_buttons">
         <%= button Spree.t(:search), 'search' %>
       </div>
     <% end %>

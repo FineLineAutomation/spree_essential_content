@@ -9,24 +9,22 @@
 <% content_for :table_filter do %>
   <div data-hook="admin_products_sidebar">
     <%= search_form_for [:admin, @search] do |f| %>
-        <div data-hook="admin_products_index_search">
-          <div class="alpha eight columns omega">
-            <div class="field">
+        <div class="row" data-hook="admin_products_index_search">
+          <div class="col-md-6">
+            <div class="form-group">
               <%= f.label :title_cont, Spree.t('essential_content.page.title') %>
-              <%= f.text_field :title_cont, :size => 25 %>
+              <%= f.text_field :title_cont, size: 25, class: "form-control js-quick-search-target" %>
             </div>
           </div>
-          <div class="eight columns">
-            <div class="field">
+          <div class="col-md-6">
+            <div class="form-group">
               <%= f.label :path_cont, Spree.t('essential_content.page.path') %>
-              <%= f.text_field :path_cont, :size => 25 %>
+              <%= f.text_field :path_cont, size: 25,class: "form-control" %>
             </div>
           </div>
         </div>
 
-       <div class="clear"></div>
-
-        <div class="form-buttons actions filter-actions" data-hook="admin_products_index_search_buttons">
+        <div class="form-actions" data-hook="admin_products_index_search_buttons">
           <%= button Spree.t(:search), 'search' %>
         </div>
     <% end %>
@@ -38,10 +36,10 @@
 <table class="table sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
   <tr>
-      <th colspan="2"><%= sort_link @search, :title, Spree.t("essential_content.page.title") %></th>
-      <th><%= sort_link @search, :path, Spree.t("essential_content.page.path") %></th>
-      <th><%= sort_link @search, :accessible, Spree.t("essential_content.page.accessible") %></th>
-      <th><%= sort_link @search, :visible, Spree.t("essential_content.page.visible") %></th>
+      <th colspan="2"><%= Spree.t("essential_content.page.title") %></th>
+      <th><%= Spree.t("essential_content.page.path") %></th>
+      <th><%= Spree.t("essential_content.page.accessible") %></th>
+      <th><%= Spree.t("essential_content.page.visible") %></th>
       <th data-hook="admin_posts_index_header_actions" class="actions"></th>
   </tr>
   </thead>

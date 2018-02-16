@@ -1,14 +1,12 @@
 <% content_for :page_actions do %>
-  <li id="new_page_link">
-    <%= button_link_to Spree.t('essential_content.admin.content_new'), new_object_url, icon: 'plus', id: 'admin_new_page_content' %>
-  </li>
+  <%= button_link_to Spree.t('essential_content.admin.content_new'), new_object_url, { :class => "btn-success", :icon => 'add', :id => 'admin_new_page_content' } %>
 <% end %>
 
 <%= render partial: 'spree/admin/shared/page_tabs', locals: {page: @page, current: 'Contents'} %>
 
 <%= paginate @collection %>
 
-<table class="index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
+<table class="table sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
   <colgroup>
      <col style="width: 5%">
      <col style="width: 50%">
@@ -17,16 +15,16 @@
   </colgroup>
   <thead>
     <tr>
-        <th colspan="2"><%= sort_link @search, :title, Spree.t('essential_content.content.title') %></th>
-        <th><%= sort_link @search, :context, Spree.t('essential_content.content.context') %></th>
-        <th data-hook="admin_page_contents_index_header_actions" class="actions"></th>
+      <th colspan="2"><%= Spree.t('essential_content.content.title') %></th>
+      <th><%= Spree.t('essential_content.content.context') %></th>
+      <th data-hook="admin_page_contents_index_header_actions" class="actions"></th>
     </tr>
   </thead>
   <tbody>
     <%- @collection.each do |content|%>
     <tr id="<%= spree_dom_id content %>">
-      <td class="no-border">
-        <span class="handle"></span>
+      <td class="move-handle text-center">
+        <span class="icon icon-move handle"></span>
       </td>
       <td><%= link_to content.title, object_url(content) %></td>
       <td><%= content.context %>
