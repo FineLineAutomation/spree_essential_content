@@ -15,7 +15,7 @@ module Spree
     def self.matches?(request)
       return false if request.path =~ Spree::Blog::RESERVED_PATHS
       path = request.path
-      path = path.sub(%r{^/},"").split(%r{/\s*})[0] unless path == "/"
+      path = path.sub(%r{^/},"").split(%r{/\s*})[0].tap{|s| s.slice!(".rss")} unless path == "/"
       Spree::Blog.where(permalink: Spree::Blog.normalize_permalink(path)).any?
     end
   end
